@@ -1,0 +1,2719 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduRise — Growth Engine 2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Bebas+Neue&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #F5A623;
+  --gold-light: #FFD077;
+  --gold-dark: #C47D0A;
+  --navy: #0A0F2E;
+  --navy-mid: #111633;
+  --navy-light: #1A2050;
+  --accent: #E8365D;
+  --accent2: #00C9A7;
+  --white: #FFFFFF;
+  --off-white: #F8F6F0;
+  --gray: #8892B0;
+  --gray-light: #CCD6F6;
+  --card-bg: rgba(255,255,255,0.04);
+  --border: rgba(245,166,35,0.2);
+  --shadow: 0 20px 60px rgba(0,0,0,0.4);
+  --radius: 16px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', 'Tajawal', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ===== NOISE OVERLAY ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10,15,46,0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 4px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--gray-light);
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+  background: rgba(245,166,35,0.1);
+}
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 120px 40px 80px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,166,35,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(232,54,93,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 40% at 20% 60%, rgba(0,201,167,0.06) 0%, transparent 50%);
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245,166,35,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,166,35,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+}
+
+.hero-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(245,166,35,0.2), rgba(245,166,35,0.05));
+  border: 1px solid rgba(245,166,35,0.4);
+  color: var(--gold);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 50px;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: fadeInDown 0.8s ease both;
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  letter-spacing: 6px;
+  line-height: 0.95;
+  background: linear-gradient(135deg, var(--white) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInUp 0.8s 0.2s ease both;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--gray-light);
+  margin: 20px 0 40px;
+  font-weight: 400;
+  line-height: 1.8;
+  animation: fadeInUp 0.8s 0.4s ease both;
+}
+
+.hero-subtitle span {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  animation: fadeInUp 0.8s 0.6s ease both;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat .num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+}
+
+.hero-stat .lbl {
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray);
+  font-size: 0.75rem;
+  animation: bounce 2s infinite;
+}
+
+.scroll-indicator::after {
+  content: '';
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+/* ===== SECTIONS ===== */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.section-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8rem;
+  color: rgba(245,166,35,0.06);
+  position: absolute;
+  top: -40px;
+  right: -20px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.3);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: 'Cairo', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.section-title .highlight {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-title .accent {
+  color: var(--accent);
+}
+
+.section-desc {
+  color: var(--gray);
+  font-size: 1.05rem;
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(245,166,35,0.3), transparent);
+  margin: 0;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245,166,35,0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.card:hover {
+  border-color: rgba(245,166,35,0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(245,166,35,0.2);
+}
+
+.card:hover::before { opacity: 1; }
+
+/* ===== GRID LAYOUTS ===== */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+
+/* ===== OFFER TIERS ===== */
+.tier-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 30px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.tier-card.popular {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, rgba(245,166,35,0.1), rgba(245,166,35,0.02));
+}
+
+.tier-card.popular::after {
+  content: '⭐ الأكثر طلباً';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 4px 14px;
+  border-radius: 50px;
+}
+
+.tier-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.tier-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.tier-price {
+  margin: 20px 0;
+}
+
+.tier-price .old {
+  color: var(--gray);
+  text-decoration: line-through;
+  font-size: 0.9rem;
+}
+
+.tier-price .new {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem;
+  color: var(--white);
+  display: block;
+  line-height: 1;
+}
+
+.tier-price .currency {
+  font-size: 1rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.tier-value {
+  background: rgba(0,201,167,0.1);
+  border: 1px solid rgba(0,201,167,0.3);
+  color: var(--accent2);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.tier-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tier-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.tier-features li::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 900;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ===== FUNNEL ===== */
+.funnel-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.funnel-step:hover {
+  border-color: rgba(245,166,35,0.4);
+  background: rgba(245,166,35,0.04);
+}
+
+.funnel-step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--gold);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 50px;
+  text-align: center;
+}
+
+.funnel-step-content h4 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--white);
+}
+
+.funnel-step-content p {
+  font-size: 0.9rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+.funnel-arrow {
+  text-align: center;
+  color: var(--gold);
+  font-size: 1.5rem;
+  margin: 8px 0;
+  opacity: 0.6;
+}
+
+/* ===== SCRIPTS ===== */
+.script-card {
+  background: rgba(10,15,46,0.8);
+  border: 1px solid rgba(245,166,35,0.25);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.script-header {
+  background: linear-gradient(135deg, rgba(245,166,35,0.2), rgba(245,166,35,0.05));
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(245,166,35,0.2);
+}
+
+.script-header .dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.script-header h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.script-body {
+  padding: 24px;
+  font-size: 0.9rem;
+  line-height: 2;
+  color: var(--gray-light);
+  direction: rtl;
+}
+
+.script-body strong {
+  color: var(--gold);
+}
+
+/* ===== OBJECTION TABLE ===== */
+.obj-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.obj-table thead tr {
+  background: linear-gradient(135deg, rgba(245,166,35,0.2), rgba(245,166,35,0.05));
+}
+
+.obj-table th {
+  padding: 16px 20px;
+  text-align: right;
+  font-weight: 800;
+  color: var(--gold);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.obj-table td {
+  padding: 16px 20px;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  line-height: 1.7;
+  color: var(--gray-light);
+}
+
+.obj-table tr:hover td {
+  background: rgba(245,166,35,0.03);
+}
+
+.obj-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+.obj-q { color: var(--white); font-weight: 700; }
+.obj-a { color: var(--gray-light); }
+
+/* ===== CONTENT CALENDAR ===== */
+.week-block {
+  margin-bottom: 40px;
+}
+
+.week-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.week-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(245,166,35,0.3), transparent);
+}
+
+.day-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 16px;
+  align-items: start;
+  transition: all 0.3s;
+  margin-bottom: 12px;
+}
+
+.day-card:hover {
+  border-color: rgba(245,166,35,0.4);
+  transform: translateX(-4px);
+}
+
+.day-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--gold);
+  text-align: center;
+  line-height: 1;
+}
+
+.day-platform {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 50px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.plt-fb { background: rgba(24,119,242,0.2); color: #4A9BF5; border: 1px solid rgba(24,119,242,0.3); }
+.plt-ig { background: rgba(225,48,108,0.2); color: #F06595; border: 1px solid rgba(225,48,108,0.3); }
+.plt-tt { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+.plt-wa { background: rgba(37,211,102,0.2); color: #4CD97A; border: 1px solid rgba(37,211,102,0.3); }
+
+.day-hook {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.day-idea {
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.day-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.3);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+/* ===== KPI DASHBOARD ===== */
+.kpi-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.kpi-card:hover::before { transform: scaleX(1); }
+.kpi-card:hover {
+  border-color: rgba(245,166,35,0.4);
+  transform: translateY(-4px);
+}
+
+.kpi-icon { font-size: 2rem; margin-bottom: 12px; }
+
+.kpi-metric {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.kpi-label {
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.kpi-sub {
+  font-size: 0.78rem;
+  color: var(--accent2);
+  font-weight: 700;
+}
+
+/* ===== REVENUE TABLE ===== */
+.rev-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rev-table th {
+  background: rgba(245,166,35,0.1);
+  padding: 14px 20px;
+  text-align: right;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--gold);
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.rev-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.9rem;
+  color: var(--gray-light);
+}
+
+.rev-table tr:hover td { background: rgba(245,166,35,0.03); }
+
+.rev-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.rev-cons { background: rgba(0,201,167,0.1); color: var(--accent2); border: 1px solid rgba(0,201,167,0.3); }
+.rev-base { background: rgba(245,166,35,0.15); color: var(--gold); border: 1px solid rgba(245,166,35,0.4); }
+.rev-agg { background: rgba(232,54,93,0.1); color: var(--accent); border: 1px solid rgba(232,54,93,0.3); }
+
+/* ===== FEAR / DESIRE CARDS ===== */
+.psych-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: all 0.3s;
+}
+
+.psych-card.fear { border-top: 3px solid var(--accent); }
+.psych-card.desire { border-top: 3px solid var(--accent2); }
+.psych-card.urgency { border-top: 3px solid var(--gold); }
+
+.psych-card:hover { transform: translateY(-4px); }
+
+.psych-icon { font-size: 2rem; margin-bottom: 12px; }
+.psych-title { font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+.psych-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.7; }
+
+/* ===== COMPETITOR TABLE ===== */
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comp-table th {
+  padding: 14px 20px;
+  text-align: right;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--gold);
+  background: rgba(245,166,35,0.08);
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.comp-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  vertical-align: top;
+}
+
+.comp-table tr:hover td { background: rgba(245,166,35,0.03); }
+
+.comp-bad { color: var(--accent); }
+.comp-good { color: var(--accent2); font-weight: 700; }
+
+/* ===== OPERATIONS SCHEDULE ===== */
+.sched-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.sched-table th {
+  background: rgba(245,166,35,0.1);
+  padding: 12px 10px;
+  text-align: center;
+  font-weight: 800;
+  color: var(--gold);
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.sched-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-right: 1px solid rgba(255,255,255,0.04);
+  text-align: center;
+  color: var(--gray-light);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.sched-table td.slot-time {
+  font-weight: 800;
+  color: var(--gold);
+  background: rgba(245,166,35,0.05);
+  white-space: nowrap;
+}
+
+.slot-eng { background: rgba(24,119,242,0.1) !important; color: #4A9BF5; }
+.slot-prog { background: rgba(0,201,167,0.08) !important; color: var(--accent2); }
+.slot-found { background: rgba(232,54,93,0.08) !important; color: var(--accent); }
+.slot-makeup { background: rgba(245,166,35,0.06) !important; color: var(--gold); }
+.slot-free { color: var(--gray); opacity: 0.4; }
+
+/* ===== FOLLOW-UP TIMELINE ===== */
+.timeline {
+  position: relative;
+  padding-right: 30px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 30px 32px 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  right: -6px; top: 6px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 3px solid var(--navy);
+  box-shadow: 0 0 10px rgba(245,166,35,0.5);
+}
+
+.timeline-day {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.timeline-action {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.timeline-detail {
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ===== CTA BLOCK ===== */
+.cta-block {
+  background: linear-gradient(135deg, rgba(245,166,35,0.15), rgba(245,166,35,0.03));
+  border: 1px solid rgba(245,166,35,0.4);
+  border-radius: 24px;
+  padding: 60px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-block::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, rgba(245,166,35,0.3), transparent, rgba(245,166,35,0.3));
+  border-radius: 24px;
+  z-index: -1;
+}
+
+.cta-block h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.cta-block p {
+  color: var(--gray-light);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+
+.btn-gold {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--navy);
+  font-size: 1rem;
+  font-weight: 900;
+  padding: 16px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 10px 30px rgba(245,166,35,0.3);
+  letter-spacing: 1px;
+}
+
+.btn-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(245,166,35,0.4);
+}
+
+/* ===== GUARANTEE CARD ===== */
+.guarantee-card {
+  background: linear-gradient(135deg, rgba(0,201,167,0.1), rgba(0,201,167,0.02));
+  border: 1px solid rgba(0,201,167,0.4);
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.guarantee-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+}
+
+.guarantee-text h3 {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--accent2);
+  margin-bottom: 12px;
+}
+
+.guarantee-text p {
+  color: var(--gray-light);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.guarantee-text .quote {
+  background: rgba(0,0,0,0.3);
+  border-right: 3px solid var(--accent2);
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-top: 16px;
+  font-style: italic;
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* ===== SCARCITY BANNER ===== */
+.scarcity-bar {
+  background: linear-gradient(135deg, var(--accent), #C42A4F);
+  padding: 14px 30px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.scarcity-bar::before, .scarcity-bar::after {
+  content: '⚡';
+}
+
+/* ===== POSITIONING STATEMENT ===== */
+.positioning-card {
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+  border: 2px solid var(--gold);
+  border-radius: 20px;
+  padding: 50px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.positioning-card::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  right: 30px;
+  font-size: 15rem;
+  color: rgba(245,166,35,0.06);
+  font-family: serif;
+  line-height: 1;
+}
+
+.positioning-card p {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 800;
+  line-height: 1.8;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+}
+
+.positioning-card p span {
+  color: var(--gold);
+}
+
+/* ===== JOURNEY STEPS ===== */
+.journey-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+  position: relative;
+}
+
+.journey-step {
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+  border-right: 1px solid var(--border);
+}
+
+.journey-step:last-child { border-right: none; }
+
+.journey-step-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.journey-step-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--gold);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.journey-step-desc {
+  font-size: 0.8rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ===== DECISION TABLE ===== */
+.decision-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+  transition: all 0.3s;
+  margin-bottom: 12px;
+}
+
+.decision-item:hover {
+  border-color: rgba(245,166,35,0.4);
+}
+
+.decision-if {
+  font-size: 0.9rem;
+  color: var(--white);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.decision-if span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.decision-do {
+  font-size: 0.88rem;
+  color: var(--accent2);
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.decision-do span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--accent2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  opacity: 0.7;
+}
+
+/* ===== PLATFORM STRATEGY CARDS ===== */
+.platform-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: all 0.3s;
+}
+
+.platform-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245,166,35,0.4);
+}
+
+.platform-icon {
+  font-size: 2rem;
+  margin-bottom: 14px;
+}
+
+.platform-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.platform-goal {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.platform-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.platform-detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--gray-light);
+}
+
+.platform-detail::before {
+  content: '→';
+  color: var(--gold);
+  font-weight: 900;
+}
+
+/* ===== CROSS-SELL FLOW ===== */
+.cross-sell-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: all 0.3s;
+}
+
+.cross-sell-item:hover {
+  border-color: rgba(245,166,35,0.4);
+  transform: translateX(-4px);
+}
+
+.cross-from {
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.3);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cross-arrow {
+  color: var(--gold);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.cross-content {
+  flex: 1;
+}
+
+.cross-to {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--accent2);
+  margin-bottom: 6px;
+}
+
+.cross-reason {
+  font-size: 0.84rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: rgba(0,0,0,0.3);
+  border-top: 1px solid var(--border);
+  padding: 40px;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+.footer-tagline {
+  color: var(--gray);
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+}
+
+.footer-note {
+  color: rgba(255,255,255,0.2);
+  font-size: 0.75rem;
+  margin-top: 20px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== TAGS ===== */
+.tag {
+  display: inline-block;
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.3);
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin: 3px;
+}
+
+.tag-red {
+  background: rgba(232,54,93,0.1);
+  border-color: rgba(232,54,93,0.3);
+  color: var(--accent);
+}
+
+.tag-green {
+  background: rgba(0,201,167,0.1);
+  border-color: rgba(0,201,167,0.3);
+  color: var(--accent2);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+  section { padding: 60px 20px; }
+  .grid-3, .grid-2, .grid-4 { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 3.5rem; }
+  .hero-stats { gap: 20px; }
+  .day-card { grid-template-columns: 40px 1fr; }
+  .decision-item { grid-template-columns: 1fr; }
+  .guarantee-card { flex-direction: column; }
+  .sched-table { font-size: 0.7rem; }
+  .sched-table th, .sched-table td { padding: 8px 6px; }
+}
+</style>
+</head>
+<body>
+
+<!-- SCARCITY BAR -->
+<div class="scarcity-bar">
+  آخر أماكن في دفعة مارس — العرض ينتهي 31 مارس
+</div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-logo">EDURISE</div>
+  <ul class="nav-links">
+    <li><a href="#offer">العرض</a></li>
+    <li><a href="#funnel">الفانل</a></li>
+    <li><a href="#content">المحتوى</a></li>
+    <li><a href="#psychology">السيكولوجيا</a></li>
+    <li><a href="#operations">الأوبريشنز</a></li>
+    <li><a href="#revenue">الإيرادات</a></li>
+    <li><a href="#competitors">المنافسون</a></li>
+    <li><a href="#kpi">KPI</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div style="position:relative; z-index:1;">
+    <div class="hero-tag">🚀 Growth Engine — مارس + أبريل 2025</div>
+    <h1>EDURISE</h1>
+    <p class="hero-subtitle">
+      النظام الكامل لتحويل <span>EduRise</span> إلى ماكينة <span>تطبع فلوس</span><br>
+      من الإعلان للإغلاق — كل خطوة مكتوبة، كل سكريبت جاهز، كل رقم محسوب
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">8</span>
+        <div class="lbl">أنظمة متكاملة</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">30</span>
+        <div class="lbl">يوم محتوى جاهز</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">10+</span>
+        <div class="lbl">سكريبت مبيعات</div>
+      </div>
+      <div class="hero-stat">
+        <span class="num">256K</span>
+        <div class="lbl">EGP إيراد متوقع/شهر</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">اسكرول للأسفل</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SECTION 1: OFFER ENGINE -->
+<section id="offer" class="fade-in">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <div class="section-tag">🔥 Section 01</div>
+    <h2 class="section-title">محرك العرض <span class="highlight">اللي مستحيل ترفضه</span></h2>
+    <p class="section-desc">إعادة بناء العرض من الصفر عشان يكون "غباء" إنك ما تشتريش</p>
+  </div>
+
+  <!-- Reframe -->
+  <div class="card fade-in" style="margin-bottom:40px; background: linear-gradient(135deg, rgba(232,54,93,0.1), rgba(232,54,93,0.02)); border-color: rgba(232,54,93,0.3);">
+    <h3 style="font-size:1.1rem; font-weight:900; color:var(--accent); margin-bottom:16px; text-transform:uppercase; letter-spacing:1px;">⚡ إعادة تأطير الرسالة الأساسية</h3>
+    <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:20px; align-items:center;">
+      <div style="background:rgba(0,0,0,0.3); padding:20px; border-radius:12px; border:1px solid rgba(255,255,255,0.1);">
+        <div style="font-size:0.75rem; color:var(--accent); font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">❌ قبل — ببيع كورس</div>
+        <p style="color:var(--gray-light); font-size:0.9rem; line-height:1.7;">"كورس إنجليزي، 2500 جنيه"</p>
+      </div>
+      <div style="font-size:2rem; color:var(--gold);">→</div>
+      <div style="background:rgba(0,201,167,0.08); padding:20px; border-radius:12px; border:1px solid rgba(0,201,167,0.3);">
+        <div style="font-size:0.75rem; color:var(--accent2); font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">✓ بعد — بتبيع نتيجة</div>
+        <p style="color:var(--white); font-size:0.9rem; line-height:1.7; font-weight:700;">"ابنك بيتكلم إنجليزي بثقة في 8 أسابيع — أو مش هتدفع حاجة"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 Tiers -->
+  <div class="grid-3 fade-in">
+    <!-- Tier 1 -->
+    <div class="tier-card">
+      <div class="tier-name">STARTER</div>
+      <p style="color:var(--gray); font-size:0.85rem; margin-bottom:16px;">للي عايز يجرب</p>
+      <div class="tier-price">
+        <span class="old">3,000 EGP</span>
+        <span class="new"><span class="currency">EGP </span>2,500</span>
+        <span style="font-size:0.8rem; color:var(--gray);">/شهر</span>
+      </div>
+      <div class="tier-value">القيمة الحقيقية: 3,300 EGP</div>
+      <ul class="tier-features">
+        <li>كورس واحد (إنجليزي أو برمجة أو تأسيس)</li>
+        <li>Interview تحديد مستوى مجاناً (قيمة: 300 EGP)</li>
+        <li>تقرير أسبوعي لأداء الطالب</li>
+        <li>مجموعة واتساب للأهل</li>
+        <li>جلسات تعويضية عند الغياب</li>
+      </ul>
+    </div>
+
+    <!-- Tier 2 POPULAR -->
+    <div class="tier-card popular">
+      <div style="height:30px;"></div>
+      <div class="tier-name" style="color:var(--gold-light);">GROWTH</div>
+      <p style="color:var(--gray); font-size:0.85rem; margin-bottom:16px;">للجادين في النتيجة</p>
+      <div class="tier-price">
+        <span class="old">6,600 EGP</span>
+        <span class="new"><span class="currency">EGP </span>3,500</span>
+        <span style="font-size:0.8rem; color:var(--gray);">/شهر</span>
+      </div>
+      <div class="tier-value">القيمة الحقيقية: 6,600 EGP</div>
+      <ul class="tier-features">
+        <li>كورسين مجمعين (مثلاً إنجليزي + برمجة)</li>
+        <li>Interview مجاناً + جلسة تقييم شهرية</li>
+        <li>تقارير أسبوعية + مكالمة شهرية مع الأهل</li>
+        <li>خصم 10% للأخوات أوتوماتيك</li>
+        <li>شهادة إتمام المستوى</li>
+        <li>أولوية في الجدول الزمني</li>
+        <li>Golden Guarantee — استرداد بعد جلستين</li>
+      </ul>
+    </div>
+
+    <!-- Tier 3 -->
+    <div class="tier-card" style="border-color:rgba(0,201,167,0.3);">
+      <div class="tier-name" style="color:var(--accent2);">ELITE</div>
+      <p style="color:var(--gray); font-size:0.85rem; margin-bottom:16px;">للعائلات اللي تريد الأفضل</p>
+      <div class="tier-price">
+        <span class="old">10,000+ EGP</span>
+        <span class="new" style="color:var(--accent2);"><span class="currency" style="color:var(--accent2);">EGP </span>5,500</span>
+        <span style="font-size:0.8rem; color:var(--gray);">/شهر</span>
+      </div>
+      <div class="tier-value" style="border-color:rgba(0,201,167,0.3); color:var(--accent2);">القيمة الحقيقية: 10,000+ EGP</div>
+      <ul class="tier-features">
+        <li>3 برامج كاملة (إنجليزي + برمجة + تأسيس)</li>
+        <li>جلسات خاصة متاحة</li>
+        <li>تواصل مباشر مع المدرس على واتساب</li>
+        <li>اجتماع شهري 1:1 مع المدير الأكاديمي</li>
+        <li>كتيب تقدم مطبوع يُرسل للبيت</li>
+        <li style="color:var(--accent2); font-weight:800;">Golden Guarantee الكاملة</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Guarantee -->
+  <div class="guarantee-card fade-in" style="margin-top:40px;">
+    <div class="guarantee-icon">🛡️</div>
+    <div class="guarantee-text">
+      <h3>Golden Guarantee — الضمان الذهبي</h3>
+      <p>المشكلة الأكبر للأهل هي الخوف من ضياع الفلوس. إحنا بنعكس الريسك بالكامل.</p>
+      <div class="quote">
+        "لو ما حسيتش بفرق بعد أول أسبوعين — مش هتدفع حاجة. وده مكتوب."
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-top:20px;">
+        <div class="card" style="padding:16px; background:rgba(0,0,0,0.3);">
+          <div style="color:var(--accent); font-size:0.75rem; font-weight:800; margin-bottom:6px;">المشكلة</div>
+          <div style="font-size:0.85rem; color:var(--gray-light);">"مش هيتحسن"</div>
+          <div style="color:var(--accent2); font-size:0.85rem; margin-top:8px; font-weight:700;">Golden Guarantee: استرداد كامل بعد جلستين</div>
+        </div>
+        <div class="card" style="padding:16px; background:rgba(0,0,0,0.3);">
+          <div style="color:var(--accent); font-size:0.75rem; font-weight:800; margin-bottom:6px;">المشكلة</div>
+          <div style="font-size:0.85rem; color:var(--gray-light);">"لو غبنا جلسة"</div>
+          <div style="color:var(--accent2); font-size:0.85rem; margin-top:8px; font-weight:700;">جلسات تعويضية — مفيش جلسة بتضيع</div>
+        </div>
+        <div class="card" style="padding:16px; background:rgba(0,0,0,0.3);">
+          <div style="color:var(--accent); font-size:0.75rem; font-weight:800; margin-bottom:6px;">المشكلة</div>
+          <div style="font-size:0.85rem; color:var(--gray-light);">"المدرس مش كويس"</div>
+          <div style="color:var(--accent2); font-size:0.85rem; margin-top:8px; font-weight:700;">تغيير المدرس خلال 48 ساعة بدون أسئلة</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scarcity -->
+  <div class="card fade-in" style="margin-top:32px; background:rgba(232,54,93,0.08); border-color:rgba(232,54,93,0.3);">
+    <h3 style="color:var(--accent); font-size:1rem; font-weight:900; margin-bottom:20px; text-transform:uppercase; letter-spacing:1px;">⚠️ آليات الندرة الحقيقية (مش تسويق فاضي)</h3>
+    <div class="grid-4">
+      <div style="text-align:center; padding:16px;">
+        <div style="font-size:2rem; margin-bottom:8px;">👥</div>
+        <div style="font-weight:800; color:var(--white); margin-bottom:4px;">Max 7 طلاب</div>
+        <div style="font-size:0.8rem; color:var(--gray);">في كل جروب تأسيس — نُص حقيقي مش تسويق</div>
+      </div>
+      <div style="text-align:center; padding:16px;">
+        <div style="font-size:2rem; margin-bottom:8px;">📅</div>
+        <div style="font-weight:800; color:var(--white); margin-bottom:4px;">"3 أماكن متبقية"</div>
+        <div style="font-size:0.8rem; color:var(--gray);">يُحدَّث أسبوعياً ويُبلَّغ عبر الـ broadcast</div>
+      </div>
+      <div style="text-align:center; padding:16px;">
+        <div style="font-size:2rem; margin-bottom:8px;">⏰</div>
+        <div style="font-weight:800; color:var(--white); margin-bottom:4px;">العرض ينتهي 31 مارس</div>
+        <div style="font-size:0.8rem; color:var(--gray);">deadline حقيقي للبونص الشهر المجاني</div>
+      </div>
+      <div style="text-align:center; padding:16px;">
+        <div style="font-size:2rem; margin-bottom:8px;">📚</div>
+        <div style="font-weight:800; color:var(--white); margin-bottom:4px;">ضغط الامتحانات</div>
+        <div style="font-size:0.8rem; color:var(--gray);">اللي بيبدأ مارس يخلص مستويين قبل يونيو</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 2: SALES FUNNEL -->
+<section id="funnel" class="fade-in">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <div class="section-tag">💰 Section 02</div>
+    <h2 class="section-title">معمارية <span class="highlight">فانل المبيعات</span></h2>
+    <p class="section-desc">من أول إعلان لحد ما العميل يدفع — كل خطوة مكتوبة</p>
+  </div>
+
+  <!-- Funnel Flow -->
+  <div class="fade-in" style="max-width:700px; margin:0 auto 60px;">
+    <div class="funnel-step">
+      <div class="funnel-step-num">1</div>
+      <div class="funnel-step-content">
+        <h4>إعلان مدفوع أو محتوى أوضاني</h4>
+        <p>Facebook / Instagram / TikTok — الـ hook يصطاد الأهالي المهتمين</p>
+      </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">2</div>
+      <div class="funnel-step-content">
+        <h4>Landing Page أو لينك واتساب مباشر</h4>
+        <p>CTA واحد بس — "احجز Interview مجاني"</p>
+      </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">3</div>
+      <div class="funnel-step-content">
+        <h4>أول رسالة واتساب — خلال 5 دقايق</h4>
+        <p>الرد السريع = ثقة + احتمالية إغلاق أعلى بـ 3 مرات</p>
+      </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">4</div>
+      <div class="funnel-step-content">
+        <h4>Qualification — 3 أسئلة بس</h4>
+        <p>العمر، الخبرة السابقة، الهدف خلال 3 شهور</p>
+      </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">5</div>
+      <div class="funnel-step-content">
+        <h4>Interview مجاني — خلال 24 ساعة</h4>
+        <p>تحديد المستوى + عرض الباقة المناسبة</p>
+      </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="funnel-step-num">6</div>
+      <div class="funnel-step-content">
+        <h4>الإغلاق — نفس اليوم أو واتساب فوري</h4>
+        <p>عرض مخصص + رابط دفع فوري</p>
+      </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step" style="border-color:rgba(0,201,167,0.4);">
+      <div class="funnel-step-num" style="color:var(--accent2);">7</div>
+      <div class="funnel-step-content">
+        <h4>Onboarding — Retention يبدأ من اليوم الأول</h4>
+        <p>رسالة ترحيب شخصية + رسالة صوتية من المدرس</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <h3 class="fade-in" style="font-size:1.4rem; font-weight:900; margin-bottom:24px; color:var(--gold);">📩 سكريبتات واتساب الفعلية</h3>
+
+  <div class="grid-3 fade-in" style="margin-bottom:40px;">
+    <!-- Script 1 -->
+    <div class="script-card">
+      <div class="script-header">
+        <div class="dot"></div>
+        <h4>رسالة 1 — أول تواصل (خلال 5 دقايق)</h4>
+      </div>
+      <div class="script-body">
+        أهلاً بيك في EduRise! 🎓<br><br>
+        أنا [الاسم]، مستشار التعليم هنا.<br><br>
+        شايف إنك مهتم بـ [الكورس] لولدك — ده قرار ممتاز.<br><br>
+        عشان أقدر أساعدك صح، محتاج أعرف:<br>
+        <strong>١.</strong> كم عمر ابنك/بنتك؟<br>
+        <strong>٢.</strong> هو عنده أي خبرة سابقة في [الموضوع]؟<br>
+        <strong>٣.</strong> إيه أكتر حاجة حابب تشوف تتغير فيه خلال ٣ شهور؟
+      </div>
+    </div>
+
+    <!-- Script 2 -->
+    <div class="script-card">
+      <div class="script-header">
+        <div class="dot"></div>
+        <h4>رسالة 2 — بعد الإجابة (حجز الإنترفيو)</h4>
+      </div>
+      <div class="script-body">
+        تمام جداً! بناءً على اللي قلته، عندي تصور واضح.<br><br>
+        فيه فرصة إننا نعمل <strong>interview تحديد مستوى مجاناً</strong> خلال الـ ٢٤ ساعة الجاية — مش لازم تلتزم بأي حاجة بعدها.<br><br>
+        ده هيوفر عليك وقت وفلوس، لأنك هتعرف بالظبط ابنك محتاج إيه.<br><br>
+        <strong>إمتى بيكون وقت مناسب ليك — الصبح ولا بعد الضهر؟</strong>
+      </div>
+    </div>
+
+    <!-- Script 3 -->
+    <div class="script-card">
+      <div class="script-header">
+        <div class="dot"></div>
+        <h4>رسالة 3 — الإغلاق بعد الإنترفيو</h4>
+      </div>
+      <div class="script-body">
+        استمتعنا جداً بوقتنا مع [اسم الطفل]! 🌟<br><br>
+        التقييم واضح: [نتيجة مخصصة — مثلاً "مستواه في القراءة كويس بس محتاج شغل على الـ speaking"]<br><br>
+        الخطوة الجاية المنطقية: <strong>باقة [X]</strong> — بتبدأ [التاريخ] والأماكن محدودة.<br><br>
+        السعر الأصلي ٣٠٠٠ جنيه — لو اشتركت النهارده، السعر ٢٥٠٠ وبتاخد <strong>[الكورس التاني] مجاناً</strong> لمدة شهر.<br><br>
+        <strong>تحب أبعتلك رابط الدفع دلوقتي؟</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Objection Handling -->
+  <h3 class="fade-in" style="font-size:1.4rem; font-weight:900; margin-bottom:24px; color:var(--gold);">🛡️ ردود على الاعتراضات</h3>
+  <div class="card fade-in" style="padding:0; overflow:hidden;">
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th style="width:40px;">#</th>
+          <th>الاعتراض</th>
+          <th>الرد القاتل</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="obj-num">1</td>
+          <td class="obj-q">غالي عليا</td>
+          <td class="obj-a">أفهمك تماماً. خليني أسألك: لو ابنك اتحسن في الإنجليزي وانفتحت قدامه فرص في الجامعة والشغل — كام ده يساوي؟ الـ ٢٥٠٠ مش تكلفة، دي استثمار بعائد حقيقي.</td>
+        </tr>
+        <tr>
+          <td class="obj-num">2</td>
+          <td class="obj-q">هفكر وأرجع</td>
+          <td class="obj-a">أكيد. بس خليني أكون صريح معاك — الأماكن بتاعت مارس بدأت تتملى. إيه اللي محتاج تفكر فيه بالظبط؟ ممكن أساعدك فيه دلوقتي.</td>
+        </tr>
+        <tr>
+          <td class="obj-num">3</td>
+          <td class="obj-q">محتاج أتكلم مع زوجتي/زوجي</td>
+          <td class="obj-a">طبعاً، ده قرار مشترك وده صح. عندي اقتراح — أنا ممكن أبعتلك فيديو قصير ٢ دقيقة تعرضه عليه/عليها فيه كل التفاصيل. كده بتوفر وقته/وقتها. تمام؟</td>
+        </tr>
+        <tr>
+          <td class="obj-num">4</td>
+          <td class="obj-q">جربنا أكاديميات تانية وما نفعتش</td>
+          <td class="obj-a">ده بالظبط اللي بيخلي الأهالي يترددوا — وأنا فاهم. عشان كده عندنا الـ Golden Guarantee. لو بعد أول أسبوعين ما حسيتوش بفرق حقيقي، هترجعوا فلوسكم كاملة. إيه اللي خسرته غير وقتك؟</td>
+        </tr>
+        <tr>
+          <td class="obj-num">5</td>
+          <td class="obj-q">الأونلاين مش بيجيب نتيجة</td>
+          <td class="obj-a">صح إن فيه أكاديميات أونلاين فاشلة. الفرق عندنا: max ٧ طلاب في الجروب، تقارير أسبوعية، ومدرس بيعرف اسم ابنك وأسلوب تعلمه. ده مش أونلاين عادي — ده classroom رقمي حقيقي.</td>
+        </tr>
+        <tr>
+          <td class="obj-num">6</td>
+          <td class="obj-q">فيه أكاديميات أرخص</td>
+          <td class="obj-a">تمام. السؤال مش السعر — السؤال هو هيتعلم ولا لا. لو خلصت ٦ شهور وما فيش نتيجة — فين وفرت؟</td>
+        </tr>
+        <tr>
+          <td class="obj-num">7</td>
+          <td class="obj-q">ابني مش بيحب الدراسة</td>
+          <td class="obj-a">معظم الأطفال اللي عندنا دول. الـ method عندنا مختلفة — بتشغل الفضول مش الحفظ.</td>
+        </tr>
+        <tr>
+          <td class="obj-num">8</td>
+          <td class="obj-q">مش متأكد من الجودة</td>
+          <td class="obj-a">مفيش داعي تتأكد — جرب الأول. الـ Golden Guarantee موجودة عشان متخسرش حاجة.</td>
+        </tr>
+        <tr>
+          <td class="obj-num">9</td>
+          <td class="obj-q">ابني عنده حصص كتير</td>
+          <td class="obj-a">كورساتنا ساعتين أسبوعياً. أقل من Netflix في أسبوع — ومخرجاتها أكبر بكتير.</td>
+        </tr>
+        <tr>
+          <td class="obj-num">10</td>
+          <td class="obj-q">هفكر</td>
+          <td class="obj-a">أنا محتاج أسألك سؤال واحد بس: لو فكرت وقلت آه — هيتغير إيه؟ لو الجواب لا — خلينا نبدأ دلوقتي.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Follow-up Timeline -->
+  <h3 class="fade-in" style="font-size:1.4rem; font-weight:900; margin:40px 0 30px; color:var(--gold);">📅 جدول المتابعة — اليوم 0 → اليوم 7</h3>
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-day">اليوم 0</div>
+      <div class="timeline-action">أول تواصل + Qualification</div>
+      <div class="timeline-detail">واتساب — سكريبت 1+2 فوراً. حجز الإنترفيو في نفس اليوم.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">اليوم 1</div>
+      <div class="timeline-action">إغلاق بعد الإنترفيو</div>
+      <div class="timeline-detail">سكريبت 3 + رابط الدفع. الهدف: الإغلاق في نفس اليوم.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">اليوم 2</div>
+      <div class="timeline-action">قيمة بدون بيع</div>
+      <div class="timeline-detail">أرسل قصة نجاح أو شهادة عميل — لا عرض، فقط ثقة.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">اليوم 3</div>
+      <div class="timeline-action">Urgency Trigger</div>
+      <div class="timeline-detail">"تحديث الأماكن: تبقى ٢ في دفعة مارس"</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">اليوم 5</div>
+      <div class="timeline-action">Re-engage ناعم</div>
+      <div class="timeline-detail">"لقيت فرصة تفكر في الموضوع؟" — مش ضغط، مجرد باب مفتوح.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">اليوم 7</div>
+      <div class="timeline-action">الإغلاق الأخير أو الأرشفة</div>
+      <div class="timeline-detail">آخر عرض + deadline. لو مفيش رد — انقل لـ monthly broadcast. لا spam.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 3: CONTENT CALENDAR -->
+<section id="content" class="fade-in">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <div class="section-tag">📅 Section 03</div>
+    <h2 class="section-title">ماكينة المحتوى — <span class="highlight">30 يوم كاملة</span></h2>
+    <p class="section-desc">خطة محتوى يومية مفصلة لكل بلاتفورم مع الـ Hook والـ CTA</p>
+  </div>
+
+  <!-- Platform Strategy -->
+  <h3 class="fade-in" style="font-size:1.3rem; font-weight:900; margin-bottom:24px; color:var(--gold);">🎯 استراتيجية البلاتفورمات</h3>
+  <div class="grid-4 fade-in" style="margin-bottom:50px;">
+    <div class="platform-card">
+      <div class="platform-icon">📘</div>
+      <div class="platform-name">FACEBOOK</div>
+      <div class="platform-goal">ثقة الأهل + توليد leads</div>
+      <div class="platform-details">
+        <div class="platform-detail">قصص عاطفية طويلة</div>
+        <div class="platform-detail">كاروسيلات مقارنة</div>
+        <div class="platform-detail">نشر 1 مرة يومياً</div>
+        <div class="platform-detail">الأهل فوق 30 سنة</div>
+      </div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">📸</div>
+      <div class="platform-name">INSTAGRAM</div>
+      <div class="platform-goal">وعي + Social Proof</div>
+      <div class="platform-details">
+        <div class="platform-detail">Reels قبل وبعد</div>
+        <div class="platform-detail">اقتباسات وأرقام</div>
+        <div class="platform-detail">نشر 1-2 يومياً</div>
+        <div class="platform-detail">الأهل 25-40 سنة</div>
+      </div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">🎵</div>
+      <div class="platform-name">TIKTOK</div>
+      <div class="platform-goal">Viral Reach + شباب الأهل</div>
+      <div class="platform-details">
+        <div class="platform-detail">فيديوهات تعليمية سريعة</div>
+        <div class="platform-detail">أطفال بيشرحوا</div>
+        <div class="platform-detail">نشر 1 يومياً</div>
+        <div class="platform-detail">أهل تحت 35 سنة</div>
+      </div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">💬</div>
+      <div class="platform-name">WHATSAPP</div>
+      <div class="platform-goal">Retention + Referral</div>
+      <div class="platform-details">
+        <div class="platform-detail">رسائل شخصية قصيرة</div>
+        <div class="platform-detail">عروض حصرية</div>
+        <div class="platform-detail">3 مرات أسبوعياً</div>
+        <div class="platform-detail">Broadcast + Groups</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 1 -->
+  <div class="week-block fade-in">
+    <div class="week-title">الأسبوع 1 — بناء الثقة</div>
+    <div class="day-card"><div class="day-num">1</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">ابنك بيتكلم إنجليزي ولا بيحفظ؟ فرق كبير.</div><div class="day-idea">توعية بالمشكلة — الحفظ الببغاوي مقابل الإنجليزي الحقيقي</div><div class="day-cta">🎯 احجز Interview مجاني</div></div></div>
+    <div class="day-card"><div class="day-num">2</div><div><span class="day-platform plt-ig">Instagram</span><div class="day-hook">٣ علامات إن ابنك محتاج تأسيس دلوقتي</div><div class="day-idea">Reel بروح عاطفية — تأسيس الأطفال في سن مبكرة</div><div class="day-cta">🎯 كومنت "تأسيس" نوصلك التفاصيل</div></div></div>
+    <div class="day-card"><div class="day-num">3</div><div><span class="day-platform plt-tt">TikTok</span><div class="day-hook">طفل ٧ سنين بيبرمج؟ شايف كده؟</div><div class="day-idea">فيديو طفل بيعمل لعبة على Scratch — Wow Factor</div><div class="day-cta">🎯 لينك في البيو</div></div></div>
+    <div class="day-card"><div class="day-num">4</div><div><span class="day-platform plt-wa">WhatsApp</span><div class="day-hook">أهلاً — شاركوا ده مع أي أم/أب محتاج يسمعه</div><div class="day-idea">تيب عن وقت الشاشة vs التكنولوجيا المفيدة</div><div class="day-cta">🎯 طلب referral ناعم</div></div></div>
+    <div class="day-card"><div class="day-num">5</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">قصة أم من السعودية وابنها اللي كان خايف يتكلم</div><div class="day-idea">شهادة عميل — قصة تحول حقيقية (Story Format)</div><div class="day-cta">🎯 "اقرأ كمان" → lead إلى DM</div></div></div>
+    <div class="day-card"><div class="day-num">6</div><div><span class="day-platform plt-ig">Instagram</span><div class="day-hook">مش كل أكاديميات أونلاين زي بعض — الفرق في...</div><div class="day-idea">كاروسيل مقارنة EduRise vs المنافسين (بدون أسماء)</div><div class="day-cta">🎯 "سيف دا وارجعله"</div></div></div>
+    <div class="day-card"><div class="day-num">7</div><div><span class="day-platform plt-tt">TikTok</span><div class="day-hook">أسرع طريقة تعرف ابنك في أنهي مستوى إنجليزي</div><div class="day-idea">تيز الـ Free Placement Interview</div><div class="day-cta">🎯 DM كلمة "مستوى"</div></div></div>
+  </div>
+
+  <!-- Week 2 -->
+  <div class="week-block fade-in">
+    <div class="week-title">الأسبوع 2 — تفعيل الرغبة</div>
+    <div class="day-card"><div class="day-num">8</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">لو ابنك دخل كلية الطب أو هندسة — هيحتاج إنجليزي إزاي؟</div><div class="day-idea">Future-Pacing — ربط الإنجليزي بالمستقبل الحقيقي</div><div class="day-cta">🎯 استشارة مجانية</div></div></div>
+    <div class="day-card"><div class="day-num">9</div><div><span class="day-platform plt-ig">Instagram</span><div class="day-hook">٧ أطفال في الجروب. مش ٢٠. ليه ده مهم؟</div><div class="day-idea">مزايا الجروب الصغير — اهتمام شخصي لكل طالب</div><div class="day-cta">🎯 احجز دلوقتي</div></div></div>
+    <div class="day-card"><div class="day-num">10</div><div><span class="day-platform plt-tt">TikTok</span><div class="day-hook">إيه اللي بيحصل في أول جلسة تأسيس؟</div><div class="day-idea">Behind-the-scenes — جلسة تأسيس حقيقية (مع إذن الأهل)</div><div class="day-cta">🎯 DM "تأسيس"</div></div></div>
+    <div class="day-card"><div class="day-num">11</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">السؤال اللي كل أهل بيسألوه: الأونلاين بيجيب نتيجة؟</div><div class="day-idea">الاعتراض مباشرة + proof من نتائج الطلاب</div><div class="day-cta">🎯 شهادة + CTA</div></div></div>
+    <div class="day-card"><div class="day-num">12</div><div><span class="day-platform plt-tt">TikTok</span><div class="day-hook">ابنك بيلعب Minecraft؟ ده ممكن يبقى مبرمج بجد.</div><div class="day-idea">ربط اهتمامات الأطفال ببرنامج البرمجة</div><div class="day-cta">🎯 احجز trial</div></div></div>
+    <div class="day-card"><div class="day-num">13</div><div><span class="day-platform plt-ig">Instagram</span><div class="day-hook">ضمان استرداد الأموال؟ نعم. إليك الشروط بالكامل.</div><div class="day-idea">Golden Guarantee موضح بالتفصيل — بناء ثقة</div><div class="day-cta">🎯 Trust Builder</div></div></div>
+    <div class="day-card"><div class="day-num">14</div><div><span class="day-platform plt-wa">WhatsApp</span><div class="day-hook">آخر ٤ أماكن في مارس — من يريد؟</div><div class="day-idea">Scarcity + Urgency Broadcast مباشر</div><div class="day-cta">🎯 رد مباشر</div></div></div>
+  </div>
+
+  <!-- Week 3 -->
+  <div class="week-block fade-in">
+    <div class="week-title">الأسبوع 3 — فيضان من الـ Social Proof</div>
+    <div class="day-card"><div class="day-num">15</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">كلام أم من القاهرة بعد شهرين</div><div class="day-idea">شهادة فيديو أو نص — تحول حقيقي موثق</div><div class="day-cta">🎯 شارك + DM</div></div></div>
+    <div class="day-card"><div class="day-num">16</div><div><span class="day-platform plt-ig">Instagram</span><div class="day-hook">قبل وبعد: ابنها كان خايف يتكلم — دلوقتي...</div><div class="day-idea">Before/After Transformation — عاطفي جداً</div><div class="day-cta">🎯 احجز Interview</div></div></div>
+    <div class="day-card"><div class="day-num">17</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">٥ حاجات بتميز EduRise عن أي أكاديمية تانية</div><div class="day-idea">مقارنة مباشرة بدون ذكر أسماء</div><div class="day-cta">🎯 CTA تفصيلي</div></div></div>
+    <div class="day-card"><div class="day-num">18</div><div><span class="day-platform plt-ig">Instagram</span><div class="day-hook">تقرير الطالب الأسبوعي — شكله إيه بالظبط؟</div><div class="day-idea">صورة التقرير الفعلي — Transparency = Trust</div><div class="day-cta">🎯 Trust Builder</div></div></div>
+    <div class="day-card"><div class="day-num">19</div><div><span class="day-platform plt-tt">TikTok</span><div class="day-hook">مين قال إن البرمجة صعبة على الأطفال؟</div><div class="day-idea">Myth-Busting — طفل صغير بيبرمج بسهولة</div><div class="day-cta">🎯 Lead to Trial</div></div></div>
+    <div class="day-card"><div class="day-num">20</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">أسئلة الأهالي الأكتر تكرار — إجابات صريحة</div><div class="day-idea">FAQ Format — يعالج كل الاعتراضات في بوست واحد</div><div class="day-cta">🎯 DM للمزيد</div></div></div>
+    <div class="day-card"><div class="day-num">21</div><div><span class="day-platform plt-wa">WhatsApp</span><div class="day-hook">مش مصدق؟ اتكلم مع أحد طلابنا الأهالي مباشرة</div><div class="day-idea">عرض الاتصال المباشر بأهالي طلاب حاليين</div><div class="day-cta">🎯 رد للتواصل</div></div></div>
+  </div>
+
+  <!-- Week 4 -->
+  <div class="week-block fade-in">
+    <div class="week-title">الأسبوع 4 — Urgency + الإغلاق</div>
+    <div class="day-card"><div class="day-num">22</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">أبريل أقرب مما تتخيل — ابنك هيبدأ فين؟</div><div class="day-idea">Urgency + Future Pacing للسنة الدراسية</div><div class="day-cta">🎯 احجز دلوقتي</div></div></div>
+    <div class="day-card"><div class="day-num">23</div><div><span class="day-platform plt-ig">Instagram</span><div class="day-hook">السعر هيتغير في أول أبريل. آخر فرصة.</div><div class="day-idea">Price Urgency — Hard Deadline</div><div class="day-cta">🎯 سجل النهارده</div></div></div>
+    <div class="day-card"><div class="day-num">24</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">ليه الأطفال في السعودية محتاجين EduRise أكتر؟</div><div class="day-idea">محتوى مخصص للمصريين المغتربين في السعودية</div><div class="day-cta">🎯 Tag a Friend</div></div></div>
+    <div class="day-card"><div class="day-num">25</div><div><span class="day-platform plt-ig">Instagram</span><div class="day-hook">مش لازم تختار — خد الاتنين</div><div class="day-idea">تسليط الضوء على عرض الباقة المجمعة</div><div class="day-cta">🎯 رابط الدفع</div></div></div>
+    <div class="day-card"><div class="day-num">26</div><div><span class="day-platform plt-tt">TikTok</span><div class="day-hook">٣ أسئلة بس وهتعرف ابنك محتاج إيه</div><div class="day-idea">Interactive Quiz Hook — Engagement عالي</div><div class="day-cta">🎯 DM الإجابات</div></div></div>
+    <div class="day-card"><div class="day-num">27</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">آخر يوم للعرض</div><div class="day-idea">Hard Deadline Content — Scarcity نهائي</div><div class="day-cta">🎯 احجز أو خسر العرض</div></div></div>
+    <div class="day-card"><div class="day-num">28</div><div><span class="day-platform plt-wa">WhatsApp</span><div class="day-hook">شكراً لكل أهل وثقوا فينا في مارس 🙏</div><div class="day-idea">Gratitude + Social Proof + طلب referral</div><div class="day-cta">🎯 Referral Ask</div></div></div>
+    <div class="day-card"><div class="day-num">29</div><div><span class="day-platform plt-fb">Facebook</span><div class="day-hook">أبريل — فتحنا التسجيل للدفعة الجديدة</div><div class="day-idea">شهر جديد، urgency جديد — Early Bird</div><div class="day-cta">🎯 Early Bird CTA</div></div></div>
+    <div class="day-card"><div class="day-num">30</div><div><span class="day-platform plt-ig">Instagram</span><div class="day-hook">نتايج الشهر الأول — الأرقام بتتكلم</div><div class="day-idea">Monthly Results Recap — Numbers as Proof</div><div class="day-cta">🎯 احجز أبريل</div></div></div>
+  </div>
+
+  <!-- Viral Angles -->
+  <div class="card fade-in" style="background:linear-gradient(135deg,rgba(245,166,35,0.08),rgba(245,166,35,0.02)); border-color:rgba(245,166,35,0.3);">
+    <h3 style="font-size:1.1rem; font-weight:900; color:var(--gold); margin-bottom:20px;">🔥 زوايا المحتوى الفيروسي</h3>
+    <div class="grid-4">
+      <div style="text-align:center; padding:16px; background:rgba(0,0,0,0.2); border-radius:12px;">
+        <div style="font-size:2rem; margin-bottom:8px;">🎮</div>
+        <div style="font-weight:800; font-size:0.9rem; color:var(--white); margin-bottom:6px;">"علّمت ابني يبرمج في ٣٠ يوم"</div>
+        <div style="font-size:0.78rem; color:var(--gray);">Parent POV فيديو — TikTok / Reels</div>
+      </div>
+      <div style="text-align:center; padding:16px; background:rgba(0,0,0,0.2); border-radius:12px;">
+        <div style="font-size:2rem; margin-bottom:8px;">🧒</div>
+        <div style="font-weight:800; font-size:0.9rem; color:var(--white); margin-bottom:6px;">طفل بيشرح concept بنفسه</div>
+        <div style="font-size:0.78rem; color:var(--gray);">Shareable جداً — الأهل بيبعتوه</div>
+      </div>
+      <div style="text-align:center; padding:16px; background:rgba(0,0,0,0.2); border-radius:12px;">
+        <div style="font-size:2rem; margin-bottom:8px;">📱</div>
+        <div style="font-weight:800; font-size:0.9rem; color:var(--white); margin-bottom:6px;">"خليت ابنتي تعمل أول app"</div>
+        <div style="font-size:0.78rem; color:var(--gray);">أهل بيتاج أهل — Referral Organic</div>
+      </div>
+      <div style="text-align:center; padding:16px; background:rgba(0,0,0,0.2); border-radius:12px;">
+        <div style="font-size:2rem; margin-bottom:8px;">😂</div>
+        <div style="font-weight:800; font-size:0.9rem; color:var(--white); margin-bottom:6px;">"قبل EduRise vs بعد EduRise"</div>
+        <div style="font-size:0.78rem; color:var(--gray);">Humorous Before/After — Viral Potential عالي</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 4: PSYCHOLOGY -->
+<section id="psychology" class="fade-in">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <div class="section-tag">🧠 Section 04</div>
+    <h2 class="section-title">تحليل سيكولوجيا <span class="highlight">العميل بعمق</span></h2>
+    <p class="section-desc">الخوف الحقيقي، الرغبة الخفية، وليه يشتري دلوقتي مش بكره</p>
+  </div>
+
+  <!-- Fears -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:20px; color:var(--accent);">😰 المخاوف العميقة للأهل</h3>
+  <div class="grid-3 fade-in" style="margin-bottom:40px;">
+    <div class="psych-card fear">
+      <div class="psych-icon">👥</div>
+      <div class="psych-title">التأخر عن الأقران</div>
+      <div class="psych-desc">القلق الاجتماعي — "أولاد الناس أحسن من ابني". مقارنة مستمرة مع أبناء الأصدقاء والجيران.</div>
+    </div>
+    <div class="psych-card fear">
+      <div class="psych-icon">💸</div>
+      <div class="psych-title">ضياع الفلوس</div>
+      <div class="psych-desc">تجارب سابقة سيئة مع أكاديميات أونلاين دفعوا فيها وما جاتش نتيجة. الخوف من التكرار.</div>
+    </div>
+    <div class="psych-card fear">
+      <div class="psych-icon">📉</div>
+      <div class="psych-title">جودة المدرسين</div>
+      <div class="psych-desc">شك في أن المدرس الأونلاين مش كفء. الربط بين "أونلاين" و"رخيص وغير احترافي".</div>
+    </div>
+    <div class="psych-card fear">
+      <div class="psych-icon">📱</div>
+      <div class="psych-title">التشتت أمام الشاشة</div>
+      <div class="psych-desc">ذنب وقت الشاشة + قلق من عدم تركيز الطفل في جلسات أونلاين.</div>
+    </div>
+    <div class="psych-card fear">
+      <div class="psych-icon">📅</div>
+      <div class="psych-title">ضغط الامتحانات</div>
+      <div class="psych-desc">النتيجة مرتبطة بالأكاديمي — "هيتحسن قبل الامتحانات ولا لا؟"</div>
+    </div>
+    <div class="psych-card fear" style="background:rgba(232,54,93,0.08);">
+      <div class="psych-icon">⏰</div>
+      <div class="psych-title">الوقت الضائع</div>
+      <div class="psych-desc">كل شهر بيعدي بدون تعليم = فرصة ضائعة. خاصة في سن التأسيس.</div>
+    </div>
+  </div>
+
+  <!-- Hidden Desires -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:20px; color:var(--accent2);">✨ الرغبات الخفية (اللي ما بيقولوهاش)</h3>
+  <div class="grid-3 fade-in" style="margin-bottom:40px;">
+    <div class="psych-card desire">
+      <div class="psych-icon">🏆</div>
+      <div class="psych-title">التباهي أمام الناس</div>
+      <div class="psych-desc">عايزين يقولوا "ابني في أكاديمية premium وبيتقدم" أمام الأصحاب والأقارب.</div>
+    </div>
+    <div class="psych-card desire">
+      <div class="psych-icon">❤️</div>
+      <div class="psych-title">الشعور بالأبوة الجيدة</div>
+      <div class="psych-desc">الاستثمار في التعليم = "أنا والد/والدة مسؤولة". Peace of mind أكبر من أي نتيجة.</div>
+    </div>
+    <div class="psych-card desire">
+      <div class="psych-icon">🌍</div>
+      <div class="psych-title">الفرص الدولية</div>
+      <div class="psych-desc">أهل السعودية خصيصاً يريدون أطفالهم يحافظوا على هويتهم العربية ويكتسبوا مهارات عالمية.</div>
+    </div>
+    <div class="psych-card desire">
+      <div class="psych-icon">😌</div>
+      <div class="psych-title">راحة البال</div>
+      <div class="psych-desc">حد تاني يتعامل مع ضغط التعليم بدلاً منهم — هم بس يشوفوا النتائج.</div>
+    </div>
+    <div class="psych-card desire">
+      <div class="psych-icon">🎓</div>
+      <div class="psych-title">إعجاب المدرسين</div>
+      <div class="psych-desc">يريدون ابنهم يكون "النجم" في الفصل — المدرس يمدحه.</div>
+    </div>
+    <div class="psych-card desire">
+      <div class="psych-icon">🔮</div>
+      <div class="psych-title">ضمان المستقبل</div>
+      <div class="psych-desc">الإنجليزي والبرمجة = "هو هيبقى بخير في أي مكان في العالم".</div>
+    </div>
+  </div>
+
+  <!-- Why Buy Now -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:20px; color:var(--gold);">⚡ ليه يشتروا فوراً؟</h3>
+  <div class="grid-3 fade-in">
+    <div class="psych-card urgency">
+      <div class="psych-icon">📆</div>
+      <div class="psych-title">التقويم المدرسي</div>
+      <div class="psych-desc">الفصول الدراسية تخلق deadlines طبيعية — "لازم يبدأ قبل الامتحانات".</div>
+    </div>
+    <div class="psych-card urgency">
+      <div class="psych-icon">👨‍👩‍👧</div>
+      <div class="psych-title">الأهل التانيين بيتكلموا</div>
+      <div class="psych-desc">Social Proof + FOMO — "صاحبتي اشتركت وبنتها بتتحسن".</div>
+    </div>
+    <div class="psych-card urgency">
+      <div class="psych-icon">💔</div>
+      <div class="psych-title">الألم طازج</div>
+      <div class="psych-desc">تجربة سيئة حديثة مع أكاديمية تانية = الاستعداد للتغيير أعلى بكتير.</div>
+    </div>
+    <div class="psych-card urgency">
+      <div class="psych-icon">🧒</div>
+      <div class="psych-title">الطفل أبدى اهتمام</div>
+      <div class="psych-desc">"ابني قالي عايز يتعلم برمجة" — الشرارة العاطفية للقرار.</div>
+    </div>
+    <div class="psych-card urgency">
+      <div class="psych-icon">🎁</div>
+      <div class="psych-title">العرض المحدود</div>
+      <div class="psych-desc">Loss Aversion — الخوف من تفويت العرض أقوى من الرغبة في الحصول عليه.</div>
+    </div>
+    <div class="psych-card urgency">
+      <div class="psych-icon">🔑</div>
+      <div class="psych-title">انتقال المرحلة</div>
+      <div class="psych-desc">انتقال للابتدائي أو الإعدادي = نقطة تحول طبيعية لبدء التعليم الإضافي.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 5: OPERATIONS -->
+<section id="operations" class="fade-in">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <div class="section-tag">⚙️ Section 05</div>
+    <h2 class="section-title">نظام <span class="highlight">الأوبريشنز</span></h2>
+    <p class="section-desc">الجدول الأسبوعي، تخصيص المدرسين، وتجربة العميل من أول تواصل لحد الـ Retention</p>
+  </div>
+
+  <!-- Schedule -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:20px; color:var(--gold);">📅 الجدول الأسبوعي الأمثل</h3>
+  <div class="card fade-in" style="padding:0; overflow:auto; margin-bottom:40px;">
+    <table class="sched-table">
+      <thead>
+        <tr>
+          <th>الوقت</th>
+          <th>الأحد</th>
+          <th>الاثنين</th>
+          <th>الثلاثاء</th>
+          <th>الأربعاء</th>
+          <th>الخميس</th>
+          <th>الجمعة</th>
+          <th>السبت</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="slot-time">4 – 6 م</td>
+          <td class="slot-found">تأسيس (أ)</td>
+          <td class="slot-eng">إنجليزي L1-4</td>
+          <td class="slot-found">تأسيس (ب)</td>
+          <td class="slot-eng">إنجليزي L5-8</td>
+          <td class="slot-prog">برمجة مبتدئ</td>
+          <td class="slot-free">—</td>
+          <td class="slot-makeup">جلسات تعويض</td>
+        </tr>
+        <tr>
+          <td class="slot-time">6 – 8 م</td>
+          <td class="slot-eng">إنجليزي L9-12</td>
+          <td class="slot-prog">برمجة متوسط</td>
+          <td class="slot-eng">إنجليزي L1-4</td>
+          <td class="slot-found">تأسيس (ج)</td>
+          <td class="slot-eng">إنجليزي L13-16</td>
+          <td class="slot-free">—</td>
+          <td class="slot-makeup">جلسات خاصة</td>
+        </tr>
+        <tr>
+          <td class="slot-time">8 – 10 م</td>
+          <td class="slot-prog">برمجة متقدم</td>
+          <td class="slot-eng">إنجليزي L5-8</td>
+          <td class="slot-prog">برمجة مبتدئ</td>
+          <td class="slot-eng">إنجليزي L9-12</td>
+          <td class="slot-found">مراجعة تأسيس</td>
+          <td class="slot-free">—</td>
+          <td class="slot-free">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card fade-in" style="background:rgba(245,166,35,0.05); border-color:rgba(245,166,35,0.2); padding:20px; margin-bottom:40px;">
+    <p style="font-size:0.88rem; color:var(--gray-light); line-height:1.8;">
+      <strong style="color:var(--gold);">الجمعة = يوم مبيعات وإدارة</strong> — لا حصص، كل المتابعات والمكالمات ومقابلات التحديد.
+      <strong style="color:var(--gold);"> السبت = تعويض وخاص</strong> — خانات Premium مدفوعة بإضافة.
+    </p>
+  </div>
+
+  <!-- Group vs Private -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:20px; color:var(--gold);">👥 استراتيجية الجروب مقابل الخاص</h3>
+  <div class="grid-2 fade-in" style="margin-bottom:40px;">
+    <div class="card" style="border-color:rgba(24,119,242,0.3); background:rgba(24,119,242,0.05);">
+      <h4 style="color:#4A9BF5; font-size:1.1rem; font-weight:900; margin-bottom:16px;">🏫 جروب (Max 7 طلاب)</h4>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div>
+          <div style="font-size:0.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; margin-bottom:6px;">السعر</div>
+          <div style="font-size:0.9rem; color:var(--white);">سعر قياسي</div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; margin-bottom:6px;">الأنسب لـ</div>
+          <div style="font-size:0.9rem; color:var(--white);">المتعلمين الاجتماعيين، التأسيس، البرمجة</div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; margin-bottom:6px;">Upsell Trigger</div>
+          <div style="font-size:0.9rem; color:var(--white);">بعد الشهر الأول لو الأهل يريدون تقدم أسرع</div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; margin-bottom:6px;">العائد للمدرس</div>
+          <div style="font-size:0.9rem; color:var(--white);">حجم أعلى</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(245,166,35,0.4); background:rgba(245,166,35,0.05);">
+      <h4 style="color:var(--gold); font-size:1.1rem; font-weight:900; margin-bottom:16px;">👤 خاص (1:1)</h4>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div>
+          <div style="font-size:0.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; margin-bottom:6px;">السعر</div>
+          <div style="font-size:0.9rem; color:var(--white);">+60% فوق سعر الجروب</div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; margin-bottom:6px;">الأنسب لـ</div>
+          <div style="font-size:0.9rem; color:var(--white);">الخجولين، المتسارعين، احتياجات خاصة</div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; margin-bottom:6px;">Trigger</div>
+          <div style="font-size:0.9rem; color:var(--white);">مباشرة لمشتري Elite Tier</div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; margin-bottom:6px;">العائد للمدرس</div>
+          <div style="font-size:0.9rem; color:var(--white);">هامش أعلى لكل ساعة</div>
+        </div>
+      </div>
+      <div style="margin-top:16px; padding:12px; background:rgba(245,166,35,0.08); border-radius:8px; font-size:0.84rem; color:var(--gold); font-weight:700;">
+        القاعدة: ابدأ بالجروب دايماً. Upsell للخاص بسبب التقدم بعد الشهر الأول.
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer Journey -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:24px; color:var(--gold);">🗺️ رحلة العميل الكاملة — من أول تواصل للـ Retention</h3>
+  <div class="card fade-in" style="padding:0; overflow:hidden;">
+    <div class="journey-wrap">
+      <div class="journey-step">
+        <span class="journey-step-icon">📱</span>
+        <div class="journey-step-title">أول تواصل</div>
+        <div class="journey-step-desc">رد واتساب خلال 5 دقايق — سكريبت جاهز</div>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-icon">🎯</span>
+        <div class="journey-step-title">Interview مجاني</div>
+        <div class="journey-step-desc">خلال 24 ساعة — تحديد مستوى + عرض مخصص</div>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-icon">💳</span>
+        <div class="journey-step-title">Enrollment</div>
+        <div class="journey-step-desc">نفس اليوم — رابط دفع فوري</div>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-icon">🎉</span>
+        <div class="journey-step-title">Welcome</div>
+        <div class="journey-step-desc">رسالة ترحيب شخصية + رسالة صوتية من المدرس</div>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-icon">📚</span>
+        <div class="journey-step-title">أول جلسة</div>
+        <div class="journey-step-desc">المدرس يقدم نفسه لأولياء الأمور</div>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-icon">📊</span>
+        <div class="journey-step-title">تقرير أسبوع 1</div>
+        <div class="journey-step-desc">أول تقرير أداء مكتوب ومُرسل</div>
+      </div>
+      <div class="journey-step">
+        <span class="journey-step-icon">📞</span>
+        <div class="journey-step-title">مكالمة شهر 1</div>
+        <div class="journey-step-desc">Review + Upsell Opportunity + طلب Referral</div>
+      </div>
+      <div class="journey-step" style="border-right:none;">
+        <span class="journey-step-icon">🔄</span>
+        <div class="journey-step-title">Retention Loop</div>
+        <div class="journey-step-desc">شهادات + Milestones + مجتمع الأهل</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 6: REVENUE -->
+<section id="revenue" class="fade-in">
+  <div class="section-header">
+    <div class="section-number">06</div>
+    <div class="section-tag">📈 Section 06</div>
+    <h2 class="section-title">تعظيم <span class="highlight">الإيرادات</span></h2>
+    <p class="section-desc">نظام الـ Upsell، الـ Cross-sell، الـ Retention، والـ Referral</p>
+  </div>
+
+  <!-- Upsell System -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:20px; color:var(--gold);">⬆️ نظام الـ Upsell</h3>
+  <div class="card fade-in" style="padding:0; overflow:hidden; margin-bottom:40px;">
+    <table class="obj-table">
+      <thead>
+        <tr>
+          <th>المحفز</th>
+          <th>Upsell المقترح</th>
+          <th>التوقيت</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">إتمام الشهر الأول</td>
+          <td>ترقية لـ Growth أو Elite Tier</td>
+          <td><span class="tag">نهاية الشهر</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">تقرير تقدم قوي</td>
+          <td>إضافة كورس ثاني</td>
+          <td><span class="tag">بعد الأسبوع 3</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">تفاعل الأهل عالي</td>
+          <td>ترقية لجلسة خاصة</td>
+          <td><span class="tag">في أي وقت</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--white); font-weight:700;">ذكر الأخ/الأخت</td>
+          <td>تسجيل الأخوات بخصم 10%</td>
+          <td><span class="tag">فوري</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="padding:20px 24px; background:rgba(245,166,35,0.05); border-top:1px solid var(--border);">
+      <div style="font-size:0.85rem; color:var(--white); font-weight:700; margin-bottom:6px;">🎙️ سكريبت Upsell:</div>
+      <div style="font-size:0.88rem; color:var(--gray-light); line-height:1.7; font-style:italic;">
+        "بناءً على تقدم [اسم الطفل] في الشهر الأول — عندي اقتراح ممكن يضاعف النتيجة في الشهرين الجايين..."
+      </div>
+    </div>
+  </div>
+
+  <!-- Cross-Sell -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:20px; color:var(--gold);">🔗 منطق الـ Cross-Sell</h3>
+  <div class="fade-in" style="margin-bottom:40px; display:flex; flex-direction:column; gap:12px;">
+    <div class="cross-sell-item">
+      <div class="cross-from">طالب إنجليزي</div>
+      <div class="cross-arrow">→</div>
+      <div class="cross-content">
+        <div class="cross-to">عرض برمجة في الشهر الثاني</div>
+        <div class="cross-reason">"الأطفال اللي بيتعلموا إنجليزي + برمجة مع بعض بيتقدموا ٤٠٪ أسرع في الاتنين" — عرض الشهر المجاني للاختبار.</div>
+      </div>
+    </div>
+    <div class="cross-sell-item">
+      <div class="cross-from">طالب برمجة</div>
+      <div class="cross-arrow">→</div>
+      <div class="cross-content">
+        <div class="cross-to">عرض تأسيس (لو السن 3-10)</div>
+        <div class="cross-reason">"برمجة بدون تأسيس قوي في الرياضيات هيعيق تقدمه — خلينا نكمل الصورة"</div>
+      </div>
+    </div>
+    <div class="cross-sell-item">
+      <div class="cross-from">طالب تأسيس</div>
+      <div class="cross-arrow">→</div>
+      <div class="cross-content">
+        <div class="cross-to">عرض إنجليزي (الخطوة الطبيعية التالية)</div>
+        <div class="cross-reason">"التأسيس الإنجليزي اللي اتعلمه هيكون waste لو مش كمّلناه بمستوى CEFR"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Retention + Referral -->
+  <div class="grid-2 fade-in">
+    <div class="card">
+      <h4 style="color:var(--accent2); font-size:1.1rem; font-weight:900; margin-bottom:20px;">🔄 حلقات الـ Retention</h4>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <span style="color:var(--accent2); font-size:1rem;">✓</span>
+          <div><strong style="color:var(--white);">تقارير أسبوعية</strong><br><span style="font-size:0.85rem; color:var(--gray);">الأهل يحسوا بالمشاركة = يستمروا أطول</span></div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <span style="color:var(--accent2); font-size:1rem;">✓</span>
+          <div><strong style="color:var(--white);">شهادات إتمام المستوى</strong><br><span style="font-size:0.85rem; color:var(--gray);">Milestone celebration — Emotional Lock-in</span></div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <span style="color:var(--accent2); font-size:1rem;">✓</span>
+          <div><strong style="color:var(--white);">Level Up Call مع المدير</strong><br><span style="font-size:0.85rem; color:var(--gray);">عند إتمام كل مستوى — يشعرون بالتميز</span></div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <span style="color:var(--accent2); font-size:1rem;">✓</span>
+          <div><strong style="color:var(--white);">مجموعات واتساب للأهل</strong><br><span style="font-size:0.85rem; color:var(--gray);">مجتمع = مساءلة اجتماعية</span></div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <span style="color:var(--accent2); font-size:1rem;">✓</span>
+          <div><strong style="color:var(--white);">Academic Passport</strong><br><span style="font-size:0.85rem; color:var(--gray);">جواز سفر أكاديمي بختم لكل مستوى — Gamification للأطفال</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--gold); font-size:1.1rem; font-weight:900; margin-bottom:20px;">🎁 محرك الـ Referral</h4>
+      <div style="background:rgba(0,0,0,0.3); border-right:3px solid var(--gold); padding:16px 20px; border-radius:8px; margin-bottom:20px; font-size:0.88rem; color:var(--gray-light); line-height:1.8; font-style:italic;">
+        "إحنا بنكبر بسبب أهل زيك بيثقوا فينا. لو عندك صاحب أو قريب طفله محتاج نفس الدعم — لو رشحتنا وسجّل، هتاخد شهر مجاني. مش بيعلك حاجة وبيساعد حد قريب منك."
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="background:rgba(245,166,35,0.08); border:1px solid rgba(245,166,35,0.3); border-radius:10px; padding:14px; text-align:center;">
+          <div style="font-size:0.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; margin-bottom:6px;">المحيل يحصل على</div>
+          <div style="color:var(--gold); font-weight:800;">شهر مجاني</div>
+        </div>
+        <div style="background:rgba(0,201,167,0.08); border:1px solid rgba(0,201,167,0.3); border-radius:10px; padding:14px; text-align:center;">
+          <div style="font-size:0.75rem; color:var(--gray); font-weight:700; text-transform:uppercase; margin-bottom:6px;">الطالب الجديد يحصل على</div>
+          <div style="color:var(--accent2); font-weight:800;">خصم 10% الشهر الأول</div>
+        </div>
+      </div>
+      <div style="margin-top:16px; font-size:0.84rem; color:var(--gray); line-height:1.6;">
+        التتبع عبر حقل "referred by" في استمارة التسجيل.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 7: COMPETITORS -->
+<section id="competitors" class="fade-in">
+  <div class="section-header">
+    <div class="section-number">07</div>
+    <div class="section-tag">🧨 Section 07</div>
+    <h2 class="section-title">سيادة <span class="accent">المنافسين</span></h2>
+    <p class="section-desc">ليه EduRise تكسب، الـ Positioning، والرسائل التي تُسكت المنافسة</p>
+  </div>
+
+  <!-- Comparison Table -->
+  <div class="card fade-in" style="padding:0; overflow:hidden; margin-bottom:40px;">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>العامل</th>
+          <th>الأكاديميات العادية</th>
+          <th>EduRise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:800; color:var(--white);">حجم الجروب</td>
+          <td class="comp-bad">15–30 طالب</td>
+          <td class="comp-good">Max 7 طلاب</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:var(--white);">التقارير</td>
+          <td class="comp-bad">لا شيء أو شهري</td>
+          <td class="comp-good">أسبوعي، شخصي</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:var(--white);">الضمان</td>
+          <td class="comp-bad">لا يوجد</td>
+          <td class="comp-good">Golden Guarantee — استرداد بعد جلستين</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:var(--white);">تحديد المستوى</td>
+          <td class="comp-bad">اختبار نصي عشوائي</td>
+          <td class="comp-good">Interview مجاني مع مستشار بشري</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:var(--white);">البرامج</td>
+          <td class="comp-bad">مادة واحدة فقط</td>
+          <td class="comp-good">إنجليزي + برمجة + تأسيس — منزل تعليمي واحد</td>
+        </tr>
+        <tr>
+          <td style="font-weight:800; color:var(--white);">مجتمع الأهل</td>
+          <td class="comp-bad">لا يوجد</td>
+          <td class="comp-good">مجموعات واتساب + وصول للمدير الأكاديمي</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Positioning -->
+  <div class="positioning-card fade-in" style="margin-bottom:40px;">
+    <p>
+      <span>EduRise</span> هي الأكاديمية الوحيدة التي <span>تضمن تقدم طفلك بالكتابة</span><br>
+      — أو ترجع لك فلوسك.
+    </p>
+  </div>
+
+  <!-- Messaging -->
+  <div class="card fade-in" style="background:rgba(232,54,93,0.06); border-color:rgba(232,54,93,0.3);">
+    <h3 style="color:var(--accent); font-size:1.1rem; font-weight:900; margin-bottom:16px;">💬 الرسالة التي تُسكت المنافسة</h3>
+    <div style="background:rgba(0,0,0,0.4); border-right:3px solid var(--accent); padding:20px 24px; border-radius:8px; font-size:0.95rem; color:var(--white); line-height:1.9; font-style:italic;">
+      "معظم أكاديميات الأونلاين بتبيعك كورس. إحنا بنبيعك نتيجة. الفرق؟ ٧ طلاب بدل ٣٠، تقرير أسبوعي بدل لا شيء، وضمان مكتوب بدل وعود كلام."
+    </div>
+
+    <h3 style="color:var(--accent); font-size:1rem; font-weight:900; margin:24px 0 16px;">🏆 الـ Differentiation Stack</h3>
+    <div class="grid-3">
+      <div style="text-align:center; padding:16px; background:rgba(0,0,0,0.2); border-radius:10px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">👥</div>
+        <div style="font-weight:800; font-size:0.9rem; color:var(--white); margin-bottom:4px;">Small Group Guarantee</div>
+        <div style="font-size:0.78rem; color:var(--gray);">≤7 طلاب — هيكلي، مش تسويقي</div>
+      </div>
+      <div style="text-align:center; padding:16px; background:rgba(0,0,0,0.2); border-radius:10px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">🛡️</div>
+        <div style="font-weight:800; font-size:0.9rem; color:var(--white); margin-bottom:4px;">Golden Guarantee</div>
+        <div style="font-size:0.78rem; color:var(--gray);">عكس الريسك — لا منافس يقدمه</div>
+      </div>
+      <div style="text-align:center; padding:16px; background:rgba(0,0,0,0.2); border-radius:10px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">🌍</div>
+        <div style="font-weight:800; font-size:0.9rem; color:var(--white); margin-bottom:4px;">Saudi Expat Positioning</div>
+        <div style="font-size:0.78rem; color:var(--gray);">ICP محدد — تقريباً لا منافس يملكه</div>
+      </div>
+      <div style="text-align:center; padding:16px; background:rgba(0,0,0,0.2); border-radius:10px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">📊</div>
+        <div style="font-weight:800; font-size:0.9rem; color:var(--white); margin-bottom:4px;">تقارير أسبوعية</div>
+        <div style="font-size:0.78rem; color:var(--gray);">المساءلة مرئية للأهل</div>
+      </div>
+      <div style="text-align:center; padding:16px; background:rgba(0,0,0,0.2); border-radius:10px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">🏠</div>
+        <div style="font-weight:800; font-size:0.9rem; color:var(--white); margin-bottom:4px;">Tri-Program Ecosystem</div>
+        <div style="font-size:0.78rem; color:var(--gray);">منزل تعليمي واحد — 3 برامج</div>
+      </div>
+      <div style="text-align:center; padding:16px; background:rgba(0,0,0,0.2); border-radius:10px;">
+        <div style="font-size:1.8rem; margin-bottom:8px;">📋</div>
+        <div style="font-weight:800; font-size:0.9rem; color:var(--white); margin-bottom:4px;">Interview + Placement</div>
+        <div style="font-size:0.78rem; color:var(--gray);">تجربة شخصية من اليوم الأول</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION 8: KPI DASHBOARD -->
+<section id="kpi" class="fade-in">
+  <div class="section-header">
+    <div class="section-number">08</div>
+    <div class="section-tag">📊 Section 08</div>
+    <h2 class="section-title">لوحة تحكم <span class="highlight">الـ KPIs</span></h2>
+    <p class="section-desc">المقاييس اليومية والأسبوعية + قرارات مبنية على الأرقام</p>
+  </div>
+
+  <!-- Daily KPIs -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:24px; color:var(--gold);">📅 الأرقام اليومية المستهدفة</h3>
+  <div class="grid-4 fade-in" style="margin-bottom:40px;">
+    <div class="kpi-card">
+      <div class="kpi-icon">🎯</div>
+      <div class="kpi-metric">10–15</div>
+      <div class="kpi-label">Lead جديد / يوم</div>
+      <div class="kpi-sub">واتساب + Forms</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">⚡</div>
+      <div class="kpi-metric">&lt; 5 دقايق</div>
+      <div class="kpi-label">وقت الرد على Lead</div>
+      <div class="kpi-sub">NON-NEGOTIABLE</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">📞</div>
+      <div class="kpi-metric">5–7</div>
+      <div class="kpi-label">Interview محجوز / يوم</div>
+      <div class="kpi-sub">Calendar Entries</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">💰</div>
+      <div class="kpi-metric">2–3</div>
+      <div class="kpi-label">إغلاق / يوم</div>
+      <div class="kpi-sub">Payment Confirmations</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">📈</div>
+      <div class="kpi-metric">25–35%</div>
+      <div class="kpi-label">Conversion Rate</div>
+      <div class="kpi-sub">Closes ÷ Leads</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">💵</div>
+      <div class="kpi-metric">5K–7.5K</div>
+      <div class="kpi-label">إيراد يومي (EGP)</div>
+      <div class="kpi-sub">Payment Tracker</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">🏷️</div>
+      <div class="kpi-metric">&lt; 300</div>
+      <div class="kpi-label">CAC أسبوعي (EGP)</div>
+      <div class="kpi-sub">تكلفة اكتساب عميل</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon">🔄</div>
+      <div class="kpi-metric">&lt; 10%</div>
+      <div class="kpi-label">Churn Rate شهري</div>
+      <div class="kpi-sub">الهدف: أقل ما يمكن</div>
+    </div>
+  </div>
+
+  <!-- Revenue Projection -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:20px; color:var(--gold);">💹 توقعات الإيرادات</h3>
+  <div class="card fade-in" style="padding:0; overflow:hidden; margin-bottom:40px;">
+    <table class="rev-table">
+      <thead>
+        <tr>
+          <th>السيناريو</th>
+          <th>عدد الطلاب</th>
+          <th>متوسط الباقة</th>
+          <th>الإيراد الشهري</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="rev-badge rev-cons">Conservative</span></td>
+          <td>40 طالب</td>
+          <td>2,500 EGP (Starter)</td>
+          <td style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:var(--accent2);">100,000 EGP</td>
+        </tr>
+        <tr>
+          <td><span class="rev-badge rev-base">Base</span></td>
+          <td>60 طالب</td>
+          <td>3,500 EGP (Growth)</td>
+          <td style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:var(--gold);">210,000 EGP</td>
+        </tr>
+        <tr>
+          <td><span class="rev-badge rev-agg">Aggressive</span></td>
+          <td>80 طالب</td>
+          <td>3,200 EGP (Mixed)</td>
+          <td style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:var(--accent);">256,000 EGP</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Decision Rules -->
+  <h3 class="fade-in" style="font-size:1.2rem; font-weight:900; margin-bottom:20px; color:var(--gold);">🧠 قواعد القرار — لو حصل كده اعمل كده</h3>
+  <div class="fade-in">
+    <div class="decision-item">
+      <div class="decision-if"><span>إذا حدث</span>Conversion Rate نزل تحت 20%</div>
+      <div class="decision-do"><span>اعمل</span>A/B Test على سكريبت الإغلاق — راجع أنماط الاعتراضات</div>
+    </div>
+    <div class="decision-item">
+      <div class="decision-if"><span>إذا حدث</span>CAC ارتفع فوق 500 EGP</div>
+      <div class="decision-do"><span>اعمل</span>أوقف الإعلانات المدفوعة — ضاعف المحتوى العضوي + Broadcast</div>
+    </div>
+    <div class="decision-item">
+      <div class="decision-if"><span>إذا حدث</span>Leads عالية بس Interviews منخفضة</div>
+      <div class="decision-do"><span>اعمل</span>المشكلة في أول رسالة — أعد كتابة سكريبت الـ Qualification</div>
+    </div>
+    <div class="decision-item">
+      <div class="decision-if"><span>إذا حدث</span>Interviews عالية بس Closes منخفضة</div>
+      <div class="decision-do"><span>اعمل</span>تدريب فريق المبيعات على معالجة الاعتراضات فوراً</div>
+    </div>
+    <div class="decision-item">
+      <div class="decision-if"><span>إذا حدث</span>Churn عالي في الشهر الثاني</div>
+      <div class="decision-do"><span>اعمل</span>أضف مكالمة Check-in في الشهر الأول — استطلع الأهل الذين غادروا</div>
+    </div>
+    <div class="decision-item">
+      <div class="decision-if"><span>إذا حدث</span>Referral Rate تحت 10%</div>
+      <div class="decision-do"><span>اعمل</span>انقل طلب الـ Referral لوقت أبكر — الأسبوع 3 مش الشهر 1</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXECUTION PLAN -->
+<section class="fade-in">
+  <div class="section-header">
+    <div class="section-tag" style="background:rgba(232,54,93,0.1); border-color:rgba(232,54,93,0.4); color:var(--accent);">🚀 خطة تنفيذ</div>
+    <h2 class="section-title">أول <span class="highlight">7 أيام</span> — الأولويات القاطعة</h2>
+  </div>
+
+  <div class="grid-2 fade-in" style="margin-bottom:60px;">
+    <div class="card" style="background:rgba(232,54,93,0.06); border-color:rgba(232,54,93,0.3);">
+      <h4 style="color:var(--accent); font-weight:900; margin-bottom:20px;">يوم 1–2</h4>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <span style="color:var(--accent); font-weight:900; flex-shrink:0;">→</span>
+          <span style="font-size:0.9rem; color:var(--gray-light);">Setup واتساب Business + Quick Reply Scripts</span>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <span style="color:var(--accent); font-weight:900; flex-shrink:0;">→</span>
+          <span style="font-size:0.9rem; color:var(--gray-light);">رابط الدفع جاهز ومختبر</span>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <span style="color:var(--accent); font-weight:900; flex-shrink:0;">→</span>
+          <span style="font-size:0.9rem; color:var(--gray-light);">استمارة التسجيل فيها حقل "referred by"</span>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="background:rgba(245,166,35,0.06); border-color:rgba(245,166,35,0.3);">
+      <h4 style="color:var(--gold); font-weight:900; margin-bottom:20px;">يوم 3–4</h4>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <span style="color:var(--gold); font-weight:900; flex-shrink:0;">→</span>
+          <span style="font-size:0.9rem; color:var(--gray-light);">أول بوست Facebook + Instagram (محتوى ثقة — مش مبيعات)</span>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <span style="color:var(--gold); font-weight:900; flex-shrink:0;">→</span>
+          <span style="font-size:0.9rem; color:var(--gray-light);">إطلاق أول إعلان مدفوع (برنامج التأسيس — أعلى Emotional Hook)</span>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="background:rgba(0,201,167,0.05); border-color:rgba(0,201,167,0.3);">
+      <h4 style="color:var(--accent2); font-weight:900; margin-bottom:20px;">يوم 5</h4>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <span style="color:var(--accent2); font-weight:900; flex-shrink:0;">→</span>
+          <span style="font-size:0.9rem; color:var(--gray-light);">أول Placement Interviews الحقيقية</span>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <span style="color:var(--accent2); font-weight:900; flex-shrink:0;">→</span>
+          <span style="font-size:0.9rem; color:var(--gray-light);">تحسين السكريبت بناءً على اعتراضات حقيقية</span>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="background:rgba(245,166,35,0.06); border-color:rgba(245,166,35,0.3);">
+      <h4 style="color:var(--gold); font-weight:900; margin-bottom:20px;">يوم 6–7</h4>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <span style="color:var(--gold); font-weight:900; flex-shrink:0;">→</span>
+          <span style="font-size:0.9rem; color:var(--gray-light);">نشر أول محتوى Social Proof / Testimonial</span>
+        </div>
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <span style="color:var(--gold); font-weight:900; flex-shrink:0;">→</span>
+          <span style="font-size:0.9rem; color:var(--gray-light);">أول WhatsApp Broadcast لكل الـ Leads في الأسبوع + رسالة Scarcity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final CTA Block -->
+  <div class="cta-block fade-in">
+    <h2>الماكينة <span style="background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">جاهزة.</span><br>المتغير الوحيد هو <span style="color:var(--accent);">سرعة التنفيذ.</span></h2>
+    <p>كل يوم بدون تنفيذ = طالب التحق بأكاديمية منافسة.<br>ابدأ بالعرض، اقفل سكريبتات الواتساب، وانشر محتوى اليوم الأول الليلة.</p>
+    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a class="btn-gold" href="#offer">ابدأ بالعرض</a>
+      <a class="btn-gold" style="background:linear-gradient(135deg,var(--accent),#C42A4F); box-shadow:0 10px 30px rgba(232,54,93,0.3);" href="#funnel">افتح الفانل</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">EDURISE</div>
+  <p class="footer-tagline">Growth Engine — مارس + أبريل 2025 | نظام تشغيلي كامل</p>
+  <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;">
+    <span class="tag">🔥 Irresistible Offer</span>
+    <span class="tag">💰 Sales Funnel</span>
+    <span class="tag">📅 30-Day Content</span>
+    <span class="tag">🧠 Psychology</span>
+    <span class="tag">⚙️ Operations</span>
+    <span class="tag">📈 Revenue</span>
+    <span class="tag">🧨 Competitors</span>
+    <span class="tag">📊 KPI Dashboard</span>
+  </div>
+  <p class="footer-note">EDURISE Growth Engine — جميع الحقوق محفوظة 2025</p>
+</footer>
+
+<script>
+// Intersection Observer for fade-in animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 80);
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 120;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.style.color = '';
+    link.style.background = '';
+    if (link.getAttribute('href') === '#' + current) {
+      link.style.color = 'var(--gold)';
+      link.style.background = 'rgba(245,166,35,0.1)';
+    }
+  });
+});
+
+// Smooth number counter for hero stats
+function animateCounter(el, target, suffix = '') {
+  let current = 0;
+  const increment = target / 60;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = Math.floor(current) + suffix;
+  }, 20);
+}
+
+// Trigger counter animation when hero is visible
+const heroObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    document.querySelectorAll('.hero-stat .num').forEach(el => {
+      const text = el.textContent;
+      if (text === '8') animateCounter(el, 8);
+      else if (text === '30') animateCounter(el, 30);
+      else if (text === '10+') { animateCounter(el, 10); setTimeout(() => { el.textContent = '10+'; }, 1200); }
+      else if (text === '256K') animateCounter(el, 256, 'K');
+    });
+    heroObserver.disconnect();
+  }
+}, { threshold: 0.5 });
+
+heroObserver.observe(document.querySelector('#hero'));
+</script>
+</body>
+</html>
