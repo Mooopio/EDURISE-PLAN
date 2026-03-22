@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduRise — المخطط الاستراتيجي الكامل</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5A623;
+    --gold-light: #FFD07A;
+    --gold-dark: #C4810F;
+    --navy: #0A1628;
+    --navy-mid: #0F2040;
+    --navy-light: #162B50;
+    --accent: #00D4AA;
+    --accent-dim: #00A882;
+    --red: #FF4757;
+    --white: #F8F6F0;
+    --muted: #8A9BB5;
+    --card-bg: rgba(255,255,255,0.04);
+    --border: rgba(245,166,35,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ===== NOISE TEXTURE OVERLAY ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,166,35,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 20% 100%, rgba(0,212,170,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 80% 80%, rgba(245,166,35,0.06) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(245,166,35,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,166,35,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,166,35,0.1);
+    border: 1px solid rgba(245,166,35,0.3);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 30px;
+    animation: fadeInDown 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 10px;
+    animation: fadeInUp 0.8s ease 0.1s both;
+  }
+
+  .hero h1 .brand {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-weight: 400;
+    animation: fadeInUp 0.8s ease 0.2s both;
+  }
+
+  .hero-tagline span { color: var(--accent); font-weight: 600; }
+
+  .hero-desc {
+    max-width: 700px;
+    font-size: 1.05rem;
+    color: rgba(248,246,240,0.7);
+    margin-bottom: 50px;
+    animation: fadeInUp 0.8s ease 0.3s both;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
+    animation: fadeInUp 0.8s ease 0.4s both;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat .num {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-stat .label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .hero-nav {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeInUp 0.8s ease 0.5s both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(245,166,35,0.3);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ===== TOC ===== */
+  .toc-section {
+    padding: 80px 20px;
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--white);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .toc-item:hover {
+    border-color: var(--gold);
+    background: rgba(245,166,35,0.07);
+    transform: translateX(-4px);
+  }
+
+  .toc-num {
+    width: 32px;
+    height: 32px;
+    background: rgba(245,166,35,0.12);
+    border: 1px solid rgba(245,166,35,0.3);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding: 100px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-full {
+    padding: 100px 20px;
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 60px;
+  }
+
+  .section-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(245,166,35,0.1);
+    border: 1px solid rgba(245,166,35,0.25);
+    padding: 6px 14px;
+    border-radius: 50px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .section-title .gold { color: var(--gold); }
+  .section-title .accent { color: var(--accent); }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 30px;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: rgba(245,166,35,0.3);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(245,166,35,0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* ===== GRID LAYOUTS ===== */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+
+  /* ===== KEY NUMBERS ===== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .kpi-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 0 0 4px 4px;
+  }
+
+  .kpi-value {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .kpi-label {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  /* ===== TABLES ===== */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  th {
+    background: rgba(245,166,35,0.08);
+    padding: 14px 20px;
+    text-align: right;
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 13px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: rgba(248,246,240,0.85);
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:hover td { background: rgba(245,166,35,0.03); }
+
+  .td-highlight {
+    color: var(--accent) !important;
+    font-weight: 700;
+  }
+
+  .td-gold {
+    color: var(--gold) !important;
+    font-weight: 700;
+  }
+
+  /* ===== PRICING ===== */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .price-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .price-card.featured {
+    border-color: var(--gold);
+    background: rgba(245,166,35,0.05);
+  }
+
+  .price-card.featured::before {
+    content: '⭐ الأكثر طلباً';
+    position: absolute;
+    top: -14px;
+    right: 50%;
+    transform: translateX(50%);
+    background: var(--gold);
+    color: var(--navy);
+    padding: 5px 16px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .price-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+
+  .price-tier {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .price-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .price-amount {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin: 16px 0 4px;
+  }
+
+  .price-amount span {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .price-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .price-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .price-features li {
+    font-size: 0.88rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: rgba(248,246,240,0.8);
+  }
+
+  .price-features li::before {
+    content: '✓';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ===== COMPETITORS ===== */
+  .competitor-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+    transition: all 0.3s ease;
+  }
+
+  .competitor-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .competitor-sub {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .strength-list, .weak-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .strength-list li, .weak-list li {
+    font-size: 0.88rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .strength-list li {
+    background: rgba(0,212,170,0.07);
+    border: 1px solid rgba(0,212,170,0.15);
+    color: rgba(248,246,240,0.85);
+  }
+
+  .strength-list li::before { content: '↑'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+  .weak-list li {
+    background: rgba(255,71,87,0.07);
+    border: 1px solid rgba(255,71,87,0.15);
+    color: rgba(248,246,240,0.85);
+  }
+
+  .weak-list li::before { content: '↓'; color: var(--red); font-weight: 700; flex-shrink: 0; }
+
+  /* ===== OPPORTUNITIES ===== */
+  .opp-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .opp-card.star {
+    border-color: rgba(245,166,35,0.4);
+    background: rgba(245,166,35,0.04);
+  }
+
+  .opp-card.star::after {
+    content: '🎯';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 1.3rem;
+  }
+
+  .opp-num {
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(245,166,35,0.12);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: monospace;
+  }
+
+  .opp-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .opp-body {
+    font-size: 0.88rem;
+    color: rgba(248,246,240,0.7);
+    line-height: 1.7;
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .quarter-card {
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .q1 { background: rgba(245,166,35,0.05); border-color: rgba(245,166,35,0.2); }
+  .q2 { background: rgba(0,212,170,0.05); border-color: rgba(0,212,170,0.2); }
+  .q3 { background: rgba(100,149,237,0.05); border-color: rgba(100,149,237,0.2); }
+  .q4 { background: rgba(255,71,87,0.05); border-color: rgba(255,71,87,0.2); }
+
+  .quarter-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .q1 .quarter-label { color: var(--gold); }
+  .q2 .quarter-label { color: var(--accent); }
+  .q3 .quarter-label { color: #6495ED; }
+  .q4 .quarter-label { color: var(--red); }
+
+  .quarter-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .quarter-months {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .quarter-revenue {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 16px 0 8px;
+  }
+
+  .q1 .quarter-revenue { color: var(--gold); }
+  .q2 .quarter-revenue { color: var(--accent); }
+  .q3 .quarter-revenue { color: #6495ED; }
+  .q4 .quarter-revenue { color: var(--red); }
+
+  .quarter-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .quarter-items li {
+    font-size: 0.85rem;
+    color: rgba(248,246,240,0.75);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .quarter-items li::before {
+    content: '→';
+    color: var(--muted);
+    flex-shrink: 0;
+    font-size: 0.8rem;
+  }
+
+  /* ===== PRODUCT LEVELS ===== */
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .level-free { background: rgba(0,212,170,0.1); color: var(--accent); border: 1px solid rgba(0,212,170,0.25); }
+  .level-plus { background: rgba(245,166,35,0.1); color: var(--gold); border: 1px solid rgba(245,166,35,0.25); }
+  .level-pro { background: rgba(100,149,237,0.1); color: #6495ED; border: 1px solid rgba(100,149,237,0.25); }
+  .level-exam { background: rgba(255,71,87,0.1); color: var(--red); border: 1px solid rgba(255,71,87,0.25); }
+
+  /* ===== GROWTH HACKS ===== */
+  .growth-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .growth-card:hover {
+    border-color: rgba(245,166,35,0.3);
+    transform: translateY(-3px);
+  }
+
+  .growth-num {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(245,166,35,0.1);
+    line-height: 1;
+    font-family: monospace;
+  }
+
+  .growth-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .growth-body {
+    font-size: 0.87rem;
+    color: rgba(248,246,240,0.65);
+    line-height: 1.7;
+  }
+
+  /* ===== CONTENT MAP ===== */
+  .content-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+  }
+
+  .content-row:hover { border-color: rgba(245,166,35,0.25); }
+
+  .content-stage {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--white);
+    min-width: 140px;
+  }
+
+  .content-bar-wrap {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50px;
+    height: 8px;
+    overflow: hidden;
+  }
+
+  .content-bar {
+    height: 100%;
+    border-radius: 50px;
+    background: linear-gradient(90deg, var(--gold), var(--accent));
+    transition: width 1s ease;
+  }
+
+  .content-count {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* ===== MOAT ===== */
+  .moat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    transition: all 0.3s ease;
+  }
+
+  .moat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 14px;
+  }
+
+  .moat-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .moat-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ===== FLYWHEEL ===== */
+  .flywheel {
+    background: var(--card-bg);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .flywheel-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 30px;
+  }
+
+  .flywheel-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .fw-step {
+    background: rgba(245,166,35,0.08);
+    border: 1px solid rgba(245,166,35,0.2);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .fw-arrow {
+    color: var(--gold);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  /* ===== WARNING/TIPS ===== */
+  .warning-box {
+    background: rgba(255,71,87,0.07);
+    border: 1px solid rgba(255,71,87,0.2);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .warning-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+  .warning-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 5px;
+  }
+
+  .warning-body {
+    font-size: 0.85rem;
+    color: rgba(248,246,240,0.7);
+    line-height: 1.6;
+  }
+
+  .tip-box {
+    background: rgba(0,212,170,0.06);
+    border: 1px solid rgba(0,212,170,0.18);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .tip-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+
+  .tip-body {
+    font-size: 0.85rem;
+    color: rgba(248,246,240,0.7);
+    line-height: 1.6;
+  }
+
+  /* ===== UVP BLOCK ===== */
+  .uvp-block {
+    background: linear-gradient(135deg, rgba(245,166,35,0.08) 0%, rgba(0,212,170,0.05) 100%);
+    border: 1px solid rgba(245,166,35,0.25);
+    border-radius: 20px;
+    padding: 50px 40px;
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .uvp-quote {
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--white);
+    margin-bottom: 30px;
+  }
+
+  .uvp-quote .hl {
+    color: var(--gold);
+    position: relative;
+  }
+
+  .uvp-pillars {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .uvp-pillar {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    flex: 1;
+    min-width: 180px;
+    max-width: 240px;
+  }
+
+  .uvp-pillar-num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .uvp-pillar-text {
+    font-size: 0.85rem;
+    color: rgba(248,246,240,0.75);
+    line-height: 1.5;
+  }
+
+  /* ===== GTM PHASES ===== */
+  .gtm-phase {
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+
+  .gtm-phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .gtm-phase-badge {
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .phase1 .gtm-phase-badge { background: rgba(245,166,35,0.12); color: var(--gold); border: 1px solid rgba(245,166,35,0.25); }
+  .phase2 .gtm-phase-badge { background: rgba(0,212,170,0.12); color: var(--accent); border: 1px solid rgba(0,212,170,0.25); }
+  .phase3 .gtm-phase-badge { background: rgba(100,149,237,0.12); color: #6495ED; border: 1px solid rgba(100,149,237,0.25); }
+
+  .gtm-phase-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+
+  .gtm-phase-months {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-right: auto;
+  }
+
+  .gtm-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .gtm-col-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .gtm-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gtm-items li {
+    font-size: 0.85rem;
+    color: rgba(248,246,240,0.75);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .gtm-items li::before {
+    content: '•';
+    color: var(--gold);
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+
+  /* ===== SUMMARY / VISION ===== */
+  .vision-block {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, rgba(245,166,35,0.06) 100%);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+  }
+
+  .vision-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .vision-body {
+    font-size: 1.05rem;
+    color: rgba(248,246,240,0.7);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+  }
+
+  .vision-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .vision-tag {
+    background: rgba(245,166,35,0.08);
+    border: 1px solid rgba(245,166,35,0.2);
+    color: rgba(248,246,240,0.8);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  /* ===== STICKY NAV ===== */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sticky-nav.visible { transform: translateY(0); }
+
+  .sticky-logo {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--gold);
+  }
+
+  .sticky-links {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .sticky-links::-webkit-scrollbar { display: none; }
+
+  .sticky-link {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+
+  .sticky-link:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* ===== MISC ===== */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0;
+  }
+
+  .sub-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sub-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    display: block;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .tag-green { background: rgba(0,212,170,0.1); color: var(--accent); border: 1px solid rgba(0,212,170,0.2); }
+  .tag-gold { background: rgba(245,166,35,0.1); color: var(--gold); border: 1px solid rgba(245,166,35,0.2); }
+  .tag-red { background: rgba(255,71,87,0.1); color: var(--red); border: 1px solid rgba(255,71,87,0.2); }
+
+  p.body-text {
+    font-size: 0.92rem;
+    color: rgba(248,246,240,0.75);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 60px 20px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    background: var(--navy-mid);
+  }
+
+  footer .logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  footer p {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .section { padding: 60px 16px; }
+    .section-full { padding: 60px 16px; }
+    .hero-stats { gap: 24px; }
+    .uvp-block { padding: 32px 20px; }
+    .vision-block { padding: 40px 20px; }
+    .flywheel { padding: 28px 20px; }
+    .sticky-links { display: none; }
+    .quarter-card { min-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="stickyNav">
+  <div class="sticky-logo">EduRise ✦</div>
+  <div class="sticky-links">
+    <a href="#s1" class="sticky-link">السوق</a>
+    <a href="#s2" class="sticky-link">المناهج</a>
+    <a href="#s3" class="sticky-link">المنافسون</a>
+    <a href="#s4" class="sticky-link">الفجوات</a>
+    <a href="#s5" class="sticky-link">الاستراتيجية</a>
+    <a href="#s6" class="sticky-link">المنتج</a>
+    <a href="#s7" class="sticky-link">المحتوى</a>
+    <a href="#s8" class="sticky-link">التسعير</a>
+    <a href="#s9" class="sticky-link">GTM</a>
+    <a href="#s10" class="sticky-link">Growth</a>
+    <a href="#s11" class="sticky-link">الخندق</a>
+    <a href="#s12" class="sticky-link">الخريطة</a>
+    <a href="#s13" class="sticky-link">ملاحظات</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div style="position:relative;z-index:2;width:100%;max-width:900px;">
+    <div class="hero-badge">📋 المخطط الاستراتيجي الكامل • 2024</div>
+    <h1><span class="brand">EduRise</span></h1>
+    <p class="hero-tagline">أول منصة مصرية متخصصة 100% في <span>امتحانات أبناؤنا في الخارج</span></p>
+    <p class="hero-desc">مخطط استراتيجي شامل يغطي تحليل السوق، المنافسين، معمارية المنتج، التسعير، استراتيجية الدخول، وخريطة تنفيذية كاملة لـ 12 شهر</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">13</span><span class="label">محوراً استراتيجياً</span></div>
+      <div class="hero-stat"><span class="num">78%</span><span class="label">توفير مقارنةً بـ Eduverse</span></div>
+      <div class="hero-stat"><span class="num">1,400+</span><span class="label">درس في السنة الأولى</span></div>
+      <div class="hero-stat"><span class="num">3–4M</span><span class="label">ريال هدف السنة الأولى</span></div>
+    </div>
+    <div class="hero-nav">
+      <a href="#s1" class="btn-primary">ابدأ القراءة ↓</a>
+      <a href="#s12" class="btn-ghost">الخريطة التنفيذية</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOC ===== -->
+<div class="toc-section">
+  <div class="section-inner">
+    <div class="section-header" style="margin-bottom:0">
+      <span class="section-num">المحتويات</span>
+      <h2 class="section-title">فهرس المخطط الاستراتيجي</h2>
+    </div>
+    <div class="toc-grid">
+      <a href="#s1" class="toc-item"><div class="toc-num">01</div>تحليل البيانات والسوق</a>
+      <a href="#s2" class="toc-item"><div class="toc-num">02</div>هيكل المناهج الدراسية</a>
+      <a href="#s3" class="toc-item"><div class="toc-num">03</div>تحليل المنافسين</a>
+      <a href="#s4" class="toc-item"><div class="toc-num">04</div>الفجوات والفرص الذهبية</a>
+      <a href="#s5" class="toc-item"><div class="toc-num">05</div>استراتيجية EduRise</a>
+      <a href="#s6" class="toc-item"><div class="toc-num">06</div>معمارية المنتج</a>
+      <a href="#s7" class="toc-item"><div class="toc-num">07</div>استراتيجية المحتوى</a>
+      <a href="#s8" class="toc-item"><div class="toc-num">08</div>استراتيجية التسعير</a>
+      <a href="#s9" class="toc-item"><div class="toc-num">09</div>استراتيجية الدخول للسوق</a>
+      <a href="#s10" class="toc-item"><div class="toc-num">10</div>Growth Hacking</a>
+      <a href="#s11" class="toc-item"><div class="toc-num">11</div>الخندق التنافسي</a>
+      <a href="#s12" class="toc-item"><div class="toc-num">12</div>الخريطة التنفيذية 12 شهر</a>
+      <a href="#s13" class="toc-item"><div class="toc-num">13</div>ملاحظات استراتيجية أخيرة</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== S1: MARKET ANALYSIS ===== -->
+<section class="section" id="s1">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">تحليل البيانات و<span class="gold">السوق</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="kpi-grid reveal" style="margin-bottom:40px;">
+    <div class="kpi-card">
+      <span class="kpi-value">$150</span>
+      <div class="kpi-label">رسوم التسجيل الرسمية للطالب سنوياً</div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">100%</span>
+      <div class="kpi-label">مناهج وزارة التربية والتعليم المصرية</div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">6</span>
+      <div class="kpi-label">دول خليجية بمجتمعات مصرية كبيرة</div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">2</span>
+      <div class="kpi-label">فصلان دراسيان — امتحانات إلكترونية</div>
+    </div>
+  </div>
+
+  <div class="grid-2 reveal">
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🎯</div>التوزيع الجغرافي للطلاب</div>
+      <p class="body-text">الغالبية العظمى في دول الخليج الست: السعودية، الإمارات، الكويت، قطر، عُمان، والبحرين — مجتمعات مصرية كبيرة بحاجة ماسة للمحتوى التعليمي المصري.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+        <span class="tag tag-gold">🇸🇦 السعودية</span>
+        <span class="tag tag-gold">🇦🇪 الإمارات</span>
+        <span class="tag tag-gold">🇰🇼 الكويت</span>
+        <span class="tag tag-gold">🇶🇦 قطر</span>
+        <span class="tag tag-gold">🇴🇲 عُمان</span>
+        <span class="tag tag-gold">🇧🇭 البحرين</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="card-icon">📚</div>كيف يذاكر الطلاب الآن؟</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid var(--border);">
+          <span>💻</span><span style="font-size:0.88rem;">منصات أونلاين — معظمها غير متخصص</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid var(--border);">
+          <span>👨‍🏫</span><span style="font-size:0.88rem;">مدرسين خصوصيين — أسعار مرتفعة</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid var(--border);">
+          <span>🏫</span><span style="font-size:0.88rem;">مدارس مصرية صغيرة في الخارج</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;background:rgba(245,166,35,0.07);border:1px solid rgba(245,166,35,0.2);">
+          <span>💬</span><span style="font-size:0.88rem;color:var(--gold);font-weight:700;">جروبات فيسبوك (!!) — فرصة ذهبية</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S2: CURRICULUM ===== -->
+<div class="section-full" id="s2">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">هيكل <span class="gold">المناهج</span> الدراسية</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="grid-2 reveal">
+      <div class="card">
+        <div class="level-badge level-free">الحضانة + صف 1–2</div>
+        <p class="body-text">عربي، إنجليزي/فرنساوي، رياضيات، دراسات متكاملة. التقييم قائم على الأنشطة — لا امتحانات تقليدية.</p>
+        <div class="tip-box" style="margin-top:12px;padding:14px 16px;">
+          <span style="font-size:1rem;">💡</span>
+          <div><div class="tip-title" style="font-size:0.82rem;">الفرصة</div><div class="tip-body" style="font-size:0.82rem;">محتوى تفاعلي للأطفال الصغار بالمنهج المصري نادر جداً</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="level-badge level-plus">الصف الثالث</div>
+        <p class="body-text">يُضاف مادة الدين مع شرط نجاح 70%. مرحلة انتقالية مهمة تتطلب محتوى مخصصاً.</p>
+        <div class="tip-box" style="margin-top:12px;padding:14px 16px;">
+          <span style="font-size:1rem;">💡</span>
+          <div><div class="tip-title" style="font-size:0.82rem;">الفرصة</div><div class="tip-body" style="font-size:0.82rem;">تطبيقات وكويزات للدين بشكل جذاب للأطفال</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="level-badge level-pro">صفوف 4–6</div>
+        <p class="body-text">يُضاف ICT ومهارات مهنية. هذه المرحلة فيها أعلى كثافة طلابية — السوق الأكبر.</p>
+        <div style="margin-top:10px;"><span class="tag tag-gold">أعلى كثافة طلابية</span></div>
+      </div>
+
+      <div class="card">
+        <div class="level-badge level-exam">المرحلة الإعدادية 7–9</div>
+        <p class="body-text">تنقسم المواد العلمية إلى فيزياء وكيمياء وأحياء. الكمبيوتر مادة مستقلة.</p>
+        <div class="tip-box" style="margin-top:12px;padding:14px 16px;">
+          <span style="font-size:1rem;">💡</span>
+          <div><div class="tip-title" style="font-size:0.82rem;">الفرصة</div><div class="tip-body" style="font-size:0.82rem;">الطلاب يحتاجون شرحاً منهجياً متخصصاً لا مجرد ملخصات</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="level-badge level-pro" style="background:rgba(100,149,237,0.1);color:#6495ED;border-color:rgba(100,149,237,0.25);">المرحلة الثانوية</div>
+        <div class="grid-3" style="margin-top:16px;">
+          <div style="padding:14px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid var(--border);">
+            <div style="font-weight:700;font-size:0.9rem;margin-bottom:6px;">الصف الأول ثانوي</div>
+            <p style="font-size:0.83rem;color:var(--muted);">منهج عام — لكل الطلاب</p>
+          </div>
+          <div style="padding:14px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid var(--border);">
+            <div style="font-weight:700;font-size:0.9rem;margin-bottom:6px;">الثاني والثالث ثانوي</div>
+            <p style="font-size:0.83rem;color:var(--muted);">شعبة علمي / أدبي</p>
+          </div>
+          <div style="padding:14px;background:rgba(245,166,35,0.06);border-radius:8px;border:1px solid rgba(245,166,35,0.2);">
+            <div style="font-weight:700;font-size:0.9rem;color:var(--gold);margin-bottom:6px;">⚠️ ملاحظة مهمة</div>
+            <p style="font-size:0.83rem;color:rgba(248,246,240,0.7);">كثير من الطلاب يرجعون مصر للامتحانات — ضغط حقيقي على الأسر</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== S3: COMPETITORS ===== -->
+<section class="section" id="s3">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">تحليل <span class="gold">المنافسين</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- Eduverse -->
+  <div class="reveal" style="margin-bottom:24px;">
+    <div class="competitor-card">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px;">
+        <div>
+          <div class="competitor-name">Eduverse <span style="color:var(--red);font-size:1rem;">🔴</span></div>
+          <div class="competitor-sub">المنافس الأكبر — أكبر منصة في المنطقة للمنهج المصري بالخارج</div>
+        </div>
+        <div style="background:rgba(255,71,87,0.08);border:1px solid rgba(255,71,87,0.2);border-radius:10px;padding:12px 20px;text-align:center;">
+          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:4px;">الثانوي سنوياً</div>
+          <div style="font-size:1.6rem;font-weight:900;color:var(--red);">11,000 ريال</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div class="sub-title">نقاط القوة</div>
+          <ul class="strength-list">
+            <li>أكبر منصة في المنطقة للمنهج المصري بالخارج</li>
+            <li>يقدم اشتراكاً شهرياً وفصلياً</li>
+          </ul>
+        </div>
+        <div>
+          <div class="sub-title">نقاط الضعف</div>
+          <ul class="weak-list">
+            <li>أسعار مرتفعة جداً — 11,000 ريال للثانوي سنوياً</li>
+            <li>لا تمييز واضح في جودة المحتوى</li>
+            <li>تجربة مستخدم غير مميزة</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="sub-title">تحليل الأسعار التفصيلي</div>
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <th>المرحلة</th>
+            <th>السعر السنوي</th>
+            <th>مقارنة EduRise Pro (سنوي)</th>
+            <th>نسبة التوفير</th>
+          </tr>
+          <tr>
+            <td>الابتدائي</td>
+            <td style="color:var(--red);font-weight:700;">7,000 ريال</td>
+            <td class="td-accent">1,670 ريال</td>
+            <td class="td-highlight">76% توفير</td>
+          </tr>
+          <tr>
+            <td>الإعدادي</td>
+            <td style="color:var(--red);font-weight:700;">9,000 ريال</td>
+            <td class="td-accent">1,670 ريال</td>
+            <td class="td-highlight">81% توفير</td>
+          </tr>
+          <tr>
+            <td>الثانوي</td>
+            <td style="color:var(--red);font-weight:700;">11,000 ريال</td>
+            <td class="td-accent">1,670 ريال</td>
+            <td class="td-highlight">85% توفير</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nagwa -->
+  <div class="reveal" style="margin-bottom:24px;">
+    <div class="competitor-card">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px;">
+        <div>
+          <div class="competitor-name">Nagwa <span style="color:var(--gold);font-size:1rem;">🟡</span></div>
+          <div class="competitor-sub">موجود منذ 2015 — نظام الكريدت — نقطة ضعف لا قوة</div>
+        </div>
+        <span class="tag tag-red">نموذج متغير الجودة</span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div class="sub-title">نقاط القوة</div>
+          <ul class="strength-list">
+            <li>نموذج الكريدت مرن نسبياً</li>
+            <li>موجود من 2015 وعنده brand awareness</li>
+          </ul>
+        </div>
+        <div>
+          <div class="sub-title">نقاط الضعف</div>
+          <ul class="weak-list">
+            <li>المدرسون يحددون السعر بأنفسهم = جودة غير منتظمة</li>
+            <li>لا ضمان على مستوى المحتوى</li>
+            <li>التجربة غير موحدة عبر المنصة</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ashtar -->
+  <div class="reveal">
+    <div class="competitor-card">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px;">
+        <div>
+          <div class="competitor-name">Ashtar <span style="color:var(--accent);font-size:1rem;">🟢</span></div>
+          <div class="competitor-sub">معتمد من Cognia — 300,000+ طالب — لكن غير متخصص</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="tag tag-green">Cognia معتمد</span>
+          <span class="tag tag-red">أسعار مخفية</span>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div>
+          <div class="sub-title">نقاط القوة</div>
+          <ul class="strength-list">
+            <li>معتمد من Cognia — مصداقية عالية</li>
+            <li>300,000+ طالب — رقم ضخم</li>
+            <li>يدعم عربي وإنجليزي وفرنساوي</li>
+          </ul>
+        </div>
+        <div>
+          <div class="sub-title">نقاط الضعف</div>
+          <ul class="weak-list">
+            <li>أسعار مخفية = يعتمد على Sales مباشر = friction عالٍ</li>
+            <li>غير متخصص في المنهج المصري فقط</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S4: GAPS ===== -->
+<div class="section-full" id="s4">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">الفجوات في السوق — <span class="gold">الفرص الذهبية</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="grid-2 reveal">
+      <div class="opp-card star">
+        <div class="opp-num">01</div>
+        <div class="opp-title">🎯 فجوة امتحانات السفارة</div>
+        <div class="opp-body">الأهم على الإطلاق. لا توجد منصة تقدم بنك أسئلة حقيقياً لامتحانات السفارة، أو محاكاة بنفس النظام الرسمي، أو برامج مكثفة قبل الامتحان، أو تحليلاً لنقاط الضعف.</div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-num">02</div>
+        <div class="opp-title">👶 فجوة الأطفال الصغار</div>
+        <div class="opp-body">الحضانة والصفوف الأولى لا يوجد لها محتوى تفاعلي مناسب بالمنهج المصري. هذا سوق فارغ تماماً يستهدف شريحة الآباء الأكثر قلقاً واستعداداً للدفع.</div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-num">03</div>
+        <div class="opp-title">👨‍👩‍👧 فجوة أولياء الأمور</div>
+        <div class="opp-body">الأمهات والآباء في الخارج لا يملكون رؤية واضحة لأداء أولادهم — يعتمدون على تقييمات شفهية من المدرسين. داشبورد شفاف = ميزة تنافسية قوية.</div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-num">04</div>
+        <div class="opp-title">🌙 فجوة الدعم الفوري</div>
+        <div class="opp-body">إذا وقف الطالب على مسألة الساعة 11 ليلاً — لا أحد يساعده. المدرس الخصوصي غير متاح دائماً. AI Tutor 24/7 يحل هذه المشكلة تماماً.</div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-num">05</div>
+        <div class="opp-title">✅ فجوة الثقة والجودة</div>
+        <div class="opp-body">المنصات الموجودة لا تضمن جودة المدرسين. يحدث أن يدفع الطالب ثم يكتشف أن المدرس غير كفؤ. ضمان النجاح = تمييز حاسم في السوق.</div>
+      </div>
+      <div class="opp-card">
+        <div class="opp-num">06</div>
+        <div class="opp-title">💰 فجوة التسعير</div>
+        <div class="opp-body">لا يوجد شيء في المنتصف — إما غالٍ جداً (11,000 ريال) أو جروبات فيسبوك مجانية. هناك شريحة ضخمة تريد جودة بسعر معقول — EduRise يملأ هذه الفجوة.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== S5: STRATEGY ===== -->
+<section class="section" id="s5">
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">استراتيجية <span class="gold">EduRise</span> الكاملة</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="uvp-block reveal">
+    <div class="uvp-quote">"أول منصة بتتكلم بلغة الامتحان بالظبط — مش بس شرح، ده <span class="hl">إعداد كامل للامتحان</span>"</div>
+    <div class="uvp-pillars">
+      <div class="uvp-pillar">
+        <div class="uvp-pillar-num">01</div>
+        <div class="uvp-pillar-text">محتوى = الامتحان بالضبط — المنهج كله بالتفصيل</div>
+      </div>
+      <div class="uvp-pillar">
+        <div class="uvp-pillar-num">02</div>
+        <div class="uvp-pillar-text">ضمان النجاح — لو الطالب اتبع البرنامج نرجع الفلوس</div>
+      </div>
+      <div class="uvp-pillar">
+        <div class="uvp-pillar-num">03</div>
+        <div class="uvp-pillar-text">دعم 24/7 — لن يكون لوحده في أي وقت</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-title"><div class="card-icon">🎯</div>الـ Positioning</div>
+    <p class="body-text" style="font-size:1rem;">EduRise ليس منافساً — هو <strong style="color:var(--gold);">بديل أفضل بشكل واضح</strong>. أول منصة مصرية متخصصة 100% في امتحانات "أبناؤنا في الخارج"، تضمن النجاح أو ترجع فلوسك.</p>
+  </div>
+</section>
+
+<!-- ===== S6: PRODUCT ARCHITECTURE ===== -->
+<div class="section-full" id="s6">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">06</span>
+      <h2 class="section-title">معمارية <span class="gold">المنتج</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="pricing-grid reveal">
+      <div class="price-card">
+        <div class="level-badge level-free">المستوى الأول</div>
+        <div class="price-name">Free</div>
+        <div class="price-amount">مجاني <span></span></div>
+        <div class="price-desc">لجذب المستخدمين وبناء قاعدة بيانات</div>
+        <ul class="price-features">
+          <li>بنك أسئلة — 100 سؤال لكل مادة</li>
+          <li>امتحان تشخيصي مجاني</li>
+          <li>أول درس في كل مادة</li>
+        </ul>
+      </div>
+
+      <div class="price-card featured">
+        <div class="level-badge level-plus">المستوى الثاني</div>
+        <div class="price-name">EduRise Plus</div>
+        <div class="price-amount">99–149 <span>ريال/شهر</span></div>
+        <div class="price-desc">الباقة الأساسية للمذاكرة المنتظمة</div>
+        <ul class="price-features">
+          <li>كل الدروس المسجلة كاملة</li>
+          <li>كويزات تفاعلية لكل درس</li>
+          <li>داشبورد ولي الأمر</li>
+          <li>تقارير أداء أسبوعية</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <div class="level-badge level-pro">المستوى الثالث</div>
+        <div class="price-name">EduRise Pro</div>
+        <div class="price-amount">199–249 <span>ريال/شهر</span></div>
+        <div class="price-desc">التجربة الكاملة مع دعم مباشر</div>
+        <ul class="price-features">
+          <li>كل ميزات Plus</li>
+          <li>حصص لايف أسبوعية</li>
+          <li>مراجعات مكثفة قبل الامتحان</li>
+          <li>محاكاة امتحانات السفارة</li>
+          <li>دعم AI فوري 24/7</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <div class="level-badge level-exam">المستوى الرابع — موسمي</div>
+        <div class="price-name">Exam Prep</div>
+        <div class="price-amount">299–499 <span>ريال/4 أسابيع</span></div>
+        <div class="price-desc">برنامج مكثف قبل دور الامتحانات</div>
+        <ul class="price-features">
+          <li>محاكاة يومية للامتحان</li>
+          <li>جلسات مراجعة مكثفة</li>
+          <li>ضمان النجاح مكفول</li>
+          <li>متاح قبل كل دور امتحانات</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== S7: CONTENT ===== -->
+<section class="section" id="s7">
+  <div class="section-header reveal">
+    <span class="section-num">07</span>
+    <h2 class="section-title">استراتيجية <span class="gold">المحتوى</span> الكاملة</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="sub-title reveal">خريطة المحتوى — إجمالي ~1,400 درس في السنة الأولى</div>
+  <div class="reveal" style="margin-bottom:40px;">
+    <div class="content-row">
+      <span class="content-stage">الحضانة — صف 2</span>
+      <div class="content-bar-wrap"><div class="content-bar" style="width:100%;"></div></div>
+      <span class="content-count">80 درس</span>
+    </div>
+    <div class="content-row">
+      <span class="content-stage">الصف الثالث</span>
+      <div class="content-bar-wrap"><div class="content-bar" style="width:100%;"></div></div>
+      <span class="content-count">120 درس</span>
+    </div>
+    <div class="content-row">
+      <span class="content-stage">صفوف 4–6</span>
+      <div class="content-bar-wrap"><div class="content-bar" style="width:100%;"></div></div>
+      <span class="content-count">300 درس</span>
+    </div>
+    <div class="content-row">
+      <span class="content-stage">المرحلة الإعدادية</span>
+      <div class="content-bar-wrap"><div class="content-bar" style="width:100%;"></div></div>
+      <span class="content-count">400 درس</span>
+    </div>
+    <div class="content-row">
+      <span class="content-stage">المرحلة الثانوية</span>
+      <div class="content-bar-wrap"><div class="content-bar" style="width:100%;"></div></div>
+      <span class="content-count">500 درس</span>
+    </div>
+  </div>
+
+  <div class="grid-2 reveal">
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🎥</div>معايير الدروس المسجلة</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:6px;font-size:0.85rem;">
+          <span style="color:var(--muted);">مدة الدرس</span>
+          <span style="color:var(--gold);font-weight:700;">8–15 دقيقة</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:6px;font-size:0.85rem;">
+          <span style="color:var(--muted);">لغة الشرح</span>
+          <span style="color:var(--gold);font-weight:700;">عامية مصرية + مصطلحات رسمية</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:6px;font-size:0.85rem;">
+          <span style="color:var(--muted);">الشاشة</span>
+          <span style="color:var(--gold);font-weight:700;">مدرس + سبورة رقمية</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:6px;font-size:0.85rem;">
+          <span style="color:var(--muted);">المرفقات</span>
+          <span style="color:var(--gold);font-weight:700;">ملخص نصي + PDF للتحميل</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🏆</div>نظام التحفيز</div>
+      <p class="body-text">نظام نقاط وشارات، ليدربورد أسبوعي، وشارة "مراجعة ممتازة" لكل من أتم 3 كويزات في الأسبوع.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+        <span class="tag tag-gold">🏅 نقاط وشارات</span>
+        <span class="tag tag-green">📊 ليدربورد أسبوعي</span>
+        <span class="tag tag-gold">⭐ تحديات أسبوعية</span>
+      </div>
+    </div>
+
+    <div class="card" style="border-color:rgba(245,166,35,0.3);background:rgba(245,166,35,0.04);">
+      <div class="card-title"><div class="card-icon">⭐</div>محاكاة امتحانات السفارة — الميزة الأهم</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+        <li style="font-size:0.87rem;display:flex;gap:10px;"><span style="color:var(--gold);">✦</span>نفس واجهة الامتحان الإلكتروني الرسمي</li>
+        <li style="font-size:0.87rem;display:flex;gap:10px;"><span style="color:var(--gold);">✦</span>نفس توزيع الدرجات والوقت المحدد</li>
+        <li style="font-size:0.87rem;display:flex;gap:10px;"><span style="color:var(--gold);">✦</span>تقرير كامل بعد الامتحان مع شرح كل إجابة</li>
+        <li style="font-size:0.87rem;display:flex;gap:10px;"><span style="color:var(--gold);">✦</span>مقارنة أداء الطالب مع باقي الطلاب (anonymized)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🤖</div>AI Tutor — دعم 24/7</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:9px;">
+        <li style="font-size:0.87rem;display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);">→</span>مدرب على المنهج المصري بالكامل</li>
+        <li style="font-size:0.87rem;display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);">→</span>يحل مسائل رياضيات وعلوم خطوة بخطوة</li>
+        <li style="font-size:0.87rem;display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);">→</span>لو السؤال معقد يحوله لمدرس بشري مع تحديد موعد</li>
+        <li style="font-size:0.87rem;display:flex;gap:10px;align-items:flex-start;"><span style="color:var(--accent);">→</span>يتكلم عربي ويفهم السياق المصري</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S8: PRICING ===== -->
+<div class="section-full" id="s8">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">08</span>
+      <h2 class="section-title">استراتيجية <span class="gold">التسعير</span> بالتفصيل</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="sub-title reveal">مقارنة بالسوق</div>
+    <div class="table-wrap reveal" style="margin-bottom:40px;">
+      <table>
+        <tr>
+          <th>المنصة</th>
+          <th>السعر السنوي (الثانوي)</th>
+          <th>ما تقدمه</th>
+          <th>الموقع</th>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">Eduverse</td>
+          <td style="color:var(--red);font-weight:700;">11,000 ريال</td>
+          <td>دروس مسجلة + بعض اللايف</td>
+          <td><span class="tag tag-red">غالٍ جداً</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">Nagwa</td>
+          <td style="color:var(--muted);">بالكريدت</td>
+          <td>محتوى متفاوت الجودة</td>
+          <td><span class="tag tag-red">غير موثوق</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;">Ashtar</td>
+          <td style="color:var(--muted);">مخفي</td>
+          <td>منهج متعدد</td>
+          <td><span class="tag tag-red">friction عالٍ</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--accent);">EduRise Plus</td>
+          <td class="td-gold">830 ريال/سنة</td>
+          <td>دروس + كويزات + داشبورد</td>
+          <td><span class="tag tag-green">أفضل قيمة</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--gold);">EduRise Pro</td>
+          <td class="td-gold">1,670 ريال/سنة</td>
+          <td>كل حاجة + لايف + AI + ضمان نجاح</td>
+          <td><span class="tag tag-gold">الأفضل</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="sub-title reveal">نموذج التسعير الكامل</div>
+    <div class="grid-3 reveal">
+      <div class="card">
+        <div class="card-title"><div class="card-icon">📅</div>الاشتراك الشهري</div>
+        <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:8px 0;border-bottom:1px solid var(--border);">
+            <span>Plus</span><span style="color:var(--gold);font-weight:700;">99 ريال/طالب</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:8px 0;">
+            <span>Pro</span><span style="color:var(--gold);font-weight:700;">199 ريال/طالب</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><div class="card-icon">📆</div>الفصلي — خصم 20%</div>
+        <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:8px 0;border-bottom:1px solid var(--border);">
+            <span>Plus (14 أسبوع)</span><span style="color:var(--gold);font-weight:700;">349 ريال</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:8px 0;">
+            <span>Pro (14 أسبوع)</span><span style="color:var(--gold);font-weight:700;">699 ريال</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><div class="card-icon">🗓️</div>السنوي — خصم 30%</div>
+        <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:8px 0;border-bottom:1px solid var(--border);">
+            <span>Plus</span><span style="color:var(--gold);font-weight:700;">830 ريال</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:0.88rem;padding:8px 0;">
+            <span>Pro</span><span style="color:var(--gold);font-weight:700;">1,670 ريال</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><div class="card-icon">📘</div>مادة واحدة</div>
+        <p class="body-text" style="font-size:0.85rem;">مناسبة للطلاب الذين لديهم ضعف في مادة معينة فقط.</p>
+        <div style="font-size:1.4rem;font-weight:900;color:var(--gold);margin-top:10px;">35 ريال/شهر</div>
+      </div>
+
+      <div class="card" style="border-color:rgba(255,71,87,0.25);background:rgba(255,71,87,0.04);">
+        <div class="card-title"><div class="card-icon">🎯</div>Exam Prep Package</div>
+        <p class="body-text" style="font-size:0.85rem;">برنامج 4 أسابيع قبل الامتحان — محاكاة يومية + مراجعات مكثفة + ضمان النجاح.</p>
+        <div style="font-size:1.4rem;font-weight:900;color:var(--red);margin-top:10px;">299–499 ريال</div>
+      </div>
+
+      <div class="card" style="border-color:rgba(100,149,237,0.25);background:rgba(100,149,237,0.04);">
+        <div class="card-title"><div class="card-icon">👨‍👩‍👧‍👦</div>Family Pack</div>
+        <p class="body-text" style="font-size:0.85rem;">للأسر المصرية التي لديها أكثر من طفل — خصم 25% للثاني، 35% لكل طالب إضافي.</p>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+          <span class="tag" style="background:rgba(100,149,237,0.1);color:#6495ED;border:1px solid rgba(100,149,237,0.25);">طالبان: 25% خصم</span>
+          <span class="tag" style="background:rgba(100,149,237,0.1);color:#6495ED;border:1px solid rgba(100,149,237,0.25);">3+ طلاب: 35% خصم</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== S9: GTM ===== -->
+<section class="section" id="s9">
+  <div class="section-header reveal">
+    <span class="section-num">09</span>
+    <h2 class="section-title">استراتيجية الدخول للسوق <span class="gold">(GTM)</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="gtm-phase phase1 reveal">
+    <div class="gtm-phase-header">
+      <span class="gtm-phase-badge">المرحلة الأولى</span>
+      <div class="gtm-phase-title">ما قبل الإطلاق — بناء الـ Waitlist</div>
+      <span class="gtm-phase-months">شهر 1–3</span>
+    </div>
+    <div class="gtm-cols">
+      <div>
+        <div class="gtm-col-title">الأهداف</div>
+        <ul class="gtm-items">
+          <li>بناء الـ waitlist — هدف 2,000 مشترك</li>
+          <li>تطوير landing page بسيطة وضاربة</li>
+          <li>امتحان تشخيصي مجاني لكل مسجل</li>
+        </ul>
+      </div>
+      <div>
+        <div class="gtm-col-title">الجروبات المستهدفة</div>
+        <ul class="gtm-items">
+          <li>المصريون في السعودية — ملايين الأعضاء</li>
+          <li>المصريون في الإمارات والكويت</li>
+          <li>أمهات مصريات في الخليج</li>
+          <li>المنهج المصري في الخارج</li>
+          <li>جروبات كل مدرسة مصرية في الخارج</li>
+        </ul>
+      </div>
+      <div>
+        <div class="gtm-col-title">نوع المحتوى — مش إعلانات!</div>
+        <ul class="gtm-items">
+          <li>5 أسئلة متوقعة في امتحان الرياضيات</li>
+          <li>ملخص مجاني لأهم قواعد النحو</li>
+          <li>نموذج امتحان مجاني للتحميل</li>
+        </ul>
+      </div>
+      <div>
+        <div class="gtm-col-title">بناء شبكة المدرسين</div>
+        <ul class="gtm-items">
+          <li>التواصل مع المدرسين المصريين في الخليج</li>
+          <li>عمولة 30–40% من الاشتراكات</li>
+          <li>اسم وبراند خاص جوه المنصة</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="gtm-phase phase2 reveal">
+    <div class="gtm-phase-header">
+      <span class="gtm-phase-badge">المرحلة الثانية</span>
+      <div class="gtm-phase-title">الإطلاق — في بداية الفصل الدراسي</div>
+      <span class="gtm-phase-months">شهر 4–6</span>
+    </div>
+    <div class="gtm-cols">
+      <div>
+        <div class="gtm-col-title">أسبوع الإطلاق</div>
+        <ul class="gtm-items">
+          <li>أسبوع مجاني كامل للـ waitlist</li>
+          <li>لايف مجاني مع مدرسين مشهورين</li>
+          <li>خصم 50% على الشهر الأول</li>
+          <li>اجبي 3 أصدقاء = شهر مجاني</li>
+        </ul>
+      </div>
+      <div>
+        <div class="gtm-col-title">قنوات التسويق</div>
+        <ul class="gtm-items">
+          <li>فيسبوك وإنستجرام: إعلانات للمصريين في الخليج</li>
+          <li>يوتيوب: محتوى مجاني + Pre-roll</li>
+          <li>تيك توك: فيديوهات شرح قصيرة</li>
+          <li>واتساب: شبكة Ambassadors</li>
+        </ul>
+      </div>
+      <div>
+        <div class="gtm-col-title">استهداف فيسبوك الدقيق</div>
+        <ul class="gtm-items">
+          <li>Location: السعودية، الإمارات، الكويت، قطر</li>
+          <li>Language: Arabic</li>
+          <li>Interests: Egyptian Education, Ministry</li>
+          <li>Demographics: عمر 30–50 (الآباء)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="gtm-phase phase3 reveal">
+    <div class="gtm-phase-header">
+      <span class="gtm-phase-badge">المرحلة الثالثة</span>
+      <div class="gtm-phase-title">التوسع — بعد بناء قاعدة المستخدمين</div>
+      <span class="gtm-phase-months">شهر 7–12</span>
+    </div>
+    <div class="gtm-cols">
+      <div>
+        <div class="gtm-col-title">التوسع الجغرافي</div>
+        <ul class="gtm-items">
+          <li>تكثيف في الإمارات والكويت</li>
+          <li>توسع لأوروبا وأمريكا</li>
+          <li>مصريون في كل مكان</li>
+        </ul>
+      </div>
+      <div>
+        <div class="gtm-col-title">الشراكات الاستراتيجية</div>
+        <ul class="gtm-items">
+          <li>شراكات مع المدارس المصرية في الخارج</li>
+          <li>محتوى للمدرسين الخصوصيين كـ Supplement</li>
+          <li>برنامج Referral رسمي</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S10: GROWTH ===== -->
+<div class="section-full" id="s10">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">10</span>
+      <h2 class="section-title"><span class="gold">Growth Hacking</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="flywheel reveal" style="margin-bottom:40px;">
+      <div class="flywheel-title">🔄 الـ Viral Loop الأساسي</div>
+      <div class="flywheel-steps">
+        <div class="fw-step">امتحان تشخيصي مجاني</div>
+        <div class="fw-arrow">→</div>
+        <div class="fw-step">تقرير مفصل للطالب</div>
+        <div class="fw-arrow">→</div>
+        <div class="fw-step">الطالب يشاركه مع أمه</div>
+        <div class="fw-arrow">→</div>
+        <div class="fw-step">الأم تشاركه في جروب الأمهات</div>
+        <div class="fw-arrow">→</div>
+        <div class="fw-step">طلاب جدد يعملون الامتحان</div>
+        <div class="fw-arrow">→</div>
+        <div class="fw-step">الدايرة تكتمل ♾️</div>
+      </div>
+    </div>
+
+    <div class="grid-3 reveal">
+      <div class="growth-card">
+        <div class="growth-num">01</div>
+        <div class="growth-title">برنامج الـ Referral</div>
+        <div class="growth-body">طالب → طالب جديد = أسبوع مجاني. 3 طلاب = شهر مجاني. 10 طلاب = سنة مجانية. للمدرسين: 10 طلاب = 500 ريال إضافية.</div>
+      </div>
+      <div class="growth-card">
+        <div class="growth-num">02</div>
+        <div class="growth-title">بنك الأسئلة المجاني</div>
+        <div class="growth-body">5,000 سؤال مجاني بدون تسجيل. للحصول على الشرح والحل: لازم تسجل. ده بيعمل leads مستمرة بشكل تلقائي.</div>
+      </div>
+      <div class="growth-card">
+        <div class="growth-num">03</div>
+        <div class="growth-title">حملة المنح الدراسية</div>
+        <div class="growth-body">كل ترم 50 منحة مجانية للطلاب المحتاجين. التقديم عبر المنصة. إعلانها في الجروبات = PR مجاني ضخم وسمعة إيجابية.</div>
+      </div>
+      <div class="growth-card">
+        <div class="growth-num">04</div>
+        <div class="growth-title">تحدي الامتحان الأسبوعي</div>
+        <div class="growth-body">كل أسبوع تحدٍّ مجاني على مادة معينة. النتائج تُعلن بخصوصية. الأوائل يحصلون على كوبونات. يخلق buzz أسبوعي منتظم.</div>
+      </div>
+      <div class="growth-card">
+        <div class="growth-num">05</div>
+        <div class="growth-title">مدرسون Ambassadors</div>
+        <div class="growth-body">20–30 مدرس مصري مشهور في الخليج. عندهم بروفايل مميز وصفحة خاصة. يتقاسمون الأرباح ويجيبون طلابهم الحاليين للمنصة.</div>
+      </div>
+      <div class="growth-card">
+        <div class="growth-num">06</div>
+        <div class="growth-title">Data Flywheel</div>
+        <div class="growth-body" style="font-weight:600;font-size:0.92rem;">طلاب أكتر → بيانات أكتر → AI أحسن → نتائج أحسن → طلاب أكتر 🔄</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== S11: MOAT ===== -->
+<section class="section" id="s11">
+  <div class="section-header reveal">
+    <span class="section-num">11</span>
+    <h2 class="section-title">الخندق <span class="gold">التنافسي</span></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <p class="body-text reveal" style="margin-bottom:32px;font-size:1rem;">إيه اللي بيخلي EduRise صعب ينقلع؟ كل عنصر من دي أصعب من الأول في البناء:</p>
+
+  <div class="grid-3 reveal">
+    <div class="moat-card">
+      <div class="moat-icon">📊</div>
+      <div class="moat-title">بيانات الأداء</div>
+      <div class="moat-desc">مع الوقت، تجمع بيانات ضخمة عن أداء الطلاب في كل سؤال وموضوع. تتوقع صعوبة الامتحان وتحسن المحتوى باستمرار. المنافسون الجدد لا يستطيعون بناء هذا بسرعة.</div>
+    </div>
+    <div class="moat-card">
+      <div class="moat-icon">👨‍🏫</div>
+      <div class="moat-title">شبكة المدرسين</div>
+      <div class="moat-desc">لما تبني شبكة من 50–100 مدرس مصري مميز في الخليج — هذا asset صعب الشراء بالمال. الشبكات البشرية لا تُقدَّر بثمن.</div>
+    </div>
+    <div class="moat-card">
+      <div class="moat-icon">❓</div>
+      <div class="moat-title">بنك الأسئلة</div>
+      <div class="moat-desc">أكبر بنك أسئلة للمنهج المصري في الخارج = المستخدمون لن يتركوك. البيانات المتراكمة تصبح barrier لا يمكن تجاوزه.</div>
+    </div>
+    <div class="moat-card">
+      <div class="moat-icon">🤝</div>
+      <div class="moat-title">ثقة الأهل</div>
+      <div class="moat-desc">الأهل المصريون في الخارج يعتمدون على الـ word of mouth بشكل قوي جداً. كسب ثقتهم يضمن retention ممتاز وتوسعاً عضوياً.</div>
+    </div>
+    <div class="moat-card" style="border-color:rgba(245,166,35,0.3);background:rgba(245,166,35,0.04);">
+      <div class="moat-icon">🔄</div>
+      <div class="moat-title">Data Flywheel</div>
+      <div class="moat-desc" style="font-weight:600;">طلاب أكتر → بيانات أكتر → AI أحسن → نتائج أحسن → طلاب أكتر. الدولاب يزيد سرعته مع كل مستخدم جديد.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S12: ROADMAP ===== -->
+<div class="section-full" id="s12">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-num">12</span>
+      <h2 class="section-title">الخريطة التنفيذية <span class="gold">12 شهراً</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="timeline">
+      <div class="quarter-card q1 reveal">
+        <div class="quarter-label">الربع الأول</div>
+        <div class="quarter-title">مرحلة البناء</div>
+        <div class="quarter-months">شهر 1–3</div>
+        <div class="quarter-revenue">$0 <span style="font-size:0.9rem;font-weight:400;color:var(--muted);">وقت البناء</span></div>
+        <div class="sub-title" style="font-size:0.78rem;margin-top:20px;">المنتج</div>
+        <ul class="quarter-items">
+          <li>تطوير MVP للمنصة (Web + App)</li>
+          <li>رفع أول 200 درس</li>
+          <li>بناء نظام الكويزات</li>
+          <li>Landing page + نظام التسجيل</li>
+        </ul>
+        <div class="sub-title" style="font-size:0.78rem;margin-top:20px;">الفريق</div>
+        <ul class="quarter-items">
+          <li>CTO / Lead Developer</li>
+          <li>Content Manager</li>
+          <li>10 مدرسين part-time</li>
+          <li>Social Media Manager</li>
+        </ul>
+      </div>
+
+      <div class="quarter-card q2 reveal">
+        <div class="quarter-label">الربع الثاني</div>
+        <div class="quarter-title">مرحلة الإطلاق</div>
+        <div class="quarter-months">شهر 4–6</div>
+        <div class="quarter-revenue">50K–100K <span style="font-size:0.9rem;font-weight:400;color:var(--muted);">ريال/شهر</span></div>
+        <div class="sub-title" style="font-size:0.78rem;margin-top:20px;">المنتج</div>
+        <ul class="quarter-items">
+          <li>إطلاق رسمي للمنصة</li>
+          <li>داشبورد ولي الأمر</li>
+          <li>نظام الواجبات</li>
+          <li>محاكاة الامتحانات — أول نسخة</li>
+        </ul>
+        <div class="sub-title" style="font-size:0.78rem;margin-top:20px;">التسويق</div>
+        <ul class="quarter-items">
+          <li>إطلاق رسمي مع offer مؤقت</li>
+          <li>أول حملة إعلانية مدفوعة</li>
+          <li>شراكة مع 5 مدرسين ambassadors</li>
+        </ul>
+      </div>
+
+      <div class="quarter-card q3 reveal">
+        <div class="quarter-label">الربع الثالث</div>
+        <div class="quarter-title">مرحلة النمو</div>
+        <div class="quarter-months">شهر 7–9</div>
+        <div class="quarter-revenue">200K–300K <span style="font-size:0.9rem;font-weight:400;color:var(--muted);">ريال/شهر</span></div>
+        <div class="sub-title" style="font-size:0.78rem;margin-top:20px;">المنتج</div>
+        <ul class="quarter-items">
+          <li>AI Tutor — أول نسخة</li>
+          <li>تحسينات بناءً على Feedback</li>
+          <li>نظام الـ Referral الرسمي</li>
+        </ul>
+        <div class="sub-title" style="font-size:0.78rem;margin-top:20px;">التسويق</div>
+        <ul class="quarter-items">
+          <li>برنامج Ambassadors رسمي (20 مدرس)</li>
+          <li>حملة المنح الدراسية الأولى</li>
+          <li>توسع مكثف في الإمارات والكويت</li>
+        </ul>
+      </div>
+
+      <div class="quarter-card q4 reveal">
+        <div class="quarter-label">الربع الرابع</div>
+        <div class="quarter-title">مرحلة التوطيد</div>
+        <div class="quarter-months">شهر 10–12</div>
+        <div class="quarter-revenue">400K–600K <span style="font-size:0.9rem;font-weight:400;color:var(--muted);">ريال/شهر</span></div>
+        <div class="sub-title" style="font-size:0.78rem;margin-top:20px;">المنتج</div>
+        <ul class="quarter-items">
+          <li>AI Tutor نسخة متطورة</li>
+          <li>تقارير أداء متقدمة</li>
+          <li>Family Pack رسمي</li>
+          <li>1,400+ درس مكتمل</li>
+        </ul>
+        <div class="sub-title" style="font-size:0.78rem;margin-top:20px;">التوسع</div>
+        <ul class="quarter-items">
+          <li>حملة "موسم الامتحانات" الكبيرة</li>
+          <li>توسع لأوروبا وكندا وأمريكا</li>
+          <li>شراكات مع مدارس مصرية رسمية</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kpi-grid reveal" style="margin-top:40px;">
+      <div class="kpi-card">
+        <span class="kpi-value">3–4M</span>
+        <div class="kpi-label">هدف الإيراد السنوي الأول (ريال)</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-value">1,400+</span>
+        <div class="kpi-label">درس مسجل في نهاية السنة</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-value">5,000+</span>
+        <div class="kpi-label">سؤال في بنك الأسئلة</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-value">20+</span>
+        <div class="kpi-label">مدرس Ambassador رسمي</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== S13: NOTES ===== -->
+<section class="section" id="s13">
+  <div class="section-header reveal">
+    <span class="section-num">13</span>
+    <h2 class="section-title">ملاحظات <span class="gold">استراتيجية</span> أخيرة</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="sub-title reveal">التحذيرات المهمة</div>
+  <div class="reveal" style="margin-bottom:40px;">
+    <div class="warning-box">
+      <div class="warning-icon">⚠️</div>
+      <div>
+        <div class="warning-title">الجودة قبل النمو</div>
+        <div class="warning-body">المجتمعات المصرية في الخارج صغيرة ومترابطة — إذا قدمت محتوى ضعيفاً، الـ word of mouth السلبي يقضي عليك بسرعة. أول 100 طالب لازم يكونوا راضيين جداً.</div>
+      </div>
+    </div>
+    <div class="warning-box">
+      <div class="warning-icon">📅</div>
+      <div>
+        <div class="warning-title">فهم التوقيت الدراسي</div>
+        <div class="warning-body">بداية الفصل الأول (سبتمبر/أكتوبر) = أهم موسم تسويقي. قبل الامتحانات (فبراير ومايو) = موسم Exam Prep. الصيف = وقت تطوير محتوى لا تسويق.</div>
+      </div>
+    </div>
+    <div class="warning-box">
+      <div class="warning-icon">📋</div>
+      <div>
+        <div class="warning-title">الالتزام بالمنهج الرسمي</div>
+        <div class="warning-body">أي تغيير في المنهج من وزارة التربية والتعليم يجب أن ينعكس فوراً على المنصة — هذا سيكون competitive advantage كبير مقارنةً بالمنافسين البطيئين.</div>
+      </div>
+    </div>
+    <div class="warning-box">
+      <div class="warning-icon">🔒</div>
+      <div>
+        <div class="warning-title">الخصوصية والأمان</div>
+        <div class="warning-body">بيانات الأطفال حساسة — يجب الامتثال للقوانين الخليجية والمصرية من اليوم الأول. لا تترك هذا لمرحلة لاحقة.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vision-block reveal">
+    <div class="vision-title">الرؤية <span style="color:var(--gold);">الكبيرة</span></div>
+    <div class="vision-body">EduRise ليس مجرد منصة تعليمية — يمكن أن يكون المرجع الرسمي الموازي لوزارة التربية والتعليم للمصريين في الخارج. ومع الوقت، التوسع للمنهج الإماراتي، السعودي، وغيره — لكن الأساس هو امتلاك هذا الـ segment بالكامل أولاً.</div>
+    <div class="vision-tags">
+      <span class="vision-tag">⚡ السرعة في التنفيذ</span>
+      <span class="vision-tag">🎯 جودة المحتوى</span>
+      <span class="vision-tag">🤝 بناء الثقة</span>
+      <span class="vision-tag">📊 Data-Driven Growth</span>
+      <span class="vision-tag">🌍 التوسع التدريجي</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="logo">EduRise ✦</div>
+  <p style="margin-bottom:6px;">المخطط الاستراتيجي الكامل — 2024</p>
+  <p style="font-size:0.8rem;color:rgba(138,155,181,0.5);">أول منصة مصرية متخصصة 100% في امتحانات أبناؤنا في الخارج</p>
+</footer>
+
+<script>
+  // Sticky nav
+  const nav = document.getElementById('stickyNav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) nav.classList.add('visible');
+    else nav.classList.remove('visible');
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
