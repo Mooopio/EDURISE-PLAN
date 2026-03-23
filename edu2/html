@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduRise — خطة المشروع 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0d14;
+    --bg2: #0f1420;
+    --bg3: #151b28;
+    --surface: #1a2235;
+    --surface2: #1f2a3d;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+
+    --c1: #6C63FF;  --c1l: rgba(108,99,255,0.15); --c1m: rgba(108,99,255,0.4);
+    --c2: #00C896;  --c2l: rgba(0,200,150,0.12);  --c2m: rgba(0,200,150,0.35);
+    --c3: #FF6B35;  --c3l: rgba(255,107,53,0.12); --c3m: rgba(255,107,53,0.35);
+    --c4: #38B2F8;  --c4l: rgba(56,178,248,0.12); --c4m: rgba(56,178,248,0.35);
+    --c5: #F06292;  --c5l: rgba(240,98,146,0.12); --c5m: rgba(240,98,146,0.35);
+    --ch: #FFB800;  --chl: rgba(255,184,0,0.12);  --chm: rgba(255,184,0,0.35);
+
+    --text: #e8eaf2;
+    --text2: #8892a4;
+    --text3: #4a5568;
+
+    --radius: 10px;
+    --radius2: 16px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Background grid ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── Header ── */
+  .header {
+    position: relative; z-index: 10;
+    padding: 60px 40px 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(108,99,255,0.06) 0%, transparent 100%);
+  }
+
+  .header-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: flex; align-items: flex-end; gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .logo-wrap {
+    display: flex; align-items: center; gap: 14px;
+  }
+
+  .logo-icon {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, var(--c1), #9c5fff);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 18px; font-weight: 700;
+    color: #fff;
+    box-shadow: 0 0 40px rgba(108,99,255,0.4);
+  }
+
+  .logo-text { line-height: 1; }
+  .logo-text h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px; font-weight: 700;
+    color: #fff; letter-spacing: -0.5px;
+  }
+  .logo-text span {
+    font-size: 12px; color: var(--text2);
+    font-weight: 400; letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    margin-right: auto;
+    text-align: left;
+  }
+  [dir="rtl"] .header-meta { margin-right: 0; margin-left: auto; text-align: right; }
+
+  .header-meta .date-range {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px; color: var(--c1);
+    letter-spacing: 1px; margin-bottom: 4px;
+  }
+  .header-meta .subtitle {
+    font-size: 14px; color: var(--text2);
+  }
+
+  /* ── KPI Cards ── */
+  .kpi-section {
+    position: relative; z-index: 10;
+    max-width: 1300px; margin: 0 auto;
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+  }
+
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius2);
+    padding: 20px 18px;
+    position: relative; overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 60px; height: 3px;
+    border-radius: 0 var(--radius2) 0 3px;
+  }
+  .kpi-card:nth-child(1)::before { background: var(--c1); }
+  .kpi-card:nth-child(2)::before { background: var(--c3); }
+  .kpi-card:nth-child(3)::before { background: var(--c4); }
+  .kpi-card:nth-child(4)::before { background: var(--ch); }
+  .kpi-card:nth-child(5)::before { background: var(--c2); }
+
+  .kpi-card:hover { transform: translateY(-3px); border-color: var(--border2); }
+
+  .kpi-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 26px; font-weight: 700;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .kpi-card:nth-child(1) .kpi-num { color: var(--c1); }
+  .kpi-card:nth-child(2) .kpi-num { color: var(--c3); }
+  .kpi-card:nth-child(3) .kpi-num { color: var(--c4); }
+  .kpi-card:nth-child(4) .kpi-num { color: var(--ch); }
+  .kpi-card:nth-child(5) .kpi-num { color: var(--c2); }
+
+  .kpi-label { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .kpi-date { font-size: 10px; color: var(--text3); margin-top: 6px; font-family: 'Space Mono', monospace; }
+
+  /* ── Legend ── */
+  .legend-bar {
+    position: relative; z-index: 10;
+    max-width: 1300px; margin: 0 auto;
+    padding: 0 40px 24px;
+    display: flex; flex-wrap: wrap; gap: 16px;
+    align-items: center;
+  }
+
+  .legend-label { font-size: 11px; color: var(--text3); margin-left: 8px; }
+  [dir="rtl"] .legend-label { margin-left: 0; margin-right: 8px; }
+
+  .leg {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12px; color: var(--text2);
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .leg:hover { background: var(--surface); border-color: var(--border); }
+  .leg.active { border-color: var(--border2); background: var(--surface2); color: var(--text); }
+  .leg-dot {
+    width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0;
+  }
+
+  /* ── Timeline Container ── */
+  .timeline-container {
+    position: relative; z-index: 10;
+    max-width: 1300px; margin: 0 auto;
+    padding: 0 40px 60px;
+  }
+
+  .timeline-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius2);
+    overflow: hidden;
+  }
+
+  /* ── Month Header ── */
+  .months-header {
+    display: grid;
+    grid-template-columns: 200px repeat(12, 1fr);
+    border-bottom: 1px solid var(--border2);
+    background: var(--bg3);
+  }
+
+  .mh-label {
+    padding: 14px 16px;
+    font-size: 11px; color: var(--text3);
+    border-left: 1px solid var(--border);
+    display: flex; align-items: center; gap: 6px;
+  }
+  [dir="rtl"] .mh-label { border-left: none; border-right: 1px solid var(--border); }
+
+  .mh-month {
+    padding: 10px 4px;
+    text-align: center;
+    border-left: 1px solid var(--border);
+    font-size: 11px; line-height: 1.3;
+  }
+  [dir="rtl"] .mh-month { border-left: none; border-right: 1px solid var(--border); }
+
+  .mh-month .mn { color: var(--text2); font-weight: 600; font-size: 12px; }
+  .mh-month .yr { color: var(--text3); font-size: 10px; font-family: 'Space Mono', monospace; }
+
+  /* current month highlight */
+  .mh-month.current { background: rgba(108,99,255,0.08); }
+  .mh-month.current .mn { color: var(--c1); }
+
+  /* ── Section Divider ── */
+  .section-div {
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+    font-size: 10px; font-weight: 600;
+    color: var(--text3);
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+
+  /* ── Activity Row ── */
+  .act-row {
+    display: grid;
+    grid-template-columns: 200px repeat(12, 1fr);
+    border-top: 1px solid var(--border);
+    min-height: 52px;
+    transition: background 0.15s;
+  }
+  .act-row:hover { background: rgba(255,255,255,0.015); }
+
+  .act-row.dimmed { opacity: 0.25; }
+  .act-row.highlighted { opacity: 1; }
+
+  .row-info {
+    padding: 8px 12px;
+    border-left: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  [dir="rtl"] .row-info { border-left: none; border-right: 1px solid var(--border); }
+
+  .row-num-badge {
+    width: 22px; height: 22px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+  }
+
+  .row-name {
+    font-size: 12px; font-weight: 500; color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* ── Cell ── */
+  .cell-wrap {
+    border-left: 1px solid var(--border);
+    padding: 8px 4px;
+    display: flex; align-items: center;
+    position: relative;
+  }
+  [dir="rtl"] .cell-wrap { border-left: none; border-right: 1px solid var(--border); }
+
+  .cell-wrap.current-col { background: rgba(108,99,255,0.04); }
+
+  .bar-pill {
+    width: 100%; height: 32px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 600;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    padding: 0 6px;
+    cursor: pointer;
+    transition: transform 0.15s, filter 0.15s;
+    position: relative;
+  }
+  .bar-pill:hover { transform: scaleY(1.08); filter: brightness(1.15); }
+
+  .bar-pill.prep {
+    opacity: 0.55;
+    border: 1px dashed;
+  }
+
+  .bar-pill.milestone-pill {
+    border: 2px solid;
+    font-size: 11px;
+  }
+
+  .bar-pill.empty { background: transparent; cursor: default; }
+  .bar-pill.empty:hover { transform: none; filter: none; }
+
+  /* ── Milestone row ── */
+  .milestone-row {
+    display: grid;
+    grid-template-columns: 200px repeat(12, 1fr);
+    border-top: 1px solid var(--border2);
+    background: var(--bg3);
+    min-height: 44px;
+  }
+
+  .ms-label-cell {
+    padding: 8px 12px;
+    border-left: 1px solid var(--border);
+    display: flex; align-items: center;
+    font-size: 10px; color: var(--text3);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  [dir="rtl"] .ms-label-cell { border-left: none; border-right: 1px solid var(--border); }
+
+  .ms-cell {
+    border-left: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    padding: 6px 4px;
+  }
+  [dir="rtl"] .ms-cell { border-left: none; border-right: 1px solid var(--border); }
+  .ms-cell.current-col { background: rgba(108,99,255,0.04); }
+
+  .ms-diamond {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    transform: rotate(45deg);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .ms-diamond:hover { transform: rotate(45deg) scale(1.2); }
+  .ms-diamond span {
+    transform: rotate(-45deg);
+    font-size: 10px; font-weight: 700;
+    display: block;
+  }
+
+  /* ── Tooltip ── */
+  #tooltip {
+    position: fixed; z-index: 1000;
+    pointer-events: none;
+    display: none;
+    max-width: 240px;
+  }
+  .tt-inner {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 12px; color: var(--text);
+    line-height: 1.7;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  }
+  .tt-title { font-weight: 700; margin-bottom: 3px; font-size: 13px; }
+  .tt-body { color: var(--text2); font-size: 11px; }
+
+  /* ── Progress Bar ── */
+  .progress-section {
+    position: relative; z-index: 10;
+    max-width: 1300px; margin: 0 auto;
+    padding: 0 40px 40px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .prog-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius2);
+    padding: 20px;
+  }
+
+  .prog-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  }
+  .prog-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .prog-name { font-size: 13px; font-weight: 600; }
+  .prog-target { margin-right: auto; font-family: 'Space Mono', monospace; font-size: 11px; }
+  [dir="rtl"] .prog-target { margin-right: 0; margin-left: auto; }
+
+  .prog-bar-wrap {
+    background: var(--bg3);
+    border-radius: 4px; height: 6px; overflow: hidden; margin-bottom: 8px;
+  }
+  .prog-bar-fill {
+    height: 100%; border-radius: 4px;
+    transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 0;
+  }
+
+  .prog-stats {
+    display: flex; justify-content: space-between;
+    font-size: 10px; color: var(--text3);
+  }
+
+  /* ── Timeline Phases ── */
+  .phases-section {
+    position: relative; z-index: 10;
+    max-width: 1300px; margin: 0 auto;
+    padding: 0 40px 60px;
+  }
+
+  .phases-title {
+    font-size: 13px; font-weight: 600;
+    color: var(--text2); margin-bottom: 20px;
+    letter-spacing: 1px; text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .phases-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .phases-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  @media (max-width: 800px) { .phases-grid { grid-template-columns: 1fr; } }
+
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius2);
+    padding: 24px; position: relative; overflow: hidden;
+  }
+  .phase-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(255,255,255,0.015));
+    pointer-events: none;
+  }
+
+  .phase-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 48px; font-weight: 700;
+    line-height: 1;
+    margin-bottom: 12px;
+    opacity: 0.15;
+    position: absolute;
+    top: 16px; left: 20px;
+  }
+  [dir="rtl"] .phase-num { left: auto; right: 20px; }
+
+  .phase-period {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px; color: var(--text3);
+    margin-bottom: 8px; letter-spacing: 1px;
+  }
+  .phase-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+  .phase-desc { font-size: 12px; color: var(--text2); line-height: 1.8; }
+
+  .phase-card:nth-child(1) .phase-num { color: var(--c2); }
+  .phase-card:nth-child(1) .phase-title { color: var(--c2); }
+  .phase-card:nth-child(1) { border-top: 2px solid var(--c2); }
+
+  .phase-card:nth-child(2) .phase-num { color: var(--c1); }
+  .phase-card:nth-child(2) .phase-title { color: var(--c1); }
+  .phase-card:nth-child(2) { border-top: 2px solid var(--c1); }
+
+  .phase-card:nth-child(3) .phase-num { color: var(--ch); }
+  .phase-card:nth-child(3) .phase-title { color: var(--ch); }
+  .phase-card:nth-child(3) { border-top: 2px solid var(--ch); }
+
+  /* ── Footer ── */
+  footer {
+    position: relative; z-index: 10;
+    border-top: 1px solid var(--border);
+    padding: 24px 40px;
+    text-align: center;
+    font-size: 11px; color: var(--text3);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(108,99,255,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(108,99,255,0); }
+  }
+
+  .animate-in { animation: fadeUp 0.5s ease both; }
+  .animate-in:nth-child(1) { animation-delay: 0.05s; }
+  .animate-in:nth-child(2) { animation-delay: 0.1s; }
+  .animate-in:nth-child(3) { animation-delay: 0.15s; }
+  .animate-in:nth-child(4) { animation-delay: 0.2s; }
+  .animate-in:nth-child(5) { animation-delay: 0.25s; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .header { padding: 40px 20px 28px; }
+    .kpi-section, .timeline-container, .progress-section, .phases-section, .legend-bar { padding-left: 20px; padding-right: 20px; }
+    .row-name { font-size: 11px; }
+    .months-header, .act-row, .milestone-row { grid-template-columns: 130px repeat(12, 1fr); }
+    .row-info { padding: 6px 8px; }
+    .mh-label { padding: 10px 8px; }
+  }
+
+  /* ── Scrollable Timeline for mobile ── */
+  @media (max-width: 700px) {
+    .timeline-wrapper { overflow-x: auto; }
+    .months-header, .act-row, .milestone-row { min-width: 900px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <div class="logo-icon">ER</div>
+      <div class="logo-text">
+        <h1>EduRise</h1>
+        <span>أكاديمية تعليمية متكاملة</span>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="date-range">MAR 2026 → FEB 2027</div>
+      <div class="subtitle">خطة المشروع الأولى — 5 محاور + هاكاثون</div>
+    </div>
+  </div>
+</header>
+
+<!-- KPI Cards -->
+<div class="kpi-section">
+  <div class="kpi-card animate-in">
+    <div class="kpi-num">300</div>
+    <div class="kpi-label">طالب برمجة وروبوتكس</div>
+    <div class="kpi-date">TARGET → AUG 2026</div>
+  </div>
+  <div class="kpi-card animate-in">
+    <div class="kpi-num">300</div>
+    <div class="kpi-label">طفل مهارات وتأسيس</div>
+    <div class="kpi-date">TARGET → JAN 2027</div>
+  </div>
+  <div class="kpi-card animate-in">
+    <div class="kpi-num">50–100</div>
+    <div class="kpi-label">طالب أون لاين — خليج</div>
+    <div class="kpi-date">ONLINE SCHOOL + LESSONS</div>
+  </div>
+  <div class="kpi-card animate-in">
+    <div class="kpi-num">1,000</div>
+    <div class="kpi-label">مشارك في الهاكاثون</div>
+    <div class="kpi-date">HACKATHON → JUN 2026</div>
+  </div>
+  <div class="kpi-card animate-in">
+    <div class="kpi-num">15–20%</div>
+    <div class="kpi-label">هامش ربح صافٍ</div>
+    <div class="kpi-date">BREAK-EVEN → JAN 2027</div>
+  </div>
+</div>
+
+<!-- Legend -->
+<div class="legend-bar">
+  <span class="legend-label">تصفية:</span>
+  <div class="leg active" data-track="all">
+    <span class="leg-dot" style="background:#666"></span>الكل
+  </div>
+  <div class="leg" data-track="1">
+    <span class="leg-dot" style="background:var(--c1)"></span>برمجة وروبوتكس
+  </div>
+  <div class="leg" data-track="2">
+    <span class="leg-dot" style="background:var(--c2)"></span>مهارات ورسم
+  </div>
+  <div class="leg" data-track="3">
+    <span class="leg-dot" style="background:var(--c3)"></span>تأسيس ما قبل المدرسة
+  </div>
+  <div class="leg" data-track="4">
+    <span class="leg-dot" style="background:var(--c4)"></span>دروس أون لاين
+  </div>
+  <div class="leg" data-track="5">
+    <span class="leg-dot" style="background:var(--c5)"></span>مدرسة أون لاين
+  </div>
+  <div class="leg" data-track="h">
+    <span class="leg-dot" style="background:var(--ch)"></span>هاكاثون
+  </div>
+</div>
+
+<!-- Timeline -->
+<div class="timeline-container">
+  <div class="timeline-wrapper" id="timeline">
+
+    <!-- Month Headers -->
+    <div class="months-header" id="months-header">
+      <div class="mh-label">المحاور / الأنشطة</div>
+      <!-- months injected by JS -->
+    </div>
+
+    <!-- Rows injected by JS -->
+    <div id="rows-container"></div>
+
+    <!-- Milestone Row -->
+    <div class="milestone-row" id="milestone-row">
+      <div class="ms-label-cell">مستهدفات</div>
+      <!-- injected by JS -->
+    </div>
+
+  </div>
+</div>
+
+<!-- Progress Bars -->
+<div class="progress-section" id="progress-section"></div>
+
+<!-- Phases -->
+<div class="phases-section">
+  <div class="phases-title">مراحل المشروع</div>
+  <div class="phases-grid">
+    <div class="phase-card">
+      <div class="phase-num">01</div>
+      <div class="phase-period">MAR → JUN 2026</div>
+      <div class="phase-title">الإطلاق والتأسيس</div>
+      <div class="phase-desc">إطلاق المحاور الأساسية وبدء التسجيل. تجهيز المناهج وتعيين المدربين. إطلاق الهاكاثون الأول للوصول لـ 500–1000 مشارك وبناء الوعي بالعلامة التجارية.</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">02</div>
+      <div class="phase-period">JUL → SEP 2026</div>
+      <div class="phase-title">النمو والتوسع</div>
+      <div class="phase-desc">ذروة الموسم الصيفي لمحور البرمجة والتأسيس. تحقيق هدف 300 طالب في أغسطس. بناء منصة المدرسة الأون لاين وإطلاقها مع بداية العام الدراسي في سبتمبر.</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">03</div>
+      <div class="phase-period">OCT 2026 → JAN 2027</div>
+      <div class="phase-title">الاستقرار والربحية</div>
+      <div class="phase-desc">تشغيل كامل لجميع المحاور الخمسة. الوصول لـ 300 طفل في التأسيس بيناير. استرداد مصاريف الإنشاء وتحقيق هامش ربح 15–20% صافٍ.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  EduRise © 2026 — خطة مشروع السنة الأولى | جميع الأرقام تقديرية
+</footer>
+
+<!-- Tooltip -->
+<div id="tooltip"><div class="tt-inner"><div class="tt-title" id="tt-title"></div><div class="tt-body" id="tt-body"></div></div></div>
+
+<script>
+/* ───────────────────────────────
+   Data
+─────────────────────────────── */
+const MONTHS = [
+  { ar: 'مارس', yr: '26', key: 3 },
+  { ar: 'أبريل', yr: '26', key: 4 },
+  { ar: 'مايو', yr: '26', key: 5 },
+  { ar: 'يونيو', yr: '26', key: 6 },
+  { ar: 'يوليو', yr: '26', key: 7 },
+  { ar: 'أغسطس', yr: '26', key: 8 },
+  { ar: 'سبتمبر', yr: '26', key: 9 },
+  { ar: 'أكتوبر', yr: '26', key: 10 },
+  { ar: 'نوفمبر', yr: '26', key: 11 },
+  { ar: 'ديسمبر', yr: '26', key: 12 },
+  { ar: 'يناير', yr: '27', key: 13 },
+  { ar: 'فبراير', yr: '27', key: 14 },
+];
+
+// current month index (0-based) - March 2026 = index 0
+const CURRENT_MONTH = 0;
+
+const TRACKS = [
+  {
+    id: '1',
+    num: '١', name: 'برمجة وروبوتكس وإنجليزي',
+    color: 'var(--c1)', colorLight: 'var(--c1l)', colorMid: 'var(--c1m)',
+    textColor: '#fff',
+    cells: [
+      { type: 'active', label: 'إطلاق', tip: 'إطلاق + تسجيل|بداية الدفعة الأولى — تسويق مكثف' },
+      { type: 'active', label: 'تشغيل', tip: 'تشغيل كامل|تسجيل مستمر — هدف 100 طالب' },
+      { type: 'active', label: 'نمو', tip: 'نمو مستمر|هدف 200 طالب — حملات رقمية' },
+      { type: 'active', label: '+ هاكاثون', tip: 'تكامل مع الهاكاثون|زيادة التسجيلات من خلال المسابقة' },
+      { type: 'active', label: 'ذروة', tip: 'ذروة الصيف|أعلى معدل تسجيل في الموسم' },
+      { type: 'milestone', label: '✦ 300', tip: '🎯 هدف نهاية السيزون|300 طالب برمجة وروبوتكس وإنجليزي' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'prep', label: 'موسم ٢', tip: 'بداية الموسم الثاني|إعادة تشغيل كامل — يناير 2027' },
+      { type: 'prep', label: 'تشغيل', tip: 'تشغيل الموسم الثاني' },
+    ],
+    target: 300, targetLabel: '300 طالب / أغسطس 26', progress: 0,
+  },
+  {
+    id: '2',
+    num: '٢', name: 'مهارات ورسم ويوسي ماث',
+    color: 'var(--c2)', colorLight: 'var(--c2l)', colorMid: 'var(--c2m)',
+    textColor: '#fff',
+    cells: [
+      { type: 'prep', label: 'تجهيز', tip: 'تصميم المناهج|تعيين مدربين وتجهيز المواد' },
+      { type: 'active', label: 'إطلاق', tip: 'إطلاق تجريبي|فتح التسجيل لأنشطة المهارات' },
+      { type: 'active', label: 'تشغيل', tip: 'تشغيل كامل|برامج رسم ويوسي ماث وتنمية مهارات' },
+      { type: 'active', label: 'توسع', tip: 'توسع الصيف|أنشطة مكثفة خلال إجازة نهاية العام' },
+      { type: 'active', label: 'صيف', tip: 'برامج صيفية|طلب مرتفع في يوليو وأغسطس' },
+      { type: 'active', label: 'استمرار', tip: 'استمرار الموسم' },
+      { type: 'active', label: 'موسم ٢', tip: 'موسم دراسي جديد|أطفال جدد ودفعات جديدة' },
+      { type: 'active', label: 'نمو', tip: 'نمو مستمر' },
+      { type: 'active', label: 'نمو', tip: 'نمو مستمر' },
+      { type: 'active', label: 'نمو', tip: 'نمو مستمر' },
+      { type: 'milestone', label: '✦ 300', tip: '🎯 هدف يناير 27|300 طفل في أنشطة المهارات غير التقنية' },
+      { type: 'active', label: 'استمرار', tip: 'استمرار الموسم' },
+    ],
+    target: 300, targetLabel: '300 طفل / يناير 27', progress: 0,
+  },
+  {
+    id: '3',
+    num: '٣', name: 'تأسيس ما قبل المدرسة',
+    color: 'var(--c3)', colorLight: 'var(--c3l)', colorMid: 'var(--c3m)',
+    textColor: '#fff',
+    cells: [
+      { type: 'prep', label: 'تصميم', tip: 'تصميم منهج التأسيس|رياضيات، عربي، إنجليزي، قرآن كريم' },
+      { type: 'prep', label: 'تجهيز', tip: 'تجهيز المكان والمعلمين|مستلزمات الأطفال الصغار' },
+      { type: 'active', label: 'إطلاق', tip: 'إطلاق فصل التأسيس|أول دفعة أطفال ما قبل المدرسة' },
+      { type: 'active', label: 'تشغيل', tip: 'تشغيل كامل' },
+      { type: 'active', label: 'صيفي مكثف', tip: 'برامج صيفية مكثفة|تأسيس متسارع خلال الصيف' },
+      { type: 'active', label: 'توسع', tip: 'توسع + طلبات الموسم الدراسي الجديد' },
+      { type: 'active', label: 'موسم ٢', tip: 'موسم دراسي — تأسيس أطفال جدد' },
+      { type: 'active', label: 'نمو', tip: 'نمو' },
+      { type: 'active', label: 'نمو', tip: 'نمو' },
+      { type: 'active', label: 'نمو', tip: 'نمو' },
+      { type: 'milestone', label: '✦ 300', tip: '🎯 هدف يناير 27|300 طفل في برنامج التأسيس' },
+      { type: 'active', label: 'استمرار', tip: 'استمرار' },
+    ],
+    target: 300, targetLabel: '300 طفل / يناير 27', progress: 0,
+  },
+  {
+    id: '4',
+    num: '٤', name: 'دروس أون لاين — مغتربون',
+    color: 'var(--c4)', colorLight: 'var(--c4l)', colorMid: 'var(--c4m)',
+    textColor: '#fff',
+    cells: [
+      { type: 'empty', label: '', tip: '' },
+      { type: 'active', label: 'مراجعات', tip: 'بداية المراجعات النهائية|ابتدائي وإعدادي — المنهج المصري للخليج' },
+      { type: 'active', label: 'ذروة', tip: 'امتحانات اقتربت|طلب مرتفع جداً — مراجعات مكثفة' },
+      { type: 'active', label: 'امتحانات', tip: 'موسم الامتحانات|أعلى ذروة طلب في السنة' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'prep', label: 'تجهيز ٢٧', tip: 'بناء قاعدة المشتركين|التجهيز لموسم 2027' },
+      { type: 'prep', label: 'مراجعات', tip: 'مراجعات مبكرة — الترم الأول' },
+      { type: 'prep', label: 'استمرار', tip: 'دروس منتظمة' },
+      { type: 'prep', label: 'استمرار', tip: 'دروس منتظمة' },
+      { type: 'milestone', label: '✦ هدف', tip: '🎯 سيناريوهان|خليج فقط: 50–100 طالب|مصر + خليج: 700–1000 طالب' },
+      { type: 'prep', label: 'استمرار', tip: 'استمرار' },
+    ],
+    target: 100, targetLabel: '50–100 طالب (خليج)', progress: 0,
+  },
+  {
+    id: '5',
+    num: '٥', name: 'مدرسة أون لاين كاملة',
+    color: 'var(--c5)', colorLight: 'var(--c5l)', colorMid: 'var(--c5m)',
+    textColor: '#fff',
+    cells: [
+      { type: 'empty', label: '', tip: '' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'prep', label: 'تخطيط', tip: 'بداية التخطيط والتصميم|هيكل الجدول ومتطلبات المنصة' },
+      { type: 'prep', label: 'بناء المنصة', tip: 'بناء المنصة وتسجيل المعلمين|تجهيز الجدول الدراسي' },
+      { type: 'prep', label: 'تسويق', tip: 'تسويق مكثف للمغتربين|التواصل مع مجتمعات الخليج' },
+      { type: 'active', label: 'إطلاق', tip: '🚀 إطلاق المدرسة الأون لاين|بداية العام الدراسي — كل المواد أون لاين' },
+      { type: 'active', label: 'تشغيل', tip: 'تشغيل كامل — جميع المواد' },
+      { type: 'active', label: 'تشغيل', tip: 'تشغيل كامل' },
+      { type: 'active', label: 'تشغيل', tip: 'تشغيل كامل' },
+      { type: 'milestone', label: '✦ هدف', tip: '🎯 هدف يناير 27|50–100 طالب في المدرسة الأون لاين' },
+      { type: 'active', label: 'استمرار', tip: 'استمرار الموسم' },
+    ],
+    target: 100, targetLabel: '50–100 طالب', progress: 0,
+  },
+  {
+    id: 'h',
+    num: '🏆', name: 'هاكاثون وشراكات مدارس',
+    color: 'var(--ch)', colorLight: 'var(--chl)', colorMid: 'var(--chm)',
+    textColor: '#1a1000',
+    cells: [
+      { type: 'empty', label: '', tip: '' },
+      { type: 'prep', label: 'تواصل مدارس', tip: 'التواصل مع المدارس|عروض تقديمية وشراكات مؤسسية' },
+      { type: 'prep', label: 'إعلان', tip: 'إعلان الهاكاثون|فتح التسجيل — هدف 500–1000 طالب' },
+      { type: 'active', label: '🏆 هاكاثون', tip: '🚀 إقامة الهاكاثون|500–1000 مشارك مباشر|يسمع عنه 100,000 طالب' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'prep', label: 'متابعة', tip: 'متابعة المدارس|تحويل شراكات لتسجيلات حقيقية' },
+      { type: 'prep', label: 'شراكات', tip: 'توسيع قاعدة الشراكات المؤسسية' },
+      { type: 'prep', label: 'تخطيط ٢٧', tip: 'تخطيط هاكاثون 2027' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'empty', label: '', tip: '' },
+      { type: 'empty', label: '', tip: '' },
+    ],
+    target: 1000, targetLabel: '500–1000 مشارك', progress: 0,
+  },
+];
+
+const MILESTONES = [
+  { idx: 0, label: '①', color: 'var(--c1)', bg: 'var(--c1l)', tip: 'إطلاق البرمجة|مارس 2026' },
+  { idx: 1, label: '④', color: 'var(--c4)', bg: 'var(--c4l)', tip: 'مراجعات الخليج|أبريل 2026' },
+  { idx: 2, label: '③', color: 'var(--c3)', bg: 'var(--c3l)', tip: 'إطلاق التأسيس|مايو 2026' },
+  { idx: 3, label: '🏆', color: 'var(--ch)', bg: 'var(--chl)', tip: 'هاكاثون EduRise|يونيو 2026' },
+  { idx: 5, label: '300', color: 'var(--c1)', bg: 'var(--c1l)', tip: '✦ 300 طالب برمجة|أغسطس 2026' },
+  { idx: 6, label: '⑤', color: 'var(--c5)', bg: 'var(--c5l)', tip: 'إطلاق المدرسة الأون لاين|سبتمبر 2026' },
+  { idx: 10, label: '★', color: 'var(--ch)', bg: 'var(--chl)', tip: 'يناير 2027|تعادل كامل + 15–20% ربح|300 طفل تأسيس' },
+];
+
+/* ───────────────────────────────
+   Build DOM
+─────────────────────────────── */
+function buildMonthsHeader() {
+  const hdr = document.getElementById('months-header');
+  MONTHS.forEach((m, i) => {
+    const div = document.createElement('div');
+    div.className = 'mh-month' + (i === CURRENT_MONTH ? ' current' : '');
+    div.innerHTML = `<div class="mn">${m.ar}</div><div class="yr">'${m.yr}</div>`;
+    hdr.appendChild(div);
+  });
+}
+
+function buildRows() {
+  const container = document.getElementById('rows-container');
+
+  TRACKS.forEach((track, ti) => {
+    // Section divider before track 4
+    if (ti === 3) {
+      const div = document.createElement('div');
+      div.className = 'section-div';
+      div.textContent = '— أون لاين للمغتربين —';
+      container.appendChild(div);
+    }
+    if (ti === 5) {
+      const div = document.createElement('div');
+      div.className = 'section-div';
+      div.textContent = '— هاكاثون وشراكات —';
+      container.appendChild(div);
+    }
+
+    const row = document.createElement('div');
+    row.className = 'act-row';
+    row.dataset.track = track.id;
+
+    // Label
+    const info = document.createElement('div');
+    info.className = 'row-info';
+    info.innerHTML = `
+      <div class="row-num-badge" style="background:${track.colorLight};color:${track.color}">${track.num}</div>
+      <div class="row-name">${track.name}</div>
+    `;
+    row.appendChild(info);
+
+    // Cells
+    track.cells.forEach((cell, ci) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'cell-wrap' + (ci === CURRENT_MONTH ? ' current-col' : '');
+
+      const pill = document.createElement('div');
+
+      if (cell.type === 'empty') {
+        pill.className = 'bar-pill empty';
+      } else if (cell.type === 'prep') {
+        pill.className = 'bar-pill prep';
+        pill.style.background = track.colorLight;
+        pill.style.color = track.color;
+        pill.style.borderColor = track.color;
+        pill.textContent = cell.label;
+      } else if (cell.type === 'milestone') {
+        pill.className = 'bar-pill milestone-pill';
+        pill.style.background = track.colorLight;
+        pill.style.color = track.color;
+        pill.style.borderColor = track.color;
+        pill.textContent = cell.label;
+      } else {
+        pill.className = 'bar-pill active';
+        pill.style.background = track.color;
+        pill.style.color = track.textColor;
+        pill.textContent = cell.label;
+      }
+
+      if (cell.tip) {
+        pill.dataset.tip = cell.tip;
+        setupTooltip(pill);
+      }
+
+      wrap.appendChild(pill);
+      row.appendChild(wrap);
+    });
+
+    container.appendChild(row);
+  });
+}
+
+function buildMilestones() {
+  const row = document.getElementById('milestone-row');
+  for (let i = 0; i < 12; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'ms-cell' + (i === CURRENT_MONTH ? ' current-col' : '');
+    const ms = MILESTONES.find(m => m.idx === i);
+    if (ms) {
+      const dia = document.createElement('div');
+      dia.className = 'ms-diamond';
+      dia.style.background = ms.bg;
+      dia.style.border = `1.5px solid ${ms.color}`;
+      dia.innerHTML = `<span style="color:${ms.color};font-size:9px;font-weight:700">${ms.label}</span>`;
+      dia.dataset.tip = ms.tip;
+      setupTooltip(dia);
+      cell.appendChild(dia);
+    }
+    row.appendChild(cell);
+  }
+}
+
+function buildProgress() {
+  const sec = document.getElementById('progress-section');
+  TRACKS.forEach(track => {
+    const card = document.createElement('div');
+    card.className = 'prog-card';
+    card.innerHTML = `
+      <div class="prog-header">
+        <div class="prog-dot" style="background:${track.color}"></div>
+        <div class="prog-name">${track.name}</div>
+        <div class="prog-target" style="color:${track.color}">${track.targetLabel}</div>
+      </div>
+      <div class="prog-bar-wrap">
+        <div class="prog-bar-fill" style="background:${track.color}" data-max="${track.target}" data-current="0"></div>
+      </div>
+      <div class="prog-stats">
+        <span>الحالي: <span class="curr-val">0</span></span>
+        <span>الهدف: ${track.target > 300 ? track.targetLabel : track.target}</span>
+      </div>
+    `;
+    sec.appendChild(card);
+  });
+}
+
+/* ───────────────────────────────
+   Tooltip
+─────────────────────────────── */
+const tooltip = document.getElementById('tooltip');
+const ttTitle = document.getElementById('tt-title');
+const ttBody = document.getElementById('tt-body');
+
+function setupTooltip(el) {
+  el.addEventListener('mouseenter', e => {
+    const parts = el.dataset.tip.split('|');
+    ttTitle.textContent = parts[0] || '';
+    ttBody.textContent = parts.slice(1).join(' — ') || '';
+    tooltip.style.display = 'block';
+  });
+  el.addEventListener('mousemove', e => {
+    let x = e.clientX + 16, y = e.clientY - 10;
+    if (x + 250 > window.innerWidth) x = e.clientX - 260;
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = y + 'px';
+  });
+  el.addEventListener('mouseleave', () => {
+    tooltip.style.display = 'none';
+  });
+}
+
+/* ───────────────────────────────
+   Filter by track
+─────────────────────────────── */
+document.querySelectorAll('.leg').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.leg').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const track = btn.dataset.track;
+    document.querySelectorAll('.act-row').forEach(row => {
+      if (track === 'all' || row.dataset.track === track) {
+        row.classList.remove('dimmed');
+        row.classList.add('highlighted');
+      } else {
+        row.classList.add('dimmed');
+        row.classList.remove('highlighted');
+      }
+    });
+  });
+});
+
+/* ───────────────────────────────
+   Progress Animation (Intersection Observer)
+─────────────────────────────── */
+// Simulated progress values (% of target achieved by current month)
+const simulatedProgress = [0, 0, 0, 0, 0, 0]; // all start at 0 to animate
+
+function animateProgressBars() {
+  const fills = document.querySelectorAll('.prog-bar-fill');
+  fills.forEach((fill, i) => {
+    // Small demonstrative progress to show the bars work
+    const targetPct = [5, 8, 0, 30, 0, 0][i] || 0;
+    setTimeout(() => {
+      fill.style.width = targetPct + '%';
+      const currVal = fill.closest('.prog-card').querySelector('.curr-val');
+      const max = parseInt(fill.dataset.max);
+      const current = Math.round(max * targetPct / 100);
+      animateNum(currVal, 0, current, 1200);
+    }, 300 + i * 150);
+  });
+}
+
+function animateNum(el, from, to, duration) {
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(from + (to - from) * ease);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateProgressBars();
+      observer.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+
+/* ───────────────────────────────
+   Init
+─────────────────────────────── */
+buildMonthsHeader();
+buildRows();
+buildMilestones();
+buildProgress();
+
+// observe progress section
+const progSec = document.getElementById('progress-section');
+if (progSec) observer.observe(progSec);
+
+// KPI counter animation on load
+document.querySelectorAll('.kpi-num').forEach((el, i) => {
+  const text = el.textContent.trim();
+  const numMatch = text.match(/[\d,]+/);
+  if (!numMatch || text.includes('–') || text.includes('%')) return;
+  const target = parseInt(numMatch[0].replace(',', ''));
+  el.textContent = '0';
+  setTimeout(() => animateNum(el, 0, target, 1400), 200 + i * 100);
+});
+
+// Glow pulse on current month column
+document.querySelectorAll('.current-col').forEach(el => {
+  el.style.position = 'relative';
+});
+</script>
+</body>
+</html>
