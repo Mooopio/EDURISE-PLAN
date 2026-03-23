@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduRise — أكاديمية تعليمية متكاملة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5C842;
+    --gold-light: #FFE082;
+    --gold-dark: #C8960C;
+    --navy: #0A1628;
+    --navy-mid: #112240;
+    --navy-light: #1A3358;
+    --teal: #00C9A7;
+    --teal-dark: #00A38A;
+    --orange: #FF6B35;
+    --white: #FAFAFA;
+    --gray-soft: #E8EDF5;
+    --text-muted: #8899AA;
+    --font-display: 'Tajawal', sans-serif;
+    --font-body: 'Cairo', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+    direction: rtl;
+  }
+
+  /* ====== SCROLLBAR ====== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ====== NAV ====== */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(245,200,66,0.15);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+    transition: all 0.3s;
+  }
+  nav.scrolled { background: rgba(10,22,40,0.98); }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.8rem; font-weight: 800;
+    color: var(--gold);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--teal); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray-soft); font-size: 0.9rem;
+    text-decoration: none; font-weight: 500;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; right: 0;
+    width: 0; height: 2px; background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--gold); color: var(--navy);
+    padding: 0.5rem 1.5rem; border-radius: 50px;
+    font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ====== HERO ====== */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 100px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(0,201,167,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 80% at 80% 20%, rgba(245,200,66,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 50% at 50% 80%, rgba(255,107,53,0.05) 0%, transparent 70%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(rgba(245,200,66,0.5) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(245,200,66,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 700px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(245,200,66,0.1); border: 1px solid rgba(245,200,66,0.3);
+    color: var(--gold); padding: 6px 16px; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 600; margin-bottom: 2rem;
+    animation: fadeInUp 0.6s ease both;
+  }
+  .hero-badge .dot {
+    width: 8px; height: 8px; background: var(--teal); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s 0.1s ease both;
+  }
+  .hero h1 .accent-gold { color: var(--gold); }
+  .hero h1 .accent-teal { color: var(--teal); }
+
+  .hero-sub {
+    font-size: 1.1rem; color: #AABBC8;
+    line-height: 1.8; margin-bottom: 2.5rem;
+    max-width: 550px;
+    animation: fadeInUp 0.6s 0.2s ease both;
+  }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-bottom: 2.5rem;
+    animation: fadeInUp 0.6s 0.3s ease both;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat .num {
+    font-family: var(--font-display);
+    font-size: 2rem; font-weight: 900;
+    color: var(--gold); display: block;
+  }
+  .hero-stat .lbl { font-size: 0.8rem; color: var(--text-muted); }
+
+  .hero-buttons {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeInUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--navy); padding: 0.85rem 2rem;
+    border-radius: 50px; font-weight: 800; font-size: 1rem;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+    box-shadow: 0 8px 30px rgba(245,200,66,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(245,200,66,0.4); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white); padding: 0.85rem 2rem;
+    border-radius: 50px; font-weight: 700; font-size: 1rem;
+    text-decoration: none; border: 2px solid rgba(255,255,255,0.2);
+    cursor: pointer; transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-float-cards {
+    position: absolute; left: 5%; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 1rem;
+    animation: fadeInLeft 0.8s 0.5s ease both;
+  }
+  .float-card {
+    background: rgba(17,34,64,0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(245,200,66,0.15);
+    border-radius: 16px; padding: 1rem 1.2rem;
+    display: flex; align-items: center; gap: 12px;
+    min-width: 200px;
+    transition: transform 0.3s;
+  }
+  .float-card:hover { transform: translateX(-5px); }
+  .float-card .icon { font-size: 1.8rem; }
+  .float-card .info .title { font-size: 0.85rem; font-weight: 700; color: var(--white); }
+  .float-card .info .sub { font-size: 0.75rem; color: var(--text-muted); }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ====== SECTIONS GENERAL ====== */
+  section { padding: 80px 5%; }
+
+  .section-tag {
+    display: inline-block;
+    background: rgba(0,201,167,0.12); color: var(--teal);
+    border: 1px solid rgba(0,201,167,0.25);
+    padding: 4px 14px; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900; line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-title .g { color: var(--gold); }
+  .section-title .t { color: var(--teal); }
+
+  .section-sub {
+    font-size: 1rem; color: #8899AA;
+    max-width: 600px; line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  /* ====== DIVIDER ====== */
+  .divider {
+    width: 80px; height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--teal));
+    border-radius: 2px; margin-bottom: 1.5rem;
+  }
+
+  /* ====== AXES — PILLARS ====== */
+  #pillars { background: var(--navy); }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pillar-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: all 0.4s; cursor: default;
+  }
+  .pillar-card::before {
+    content: ''; position: absolute;
+    top: 0; right: 0; left: 0; height: 3px;
+    background: var(--card-color, var(--gold));
+  }
+  .pillar-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(245,200,66,0.2);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+
+  .pillar-num {
+    font-family: var(--font-display);
+    font-size: 4rem; font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    position: absolute; top: 1rem; left: 1.5rem;
+    line-height: 1;
+  }
+
+  .pillar-icon {
+    font-size: 2.5rem; margin-bottom: 1rem;
+    display: inline-block;
+    background: rgba(255,255,255,0.06);
+    padding: 0.8rem; border-radius: 14px;
+  }
+
+  .pillar-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem; font-weight: 800;
+    margin-bottom: 0.5rem; color: var(--white);
+  }
+  .pillar-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+  .pillar-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.2rem; }
+  .pillar-tag {
+    background: rgba(255,255,255,0.07);
+    color: #AABBC8; font-size: 0.75rem;
+    padding: 3px 10px; border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .pillar-goal {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(245,200,66,0.08);
+    border: 1px solid rgba(245,200,66,0.15);
+    border-radius: 10px; padding: 0.7rem 1rem;
+  }
+  .pillar-goal .trophy { font-size: 1.1rem; }
+  .pillar-goal .goal-text { font-size: 0.85rem; font-weight: 700; color: var(--gold); }
+
+  /* ====== HACKATHON SECTION ====== */
+  #hackathon {
+    background: linear-gradient(135deg, rgba(255,107,53,0.08) 0%, rgba(245,200,66,0.05) 100%);
+    position: relative; overflow: hidden;
+  }
+  #hackathon::before {
+    content: '🏆'; font-size: 20rem;
+    position: absolute; left: -3rem; top: 50%;
+    transform: translateY(-50%); opacity: 0.03;
+    line-height: 1;
+  }
+
+  .hackathon-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: center;
+  }
+
+  .hack-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2rem;
+  }
+  .hack-stat {
+    background: rgba(17,34,64,0.8);
+    border: 1px solid rgba(255,107,53,0.2);
+    border-radius: 16px; padding: 1.5rem;
+    text-align: center;
+  }
+  .hack-stat .big {
+    font-family: var(--font-display);
+    font-size: 2.2rem; font-weight: 900;
+    color: var(--orange); display: block;
+    line-height: 1;
+  }
+  .hack-stat .lbl { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; display: block; }
+
+  .hack-flow {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .hack-step {
+    display: flex; gap: 1rem; align-items: flex-start;
+    background: rgba(17,34,64,0.5);
+    border-radius: 14px; padding: 1.2rem;
+    border-right: 3px solid var(--orange);
+    transition: all 0.3s;
+  }
+  .hack-step:hover { background: rgba(17,34,64,0.9); transform: translateX(5px); }
+  .hack-step .step-icon {
+    font-size: 1.5rem; min-width: 40px;
+    background: rgba(255,107,53,0.12);
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+  }
+  .hack-step .step-info .step-title { font-weight: 700; margin-bottom: 2px; }
+  .hack-step .step-info .step-sub { font-size: 0.82rem; color: var(--text-muted); }
+
+  /* ====== OFFERS SECTION ====== */
+  #offers { background: var(--navy-mid); }
+
+  .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; align-items: end;
+  }
+
+  .offer-card {
+    background: var(--navy);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: all 0.4s;
+  }
+  .offer-card:hover { transform: translateY(-8px); }
+
+  .offer-card.popular {
+    border-color: var(--gold);
+    background: linear-gradient(160deg, var(--navy-light) 0%, var(--navy) 100%);
+    transform: scale(1.03);
+  }
+  .offer-card.popular:hover { transform: scale(1.03) translateY(-8px); }
+
+  .popular-badge {
+    position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+    color: var(--navy); font-size: 0.75rem; font-weight: 800;
+    padding: 4px 20px; border-radius: 0 0 12px 12px;
+  }
+
+  .offer-tier {
+    font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--text-muted); margin-bottom: 0.5rem;
+  }
+  .offer-name {
+    font-family: var(--font-display);
+    font-size: 1.6rem; font-weight: 900;
+    margin-bottom: 0.5rem; color: var(--white);
+  }
+
+  .offer-price-block { margin-bottom: 1.5rem; }
+  .offer-original {
+    font-size: 0.9rem; color: var(--text-muted);
+    text-decoration: line-through;
+  }
+  .offer-price {
+    font-family: var(--font-display);
+    font-size: 2.5rem; font-weight: 900;
+    color: var(--gold); line-height: 1;
+  }
+  .offer-price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+
+  .offer-features { list-style: none; margin-bottom: 2rem; }
+  .offer-features li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.88rem; color: #AABBC8;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .offer-features li .check { color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+  .offer-guarantee {
+    background: rgba(0,201,167,0.08);
+    border: 1px solid rgba(0,201,167,0.2);
+    border-radius: 10px; padding: 0.8rem;
+    font-size: 0.82rem; color: var(--teal);
+    text-align: center; margin-bottom: 1.5rem;
+  }
+
+  /* ====== GUARANTEE SECTION ====== */
+  #guarantee {
+    background: var(--navy);
+    text-align: center;
+  }
+
+  .guarantee-box {
+    max-width: 700px; margin: 0 auto;
+    background: linear-gradient(135deg, rgba(0,201,167,0.08), rgba(245,200,66,0.06));
+    border: 1px solid rgba(0,201,167,0.2);
+    border-radius: 28px; padding: 3rem;
+  }
+
+  .guarantee-icon { font-size: 4rem; margin-bottom: 1rem; display: block; }
+
+  .guarantee-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem; font-weight: 900;
+    margin-bottom: 1rem; color: var(--teal);
+  }
+
+  .guarantee-quote {
+    font-size: 1.1rem; color: var(--gold);
+    font-style: italic; margin-bottom: 2rem; line-height: 1.8;
+    border-right: 4px solid var(--gold);
+    padding-right: 1.5rem; text-align: right;
+  }
+
+  .guarantee-table { width: 100%; border-collapse: collapse; }
+  .guarantee-table th {
+    background: rgba(255,255,255,0.05);
+    padding: 0.8rem 1.2rem; font-size: 0.85rem;
+    color: var(--text-muted); text-align: right;
+    font-weight: 700;
+  }
+  .guarantee-table td {
+    padding: 0.9rem 1.2rem; font-size: 0.88rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    text-align: right;
+  }
+  .guarantee-table td:first-child { color: var(--text-muted); }
+  .guarantee-table td:last-child { color: var(--teal); font-weight: 600; }
+
+  /* ====== FUNNEL ====== */
+  #funnel { background: var(--navy-mid); }
+
+  .funnel-flow {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 0; max-width: 600px; margin: 0 auto;
+  }
+
+  .funnel-step {
+    background: var(--navy);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 1.2rem 1.8rem;
+    width: 100%; text-align: center;
+    position: relative; transition: all 0.3s;
+  }
+  .funnel-step:hover { border-color: var(--gold); transform: scale(1.02); }
+
+  .funnel-step .f-num {
+    position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: 2.5rem; font-weight: 900;
+    color: rgba(255,255,255,0.04);
+  }
+
+  .funnel-step .f-icon { font-size: 1.4rem; margin-bottom: 0.3rem; display: block; }
+  .funnel-step .f-title { font-weight: 700; color: var(--white); }
+  .funnel-step .f-sub { font-size: 0.82rem; color: var(--text-muted); }
+
+  .funnel-arrow {
+    font-size: 1.5rem; color: var(--gold);
+    opacity: 0.6; line-height: 1; padding: 4px 0;
+  }
+
+  /* ====== CONTENT PLAN ====== */
+  #content { background: var(--navy); }
+
+  .platforms-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem; margin-bottom: 3rem;
+  }
+  .platform-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px; padding: 1.5rem;
+    transition: all 0.3s;
+  }
+  .platform-card:hover { transform: translateY(-4px); border-color: rgba(245,200,66,0.2); }
+  .platform-card .p-icon { font-size: 2rem; margin-bottom: 0.7rem; display: block; }
+  .platform-card .p-name { font-weight: 700; margin-bottom: 0.3rem; }
+  .platform-card .p-goal { font-size: 0.8rem; color: var(--teal); margin-bottom: 0.5rem; }
+  .platform-card .p-freq { font-size: 0.78rem; color: var(--text-muted); }
+
+  /* Content Calendar tabs */
+  .week-tabs {
+    display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;
+  }
+  .week-tab {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+    cursor: pointer; transition: all 0.3s;
+    background: transparent; color: var(--text-muted);
+  }
+  .week-tab.active, .week-tab:hover {
+    background: var(--gold); color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  .week-content { display: none; }
+  .week-content.active { display: block; }
+
+  .cal-table { width: 100%; border-collapse: collapse; }
+  .cal-table th {
+    background: rgba(245,200,66,0.08);
+    padding: 0.8rem 1rem; font-size: 0.82rem;
+    color: var(--gold); text-align: right; font-weight: 700;
+  }
+  .cal-table td {
+    padding: 0.8rem 1rem; font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    text-align: right; vertical-align: top;
+  }
+  .cal-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .cal-table td:first-child { color: var(--gold); font-weight: 700; }
+
+  /* ====== PSYCHOLOGY ====== */
+  #psychology { background: var(--navy-mid); }
+
+  .psych-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .psych-card {
+    background: var(--navy);
+    border-radius: 18px; padding: 1.8rem;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .psych-card .pc-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem; font-weight: 800;
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .psych-item {
+    display: flex; gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .psych-item:last-child { border-bottom: none; }
+  .psych-item .fear { font-size: 0.85rem; font-weight: 600; color: var(--white); }
+  .psych-item .belief { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+  .psych-item .left { min-width: 28px; }
+
+  /* ====== OBJECTIONS ====== */
+  #objections { background: var(--navy); }
+
+  .obj-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1rem;
+  }
+  .obj-card {
+    background: var(--navy-mid);
+    border-radius: 16px; padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: all 0.3s;
+  }
+  .obj-card:hover { border-color: rgba(0,201,167,0.25); }
+  .obj-q {
+    color: var(--orange); font-weight: 700;
+    margin-bottom: 0.7rem; font-size: 0.9rem;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .obj-a { font-size: 0.85rem; color: #AABBC8; line-height: 1.7; }
+
+  /* ====== OPERATIONS ====== */
+  #operations { background: var(--navy-mid); }
+
+  .ops-table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 16px; }
+  .ops-table th {
+    background: rgba(245,200,66,0.1);
+    padding: 0.8rem 0.6rem; font-size: 0.8rem;
+    color: var(--gold); text-align: center; font-weight: 700;
+  }
+  .ops-table td {
+    padding: 0.7rem 0.6rem; font-size: 0.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    text-align: center; color: #AABBC8;
+  }
+  .ops-table td.time-col { color: var(--gold); font-weight: 700; }
+  .ops-table td.class-cell {
+    background: rgba(0,201,167,0.07);
+    color: var(--teal); border-radius: 6px;
+    font-size: 0.75rem;
+  }
+  .ops-table td.empty-cell { color: rgba(255,255,255,0.15); }
+
+  .group-vs-private {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-top: 2rem;
+  }
+  .gvp-card {
+    background: var(--navy);
+    border-radius: 16px; padding: 1.8rem;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .gvp-card .gvp-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem; font-weight: 800;
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+  }
+  .gvp-row {
+    display: flex; justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.85rem;
+  }
+  .gvp-row .label { color: var(--text-muted); }
+  .gvp-row .val { color: var(--white); font-weight: 600; }
+
+  /* ====== REVENUE ====== */
+  #revenue { background: var(--navy); }
+
+  .rev-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-bottom: 3rem;
+  }
+  .rev-card {
+    background: var(--navy-mid);
+    border-radius: 20px; padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .rev-card.base { border-color: var(--gold); }
+  .rev-card .rev-scenario { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .rev-card .rev-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem; font-weight: 900;
+    color: var(--gold); display: block; line-height: 1; margin-bottom: 0.3rem;
+  }
+  .rev-card .rev-sub { font-size: 0.8rem; color: var(--text-muted); }
+  .rev-card .rev-detail { margin-top: 1rem; font-size: 0.82rem; color: #AABBC8; }
+
+  .upsell-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .upsell-item {
+    background: var(--navy-mid);
+    border-radius: 14px; padding: 1.2rem;
+    border-right: 3px solid var(--teal);
+  }
+  .upsell-item .trigger { font-size: 0.8rem; color: var(--teal); font-weight: 700; margin-bottom: 0.3rem; }
+  .upsell-item .action { font-size: 0.85rem; color: var(--white); margin-bottom: 0.3rem; font-weight: 600; }
+  .upsell-item .timing { font-size: 0.78rem; color: var(--text-muted); }
+
+  /* ====== KPI ====== */
+  #kpi { background: var(--navy-mid); }
+
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem; margin-bottom: 3rem;
+  }
+  .kpi-card {
+    background: var(--navy);
+    border-radius: 16px; padding: 1.5rem;
+    text-align: center; border: 1px solid rgba(255,255,255,0.07);
+    transition: all 0.3s;
+  }
+  .kpi-card:hover { transform: translateY(-4px); border-color: rgba(245,200,66,0.2); }
+  .kpi-card .k-icon { font-size: 1.8rem; display: block; margin-bottom: 0.5rem; }
+  .kpi-card .k-metric { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+  .kpi-card .k-target {
+    font-family: var(--font-display);
+    font-size: 1.3rem; font-weight: 900; color: var(--gold);
+  }
+
+  .decision-table { width: 100%; border-collapse: collapse; }
+  .decision-table th {
+    background: rgba(255,107,53,0.08);
+    padding: 0.8rem 1rem; font-size: 0.82rem;
+    color: var(--orange); text-align: right; font-weight: 700;
+  }
+  .decision-table td {
+    padding: 0.8rem 1rem; font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05); text-align: right;
+  }
+  .decision-table td:first-child { color: #AABBC8; }
+  .decision-table td:last-child { color: var(--teal); font-weight: 600; }
+
+  /* ====== TIMELINE ====== */
+  #timeline { background: var(--navy); }
+
+  .timeline-track {
+    position: relative;
+    padding-right: 2rem;
+  }
+  .timeline-track::before {
+    content: ''; position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--gold), var(--teal), var(--orange));
+  }
+
+  .tl-item {
+    position: relative; padding-right: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .tl-item::before {
+    content: ''; position: absolute;
+    right: -6px; top: 8px;
+    width: 14px; height: 14px;
+    border-radius: 50%; background: var(--gold);
+    border: 3px solid var(--navy);
+  }
+  .tl-item.teal::before { background: var(--teal); }
+  .tl-item.orange::before { background: var(--orange); }
+
+  .tl-date { font-size: 0.78rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .tl-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: var(--white); margin: 0.2rem 0; }
+  .tl-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+  .tl-target {
+    display: inline-block; margin-top: 0.4rem;
+    background: rgba(245,200,66,0.1); color: var(--gold);
+    padding: 2px 10px; border-radius: 50px; font-size: 0.78rem; font-weight: 700;
+  }
+
+  /* ====== COMPETITOR ====== */
+  #competitor { background: var(--navy-mid); }
+
+  .comp-table { width: 100%; border-collapse: collapse; }
+  .comp-table th {
+    padding: 1rem; font-size: 0.85rem;
+    text-align: center; font-weight: 800;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+  }
+  .comp-table th:first-child { text-align: right; }
+  .comp-table th.us { color: var(--gold); }
+  .comp-table th.them { color: var(--text-muted); }
+  .comp-table td {
+    padding: 0.9rem 1rem; font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+  }
+  .comp-table td:first-child { text-align: right; color: var(--text-muted); font-weight: 600; }
+  .comp-table td.win { color: var(--teal); font-weight: 700; }
+  .comp-table td.lose { color: var(--text-muted); }
+
+  .position-box {
+    margin-top: 2rem;
+    background: linear-gradient(135deg, rgba(245,200,66,0.08), rgba(0,201,167,0.06));
+    border: 1px solid rgba(245,200,66,0.2);
+    border-radius: 20px; padding: 2rem; text-align: center;
+  }
+  .position-box .pos-label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .position-box .pos-text {
+    font-family: var(--font-display);
+    font-size: 1.3rem; font-weight: 900; color: var(--gold); line-height: 1.5;
+  }
+
+  /* ====== EXECUTION 7 DAYS ====== */
+  #execution { background: var(--navy); }
+
+  .exec-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .exec-card {
+    background: var(--navy-mid);
+    border-radius: 16px; padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    position: relative; overflow: hidden;
+    transition: all 0.3s;
+  }
+  .exec-card:hover { border-color: rgba(245,200,66,0.25); transform: translateY(-4px); }
+  .exec-day {
+    font-family: var(--font-display);
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--teal); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 0.3rem;
+  }
+  .exec-title { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--white); }
+  .exec-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ====== FOOTER ====== */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(245,200,66,0.1);
+    padding: 3rem 5%;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 2.5rem; font-weight: 900; color: var(--gold); margin-bottom: 1rem;
+  }
+  .footer-logo span { color: var(--teal); }
+  .footer-tagline { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+  .footer-bottom { font-size: 0.8rem; color: rgba(255,255,255,0.2); }
+
+  /* ====== SCROLL REVEAL ====== */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 768px) {
+    nav .nav-links { display: none; }
+    .hero-float-cards { display: none; }
+    .hackathon-grid, .psych-grid, .group-vs-private,
+    .rev-cards, .offers-grid { grid-template-columns: 1fr; }
+    .offer-card.popular { transform: none; }
+    .hero-stats { gap: 1.5rem; }
+    .hack-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Edu<span>Rise</span></a>
+  <ul class="nav-links">
+    <li><a href="#pillars">المحاور</a></li>
+    <li><a href="#offers">الباقات</a></li>
+    <li><a href="#content">خطة المحتوى</a></li>
+    <li><a href="#kpi">الأهداف</a></li>
+    <li><a href="#timeline">الخطة الزمنية</a></li>
+  </ul>
+  <a href="#offers" class="nav-cta">سجّل الآن</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      مارس–أبريل 2026 — مرحلة النمو المتسارع
+    </div>
+
+    <h1>
+      أكاديمية <span class="accent-gold">EduRise</span><br>
+      نبني جيل<br>
+      <span class="accent-teal">المستقبل</span>
+    </h1>
+
+    <p class="hero-sub">
+      منظومة تعليمية متكاملة — برمجة، روبوتكس، إنجليزي، تأسيس، ومدرسة أونلاين كاملة.<br>
+      للأطفال في مصر والمغتربين في الخليج.
+    </p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">5</span>
+        <span class="lbl">محاور تعليمية</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">1000+</span>
+        <span class="lbl">طالب مستهدف</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">7</span>
+        <span class="lbl">طلاب / جروب</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">100%</span>
+        <span class="lbl">ضمان أو مبلغك كامل</span>
+      </div>
+    </div>
+
+    <div class="hero-buttons">
+      <a href="#offers" class="btn-primary">🎓 اعرف الباقات</a>
+      <a href="#pillars" class="btn-secondary">🔍 تفاصيل المحاور</a>
+    </div>
+  </div>
+
+  <div class="hero-float-cards">
+    <div class="float-card">
+      <div class="icon">🤖</div>
+      <div class="info">
+        <div class="title">برمجة وروبوتكس</div>
+        <div class="sub">هدف: 300 طالب / أغسطس 2026</div>
+      </div>
+    </div>
+    <div class="float-card">
+      <div class="icon">📚</div>
+      <div class="info">
+        <div class="title">التأسيس</div>
+        <div class="sub">هدف: 300 طفل / يناير 2027</div>
+      </div>
+    </div>
+    <div class="float-card">
+      <div class="icon">🌍</div>
+      <div class="info">
+        <div class="title">مغتربو الخليج</div>
+        <div class="sub">50-100 طالب السنة الأولى</div>
+      </div>
+    </div>
+    <div class="float-card">
+      <div class="icon">🏆</div>
+      <div class="info">
+        <div class="title">هاكاثون</div>
+        <div class="sub">500-1000 طالب مشارك</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="section-tag">المحاور الخمسة</div>
+  <h2 class="section-title">المنظومة الكاملة لـ <span class="g">EduRise</span></h2>
+  <div class="divider"></div>
+  <p class="section-sub">خمسة محاور تعليمية متكاملة تغطي احتياجات الطالب من مرحلة ما قبل المدرسة حتى التعليم الرقمي الكامل</p>
+
+  <div class="pillars-grid">
+    <!-- Pillar 1 -->
+    <div class="pillar-card reveal" style="--card-color: #00C9A7">
+      <div class="pillar-num">01</div>
+      <div class="pillar-icon">🤖</div>
+      <div class="pillar-title">التكنيكال</div>
+      <div class="pillar-sub">برمجة + روبوتكس + إنجليزي تقني</div>
+      <div class="pillar-tags">
+        <span class="pillar-tag">Scratch</span>
+        <span class="pillar-tag">Python</span>
+        <span class="pillar-tag">Robotics</span>
+        <span class="pillar-tag">إنجليزي</span>
+        <span class="pillar-tag">أطفال المدارس</span>
+      </div>
+      <div class="pillar-goal">
+        <span class="trophy">🎯</span>
+        <span class="goal-text">300 طالب — بنهاية أغسطس 2026</span>
+      </div>
+    </div>
+
+    <!-- Pillar 2 -->
+    <div class="pillar-card reveal" style="--card-color: #F5C842">
+      <div class="pillar-num">02</div>
+      <div class="pillar-icon">🎨</div>
+      <div class="pillar-title">Non-Technical</div>
+      <div class="pillar-sub">مهارات + رسم + UCMath</div>
+      <div class="pillar-tags">
+        <span class="pillar-tag">مهارات حياتية</span>
+        <span class="pillar-tag">رسم وفنون</span>
+        <span class="pillar-tag">UCMath</span>
+        <span class="pillar-tag">رياضيات إبداعية</span>
+      </div>
+      <div class="pillar-goal">
+        <span class="trophy">🎯</span>
+        <span class="goal-text">ضمن المنظومة الكاملة للأكاديمية</span>
+      </div>
+    </div>
+
+    <!-- Pillar 3 -->
+    <div class="pillar-card reveal" style="--card-color: #FF6B35">
+      <div class="pillar-num">03</div>
+      <div class="pillar-icon">📚</div>
+      <div class="pillar-title">ما قبل المدرسة</div>
+      <div class="pillar-sub">التأسيس الأكاديمي الشامل</div>
+      <div class="pillar-tags">
+        <span class="pillar-tag">رياضيات</span>
+        <span class="pillar-tag">عربي</span>
+        <span class="pillar-tag">إنجليزي</span>
+        <span class="pillar-tag">قرآن كريم</span>
+        <span class="pillar-tag">KG - Grade 1</span>
+      </div>
+      <div class="pillar-goal">
+        <span class="trophy">🎯</span>
+        <span class="goal-text">300 طفل — بنهاية يناير 2027</span>
+      </div>
+    </div>
+
+    <!-- Pillar 4 -->
+    <div class="pillar-card reveal" style="--card-color: #9B59B6">
+      <div class="pillar-num">04</div>
+      <div class="pillar-icon">🌍</div>
+      <div class="pillar-title">دروس المغتربين</div>
+      <div class="pillar-sub">مراجعات أونلاين — الخليج + مصر</div>
+      <div class="pillar-tags">
+        <span class="pillar-tag">المنهج المصري</span>
+        <span class="pillar-tag">ابتدائي وإعدادي</span>
+        <span class="pillar-tag">امتحانات نهائية</span>
+        <span class="pillar-tag">أبريل ← الامتحانات</span>
+      </div>
+      <div class="pillar-goal">
+        <span class="trophy">🎯</span>
+        <span class="goal-text">50-100 خليج | 700-1000 مصر — السنة الأولى</span>
+      </div>
+    </div>
+
+    <!-- Pillar 5 -->
+    <div class="pillar-card reveal" style="--card-color: #3498DB; grid-column: span 1;">
+      <div class="pillar-num">05</div>
+      <div class="pillar-icon">🏫</div>
+      <div class="pillar-title">المدرسة الأونلاين الكاملة</div>
+      <div class="pillar-sub">يوم دراسي كامل — كل المواد أونلاين</div>
+      <div class="pillar-tags">
+        <span class="pillar-tag">المنهج المصري</span>
+        <span class="pillar-tag">للمغتربين في الخليج</span>
+        <span class="pillar-tag">يوم دراسي كامل</span>
+        <span class="pillar-tag">كل المواد</span>
+      </div>
+      <div class="pillar-goal">
+        <span class="trophy">🎯</span>
+        <span class="goal-text">50-100 طالب — السنة الأولى</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HACKATHON -->
+<section id="hackathon">
+  <div class="section-tag">فعالية ضخمة</div>
+  <h2 class="section-title">🏆 مسابقة البرمجة والروبوتكس <span class="g">Hackathon</span></h2>
+  <div class="divider"></div>
+
+  <div class="hackathon-grid">
+    <div>
+      <p class="section-sub">فعالية تعليمية ضخمة تستهدف مئات المدارس والمؤسسات التعليمية — لتحويل EduRise إلى علامة تجارية يعرفها مئات الآلاف</p>
+
+      <div class="hack-stats">
+        <div class="hack-stat">
+          <span class="big">500-1K</span>
+          <span class="lbl">طالب مشارك</span>
+        </div>
+        <div class="hack-stat">
+          <span class="big">100K</span>
+          <span class="lbl">طالب يسمع عن EduRise</span>
+        </div>
+        <div class="hack-stat">
+          <span class="big">🏫</span>
+          <span class="lbl">عبر المدارس والمؤسسات</span>
+        </div>
+        <div class="hack-stat">
+          <span class="big">🚀</span>
+          <span class="lbl">أكبر حملة وعي</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hack-flow">
+      <div class="hack-step">
+        <div class="step-icon">📣</div>
+        <div class="step-info">
+          <div class="step-title">التواصل مع المدارس</div>
+          <div class="step-sub">شراكات مع المدارس والمؤسسات التعليمية لنشر الفعالية</div>
+        </div>
+      </div>
+      <div class="hack-step">
+        <div class="step-icon">📝</div>
+        <div class="step-info">
+          <div class="step-title">تسجيل الطلاب</div>
+          <div class="step-sub">منصة تسجيل إلكترونية — هدف 500 حتى 1000 طالب مشارك</div>
+        </div>
+      </div>
+      <div class="hack-step">
+        <div class="step-icon">💻</div>
+        <div class="step-info">
+          <div class="step-title">يوم المسابقة</div>
+          <div class="step-sub">برمجة روبوتات وتطبيقات مع مرشدين من EduRise</div>
+        </div>
+      </div>
+      <div class="hack-step">
+        <div class="step-icon">🎖️</div>
+        <div class="step-info">
+          <div class="step-title">التكريم والجوائز</div>
+          <div class="step-sub">تكريم الفائزين وتحويلهم لسفراء EduRise</div>
+        </div>
+      </div>
+      <div class="hack-step">
+        <div class="step-icon">📈</div>
+        <div class="step-info">
+          <div class="step-title">التحويل للتسجيل</div>
+          <div class="step-sub">المشاركون يصبحون leads مؤهلة لمحور التكنيكال</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERS / PRICING -->
+<section id="offers">
+  <div class="section-tag">الباقات والأسعار</div>
+  <h2 class="section-title">اختر الباقة <span class="g">المناسبة</span></h2>
+  <div class="divider"></div>
+  <p class="section-sub">ثلاث باقات مصممة لكل الاحتياجات — مع ضمان استرداد كامل إذا لم تلاحظ فرقاً حقيقياً</p>
+
+  <div class="offers-grid reveal">
+    <!-- Tier 1 -->
+    <div class="offer-card">
+      <div class="offer-tier">Tier 1</div>
+      <div class="offer-name">Starter</div>
+      <div class="offer-price-block">
+        <div class="offer-original">القيمة الفعلية: 3,300 جنيه</div>
+        <div class="offer-price">2,500<span> جنيه/شهر</span></div>
+      </div>
+      <ul class="offer-features">
+        <li><span class="check">✓</span> كورس واحد (إنجليزي أو برمجة أو تأسيس)</li>
+        <li><span class="check">✓</span> مقابلة تحديد مستوى مجانية (قيمة 300 جنيه)</li>
+        <li><span class="check">✓</span> تقرير أسبوعي للتقدم</li>
+        <li><span class="check">✓</span> الانضمام لجروب واتساب الأهالي</li>
+        <li><span class="check">✓</span> جروبات أقصاها 7 طلاب</li>
+        <li><span class="check">✓</span> سياسة جلسات التعويض</li>
+      </ul>
+      <a href="#" class="btn-secondary" style="width:100%; justify-content:center; font-size:0.9rem;">ابدأ الآن</a>
+    </div>
+
+    <!-- Tier 2 - Popular -->
+    <div class="offer-card popular">
+      <div class="popular-badge">⭐ الأكثر طلباً</div>
+      <div class="offer-tier">Tier 2</div>
+      <div class="offer-name">Growth</div>
+      <div class="offer-price-block">
+        <div class="offer-original">القيمة الفعلية: 6,600 جنيه</div>
+        <div class="offer-price">3,500<span> جنيه/شهر</span></div>
+      </div>
+      <ul class="offer-features">
+        <li><span class="check">✓</span> كورسان مجمّعان (إنجليزي + برمجة)</li>
+        <li><span class="check">✓</span> مقابلة تحديد مستوى مجانية</li>
+        <li><span class="check">✓</span> تقارير أسبوعية + مكالمة شهرية مع ولي الأمر</li>
+        <li><span class="check">✓</span> خصم الأشقاء تلقائياً (10%)</li>
+        <li><span class="check">✓</span> شهادة إتمام المستوى</li>
+        <li><span class="check">✓</span> أولوية في الجدولة الزمنية</li>
+        <li><span class="check">✓</span> جروبات أقصاها 7 طلاب</li>
+      </ul>
+      <div class="offer-guarantee">🛡️ ضمان استرداد كامل بعد جلستين</div>
+      <a href="#" class="btn-primary" style="width:100%; justify-content:center; font-size:0.9rem;">اشترك الآن</a>
+    </div>
+
+    <!-- Tier 3 -->
+    <div class="offer-card">
+      <div class="offer-tier">Tier 3</div>
+      <div class="offer-name">Elite</div>
+      <div class="offer-price-block">
+        <div class="offer-original">القيمة الفعلية: 10,000+ جنيه</div>
+        <div class="offer-price">5,500<span> جنيه/شهر</span></div>
+      </div>
+      <ul class="offer-features">
+        <li><span class="check">✓</span> البرامج الثلاثة كاملة (إنجليزي + برمجة + تأسيس)</li>
+        <li><span class="check">✓</span> جلسات خصوصية متاحة</li>
+        <li><span class="check">✓</span> تواصل مباشر مع المدرس عبر واتساب</li>
+        <li><span class="check">✓</span> اجتماع شهري 1:1 مع المدير الأكاديمي</li>
+        <li><span class="check">✓</span> كتيب تقدم مطبوع يُرسل للمنزل</li>
+        <li><span class="check">✓</span> 🥇 الضمان الذهبي: استرداد كامل بعد جلستين</li>
+      </ul>
+      <a href="#" class="btn-secondary" style="width:100%; justify-content:center; font-size:0.9rem;">انضم للنخبة</a>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section id="guarantee">
+  <div class="section-tag">ضماننا الذهبي</div>
+  <h2 class="section-title">لا مخاطرة — <span class="t">ضمان مكتوب</span></h2>
+  <div class="divider" style="margin: 0 auto 1.5rem;"></div>
+
+  <div class="guarantee-box reveal">
+    <span class="guarantee-icon">🥇</span>
+    <div class="guarantee-title">الضمان الذهبي لـ EduRise</div>
+    <div class="guarantee-quote">
+      "لو ما حسيتش بفرق بعد أول أسبوعين — مش هتدفع حاجة. وده مكتوب."
+    </div>
+
+    <table class="guarantee-table">
+      <thead>
+        <tr>
+          <th>اعتراض الأهل</th>
+          <th>ضماننا الواضح</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>إيه لو ابني ما اتحسنش؟</td>
+          <td>الضمان الذهبي: استرداد كامل بعد جلستين بدون أسئلة</td>
+        </tr>
+        <tr>
+          <td>إيه لو فاتتنا جلسات؟</td>
+          <td>سياسة جلسات التعويض — مفيش جلسة بتتضيع</td>
+        </tr>
+        <tr>
+          <td>إيه لو المدرس مش كويس؟</td>
+          <td>طلب تغيير المدرس مُنفَّذ خلال 48 ساعة</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SALES FUNNEL -->
+<section id="funnel">
+  <div class="section-tag">رحلة البيع</div>
+  <h2 class="section-title">فانيل البيع <span class="g">خطوة بخطوة</span></h2>
+  <div class="divider"></div>
+  <p class="section-sub">كل خطوة مصممة لتحويل الاهتمام إلى تسجيل فعلي — والتسجيل إلى طالب مخلص</p>
+
+  <div class="funnel-flow reveal">
+    <div class="funnel-step">
+      <div class="f-num">1</div>
+      <span class="f-icon">📱</span>
+      <div class="f-title">إعلان مدفوع / بوست عضوي</div>
+      <div class="f-sub">فيسبوك، إنستاجرام، تيكتوك</div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="f-num">2</div>
+      <span class="f-icon">🔗</span>
+      <div class="f-title">Landing Page أو رابط واتساب مباشر</div>
+      <div class="f-sub">توجيه فوري للتواصل</div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="f-num">3</div>
+      <span class="f-icon">⚡</span>
+      <div class="f-title">أول رسالة — خلال 5 دقائق كحد أقصى</div>
+      <div class="f-sub">غير قابل للتفاوض — السرعة تبني الثقة</div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="f-num">4</div>
+      <span class="f-icon">❓</span>
+      <div class="f-title">3 أسئلة تأهيل</div>
+      <div class="f-sub">عمر الطفل، الخبرة السابقة، الهدف المرجو</div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="f-num">5</div>
+      <span class="f-icon">📞</span>
+      <div class="f-title">مقابلة تحديد مستوى مجانية — خلال 24 ساعة</div>
+      <div class="f-sub">بدون أي التزام من الأهل</div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="f-num">6</div>
+      <span class="f-icon">✅</span>
+      <div class="f-title">الإغلاق على الكول أو متابعة واتساب نفس اليوم</div>
+      <div class="f-sub">عرض مخصص بناءً على نتيجة المقابلة</div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+      <div class="f-num">7</div>
+      <span class="f-icon">💳</span>
+      <div class="f-title">إرسال رابط الدفع</div>
+      <div class="f-sub">تحويل الاهتمام لعميل فعلي</div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step" style="border-color: var(--teal);">
+      <div class="f-num">8</div>
+      <span class="f-icon">🎉</span>
+      <div class="f-title">Onboarding — الاحتفاظ يبدأ من اليوم الأول</div>
+      <div class="f-sub">رسالة ترحيب شخصية + مكالمة من المدرس</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT PLAN -->
+<section id="content">
+  <div class="section-tag">خطة المحتوى</div>
+  <h2 class="section-title">ماكينة المحتوى <span class="g">30 يوم</span></h2>
+  <div class="divider"></div>
+  <p class="section-sub">خطة متكاملة تغطي كل المنصات — من بناء الثقة إلى الإغلاق النهائي</p>
+
+  <div class="platforms-grid reveal">
+    <div class="platform-card">
+      <span class="p-icon">📘</span>
+      <div class="p-name">Facebook</div>
+      <div class="p-goal">ثقة الأهل + توليد Leads</div>
+      <div class="p-freq">📅 يومياً — قصص عاطفية وكاروسيل</div>
+    </div>
+    <div class="platform-card">
+      <span class="p-icon">📸</span>
+      <div class="p-name">Instagram</div>
+      <div class="p-goal">وعي + إثبات اجتماعي</div>
+      <div class="p-freq">📅 1-2 يومياً — Reels وقبل/بعد</div>
+    </div>
+    <div class="platform-card">
+      <span class="p-icon">🎵</span>
+      <div class="p-name">TikTok</div>
+      <div class="p-goal">وصول فيروسي + أهالي شباب</div>
+      <div class="p-freq">📅 يومياً — مونتاج سريع وتحديات</div>
+    </div>
+    <div class="platform-card">
+      <span class="p-icon">💬</span>
+      <div class="p-name">WhatsApp Broadcast</div>
+      <div class="p-goal">احتفاظ + إحالات</div>
+      <div class="p-freq">📅 3 مرات أسبوعياً — رسائل شخصية وعروض</div>
+    </div>
+  </div>
+
+  <div class="week-tabs">
+    <button class="week-tab active" onclick="showWeek(1)">الأسبوع الأول — بناء الثقة</button>
+    <button class="week-tab" onclick="showWeek(2)">الأسبوع الثاني — تفعيل الرغبة</button>
+    <button class="week-tab" onclick="showWeek(3)">الأسبوع الثالث — الإثبات الاجتماعي</button>
+    <button class="week-tab" onclick="showWeek(4)">الأسبوع الرابع — الإغلاق النهائي</button>
+  </div>
+
+  <div class="week-content active" id="week1">
+    <table class="cal-table">
+      <thead><tr><th>اليوم</th><th>المنصة</th><th>الهوك</th><th>الفكرة</th><th>CTA</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Facebook</td><td>ابنك بيتكلم إنجليزي ولا بيحفظ؟</td><td>الفرق بين الحفظ والطلاقة الحقيقية</td><td>احجز interview مجاني</td></tr>
+        <tr><td>2</td><td>Instagram Reel</td><td>٣ علامات إن ابنك محتاج تأسيس دلوقتي</td><td>hook برنامج التأسيس</td><td>كومنت "تأسيس"</td></tr>
+        <tr><td>3</td><td>TikTok</td><td>طفل ٧ سنين بيبرمج؟</td><td>طفل يستخدم Scratch لعمل لعبة</td><td>لينك في البيو</td></tr>
+        <tr><td>4</td><td>WhatsApp</td><td>نصيحة لكل أم وأب</td><td>Screen time مقابل التكنولوجيا المثمرة</td><td>طلب إحالة لطيف</td></tr>
+        <tr><td>5</td><td>Facebook</td><td>قصة أم من السعودية</td><td>شهادة: طفل كان خايف يتكلم</td><td>اقرأ كمان ← DM</td></tr>
+        <tr><td>6</td><td>Instagram</td><td>مش كل أكاديميات أونلاين زي بعض</td><td>ما يميز EduRise</td><td>سيف دا وارجعله</td></tr>
+        <tr><td>7</td><td>TikTok</td><td>أسرع طريقة تعرف مستوى ابنك</td><td>interview تحديد مستوى مجاني</td><td>DM كلمة "مستوى"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="week-content" id="week2">
+    <table class="cal-table">
+      <thead><tr><th>اليوم</th><th>الهوك</th><th>الفكرة</th><th>CTA</th></tr></thead>
+      <tbody>
+        <tr><td>8</td><td>لو ابنك هيدخل كلية طب أو هندسة</td><td>ربط الإنجليزي بالمستقبل الحقيقي</td><td>استشارة مجانية</td></tr>
+        <tr><td>9</td><td>٧ أطفال في الجروب. مش ٢٠. ليه ده مهم؟</td><td>ميزة الجروب الصغير</td><td>احجز دلوقتي</td></tr>
+        <tr><td>10</td><td>إيه اللي بيحصل في أول جلسة تأسيس؟</td><td>خلف الكواليس في فصل التأسيس</td><td>DM "تأسيس"</td></tr>
+        <tr><td>11</td><td>الأونلاين بيجيب نتيجة؟</td><td>الرد على الاعتراض بدليل</td><td>شهادة + CTA</td></tr>
+        <tr><td>12</td><td>ابنك بيلعب Minecraft؟</td><td>تحويل اهتمامه للبرمجة الحقيقية</td><td>احجز تجربة</td></tr>
+        <tr><td>13</td><td>ضمان استرداد الأموال؟ نعم.</td><td>شرح الضمان الذهبي كاملاً</td><td>بناء ثقة</td></tr>
+        <tr><td>14</td><td>آخر ٤ أماكن في مارس</td><td>ندرة + إلحاح</td><td>رد مباشر</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="week-content" id="week3">
+    <table class="cal-table">
+      <thead><tr><th>اليوم</th><th>الهوك</th><th>الفكرة</th><th>CTA</th></tr></thead>
+      <tbody>
+        <tr><td>15</td><td>كلام أم من القاهرة بعد شهرين</td><td>شهادة فيديو/نص</td><td>شارك + DM</td></tr>
+        <tr><td>16</td><td>قبل وبعد: ابنها كان خايف يتكلم</td><td>تحول حقيقي قبل/بعد</td><td>احجز interview</td></tr>
+        <tr><td>17</td><td>٥ حاجات بتميز EduRise</td><td>مقارنة مباشرة (بدون ذكر أسماء)</td><td>CTA</td></tr>
+        <tr><td>18</td><td>التقرير الأسبوعي للطالب — شكله إزاي؟</td><td>عرض نموذج التقرير الحقيقي</td><td>بناء ثقة</td></tr>
+        <tr><td>19</td><td>مين قال إن البرمجة صعبة على الأطفال؟</td><td>كسر الأسطورة</td><td>Lead للتجربة</td></tr>
+        <tr><td>20</td><td>أسئلة الأهالي الأكتر تكرار</td><td>بوست FAQ صريح</td><td>DM للمزيد</td></tr>
+        <tr><td>21</td><td>مش مصدق؟ اتكلم مع أحد أهالينا</td><td>عرض إثبات اجتماعي مباشر</td><td>رد للتواصل</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="week-content" id="week4">
+    <table class="cal-table">
+      <thead><tr><th>اليوم</th><th>الهوك</th><th>الفكرة</th><th>CTA</th></tr></thead>
+      <tbody>
+        <tr><td>22</td><td>أبريل أقرب مما تتخيل</td><td>إلحاح + استشراف المستقبل</td><td>احجز دلوقتي</td></tr>
+        <tr><td>23</td><td>السعر هيتغير في أول أبريل</td><td>إلحاح السعر — آخر فرصة</td><td>سجّل اليوم</td></tr>
+        <tr><td>24</td><td>ليه الأطفال في السعودية محتاجين EduRise؟</td><td>محتوى خاص بمغتربي الخليج</td><td>Tag a friend</td></tr>
+        <tr><td>25</td><td>مش لازم تختار — خد الاتنين</td><td>تسليط الضوء على عرض الباقة</td><td>رابط الدفع</td></tr>
+        <tr><td>26</td><td>٣ أسئلة بس وهتعرف ابنك محتاج إيه</td><td>Hook اختبار تفاعلي</td><td>DM الإجابات</td></tr>
+        <tr><td>27</td><td>آخر يوم للعرض</td><td>محتوى الموعد النهائي الصارم</td><td>احجز الآن أو اخسر العرض</td></tr>
+        <tr><td>28</td><td>شكراً لكل أهل وثقوا فينا في مارس 🙏</td><td>امتنان + إثبات اجتماعي</td><td>طلب إحالة</td></tr>
+        <tr><td>29</td><td>أبريل — فتحنا التسجيل للدفعة الجديدة</td><td>إلحاح شهر جديد</td><td>Early bird CTA</td></tr>
+        <tr><td>30</td><td>نتايج الشهر الأول — الأرقام بتتكلم</td><td>ملخص نتائج الشهر</td><td>احجز أبريل</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PSYCHOLOGY -->
+<section id="psychology">
+  <div class="section-tag">علم النفس</div>
+  <h2 class="section-title">عقلية الأهل — <span class="g">نفهم قبل ما نبيع</span></h2>
+  <div class="divider"></div>
+
+  <div class="psych-grid">
+    <div class="psych-card reveal">
+      <div class="pc-title">😰 المخاوف العميقة للأهالي المصريين</div>
+      <div class="psych-item">
+        <div class="left">🔴</div>
+        <div>
+          <div class="fear">ابني هيتأخر عن زملاءه</div>
+          <div class="belief">قلق المقارنة الاجتماعية — "أولاد الناس أحسن من ابني"</div>
+        </div>
+      </div>
+      <div class="psych-item">
+        <div class="left">🔴</div>
+        <div>
+          <div class="fear">فلوسي هتتحرق</div>
+          <div class="belief">تجارب سلبية سابقة مع الكورسات الأونلاين</div>
+        </div>
+      </div>
+      <div class="psych-item">
+        <div class="left">🔴</div>
+        <div>
+          <div class="fear">المدرس مش كفء</div>
+          <div class="belief">عدم الثقة في المدرسين الأونلاين</div>
+        </div>
+      </div>
+      <div class="psych-item">
+        <div class="left">🔴</div>
+        <div>
+          <div class="fear">ابني مش هيركز أونلاين</div>
+          <div class="belief">قلق وقت الشاشة + مدى الانتباه</div>
+        </div>
+      </div>
+      <div class="psych-item">
+        <div class="left">🔴</div>
+        <div>
+          <div class="fear">مش هيجيب نتيجة قبل الامتحانات</div>
+          <div class="belief">إلحاح النتائج مربوط بالتقويم الدراسي</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="psych-card reveal">
+      <div class="pc-title">💛 الرغبات الخفية — ما لا يصرحون به</div>
+      <div class="psych-item">
+        <div class="left">✨</div>
+        <div>
+          <div class="fear">يتفاخروا أمام الأهل الآخرين</div>
+          <div class="belief">يريدون برنامجاً "بريستيج" يتحدثون عنه</div>
+        </div>
+      </div>
+      <div class="psych-item">
+        <div class="left">✨</div>
+        <div>
+          <div class="fear">يشعروا أنهم آباء يستثمرون بذكاء</div>
+          <div class="belief">يريدون تأكيد قراراتهم التعليمية</div>
+        </div>
+      </div>
+      <div class="psych-item">
+        <div class="left">✨</div>
+        <div>
+          <div class="fear">طفلهم مُميَّز من مدرسيه</div>
+          <div class="belief">إثبات تفوق ابنهم أمام الآخرين</div>
+        </div>
+      </div>
+      <div class="psych-item">
+        <div class="left">✨</div>
+        <div>
+          <div class="fear">مغتربو الخليج: الهوية العربية + المهارة العالمية</div>
+          <div class="belief">التوازن بين الأصالة والعالمية</div>
+        </div>
+      </div>
+      <div class="psych-item">
+        <div class="left">✨</div>
+        <div>
+          <div class="fear">الراحة النفسية — شخص آخر يتحمل ضغط التعليم</div>
+          <div class="belief">يريدون من يأخذ القلق عنهم</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIONS -->
+<section id="objections">
+  <div class="section-tag">الاعتراضات والردود</div>
+  <h2 class="section-title">كل اعتراض — <span class="t">رد قاتل</span></h2>
+  <div class="divider"></div>
+
+  <div class="obj-grid">
+    <div class="obj-card reveal">
+      <div class="obj-q">❝ "غالي عليا" ❞</div>
+      <div class="obj-a">"غالي مقارنة بإيه؟ كلاس خصوصي بـ 150 جنيه في الساعة = 2400 لنفس الساعات — وبدون منهج أو متابعة."</div>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-q">❝ "مش وقته دلوقتي" ❞</div>
+      <div class="obj-a">"متى يبقى الوقت؟ الأطفال اللي بدأوا إنجليزي في سن 8 غير اللي بدأوا في 12 تماماً — الـ window بتضيق."</div>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-q">❝ "جربنا زي ده قبل كده" ❞</div>
+      <div class="obj-a">"ده بالظبط اللي هيخليك تفرق الفرق. إيه اللي حصل؟ أنا عايز أفهم." ثم اعكس الألم لصالحك</div>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-q">❝ "هيتشتت أونلاين" ❞</div>
+      <div class="obj-a">"الجروبات عندنا 7 طلاب بالكتير — المدرس عارف اسم كل طالب وبيلاحظه. ده أحسن من فصل 40 طالب."</div>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-q">❝ "مش عارف أفضل إيه" ❞</div>
+      <div class="obj-a">"ده بالظبط سبب الـ interview المجاني — مش هنبيعك حاجة مش محتاجها. بنحدد الأنسب الأول."</div>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-q">❝ "فيه أكاديميات أرخص" ❞</div>
+      <div class="obj-a">"السؤال مش السعر — السؤال هو هيتعلم ولا لا. لو خلصت 6 شهور وما فيش نتيجة — فين وفرت؟"</div>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-q">❝ "ابني مش بيحب الدراسة" ❞</div>
+      <div class="obj-a">"معظم الأطفال اللي عندنا دول. الـ method عندنا مختلفة — بتشغل الفضول مش الحفظ."</div>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-q">❝ "مش متأكد من الجودة" ❞</div>
+      <div class="obj-a">"مفيش داعي تتأكد — جرب الأول. الـ Golden Guarantee موجودة عشان متخسرش حاجة."</div>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-q">❝ "ابني عنده حصص كتير" ❞</div>
+      <div class="obj-a">"كورساتنا ساعتين أسبوعياً. أقل من Netflix في أسبوع — ومخرجاتها أكبر بكتير."</div>
+    </div>
+    <div class="obj-card reveal">
+      <div class="obj-q">❝ "هفكر وأرجع" ❞</div>
+      <div class="obj-a">"أنا محتاج أسألك سؤال واحد بس: لو فكرت وقلت آه — هيتغير إيه؟ لو الجواب لا — خلينا نبدأ دلوقتي."</div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONS -->
+<section id="operations">
+  <div class="section-tag">العمليات</div>
+  <h2 class="section-title">الجدول الأسبوعي <span class="g">المُحسَّن</span></h2>
+  <div class="divider"></div>
+
+  <div class="reveal" style="overflow-x:auto;">
+    <table class="ops-table">
+      <thead>
+        <tr>
+          <th>الوقت</th>
+          <th>الأحد</th>
+          <th>الاثنين</th>
+          <th>الثلاثاء</th>
+          <th>الأربعاء</th>
+          <th>الخميس</th>
+          <th>الجمعة</th>
+          <th>السبت</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time-col">4–6 م</td>
+          <td class="class-cell">تأسيس (أ)</td>
+          <td class="class-cell">إنجليزي L1-4</td>
+          <td class="class-cell">تأسيس (ب)</td>
+          <td class="class-cell">إنجليزي L5-8</td>
+          <td class="class-cell">برمجة مبتدئ</td>
+          <td class="empty-cell">مبيعات وإدارة</td>
+          <td class="class-cell">جلسات تعويض</td>
+        </tr>
+        <tr>
+          <td class="time-col">6–8 م</td>
+          <td class="class-cell">إنجليزي L9-12</td>
+          <td class="class-cell">برمجة متوسط</td>
+          <td class="class-cell">إنجليزي L1-4</td>
+          <td class="class-cell">تأسيس (ج)</td>
+          <td class="class-cell">إنجليزي L13-16</td>
+          <td class="empty-cell">مقابلات تحديد مستوى</td>
+          <td class="class-cell">جلسات خصوصية</td>
+        </tr>
+        <tr>
+          <td class="time-col">8–10 م</td>
+          <td class="class-cell">برمجة متقدم</td>
+          <td class="class-cell">إنجليزي L5-8</td>
+          <td class="class-cell">برمجة مبتدئ</td>
+          <td class="class-cell">إنجليزي L9-12</td>
+          <td class="class-cell">مراجعة التأسيس</td>
+          <td class="empty-cell">متابعة العملاء</td>
+          <td class="empty-cell">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="group-vs-private reveal">
+    <div class="gvp-card">
+      <div class="gvp-title">👥 الجروب (أقصاه 7 طلاب)</div>
+      <div class="gvp-row"><span class="label">السعر</span><span class="val">السعر القياسي</span></div>
+      <div class="gvp-row"><span class="label">الأنسب لـ</span><span class="val">المتعلمون الاجتماعيون، تأسيس، برمجة</span></div>
+      <div class="gvp-row"><span class="label">Upsell</span><span class="val">بعد الشهر الأول إذا أراد الأهل تقدماً أسرع</span></div>
+      <div class="gvp-row"><span class="label">العائد لكل مدرس</span><span class="val">حجم أعلى</span></div>
+    </div>
+    <div class="gvp-card">
+      <div class="gvp-title">👤 خصوصي</div>
+      <div class="gvp-row"><span class="label">السعر</span><span class="val">+60% علاوة على السعر القياسي</span></div>
+      <div class="gvp-row"><span class="label">الأنسب لـ</span><span class="val">الأطفال الخجولون، ذوو الاحتياجات الخاصة، المتسارعون</span></div>
+      <div class="gvp-row"><span class="label">Upsell</span><span class="val">فوري لمشتري الباقة المميزة</span></div>
+      <div class="gvp-row"><span class="label">العائد لكل مدرس</span><span class="val">هامش أعلى لكل ساعة</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE -->
+<section id="revenue">
+  <div class="section-tag">تحقيق الإيرادات</div>
+  <h2 class="section-title">نموذج الإيرادات <span class="g">والنمو</span></h2>
+  <div class="divider"></div>
+
+  <div class="rev-cards reveal">
+    <div class="rev-card">
+      <div class="rev-scenario">السيناريو المحافظ</div>
+      <span class="rev-num">100K</span>
+      <div class="rev-sub">جنيه شهرياً</div>
+      <div class="rev-detail">40 طالب × Starter (2,500 جنيه)</div>
+    </div>
+    <div class="rev-card base">
+      <div class="rev-scenario">⭐ السيناريو الأساسي</div>
+      <span class="rev-num">210K</span>
+      <div class="rev-sub">جنيه شهرياً</div>
+      <div class="rev-detail">60 طالب × Growth (3,500 جنيه)</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-scenario">السيناريو المتقدم</div>
+      <span class="rev-num">256K</span>
+      <div class="rev-sub">جنيه شهرياً</div>
+      <div class="rev-detail">80 طالب × متوسط مختلط (3,200 جنيه)</div>
+    </div>
+  </div>
+
+  <div class="section-tag">نظام Upsell</div>
+  <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem;">محفزات الترقية الذكية</h3>
+
+  <div class="upsell-grid reveal">
+    <div class="upsell-item">
+      <div class="trigger">المحفز</div>
+      <div class="action">إتمام الشهر الأول</div>
+      <div class="timing">الترقية: Growth أو Elite — مكالمة نهاية الشهر</div>
+    </div>
+    <div class="upsell-item">
+      <div class="trigger">المحفز</div>
+      <div class="action">تقرير تقدم ممتاز</div>
+      <div class="timing">إضافة كورس ثانٍ — بعد الأسبوع الثالث</div>
+    </div>
+    <div class="upsell-item">
+      <div class="trigger">المحفز</div>
+      <div class="action">تفاعل عالٍ من الأهل</div>
+      <div class="timing">ترقية لجلسات خصوصية — في أي وقت</div>
+    </div>
+    <div class="upsell-item">
+      <div class="trigger">المحفز</div>
+      <div class="action">ذكر أشقاء</div>
+      <div class="timing">خصم تسجيل الأشقاء — فوري</div>
+    </div>
+  </div>
+</section>
+
+<!-- KPI -->
+<section id="kpi">
+  <div class="section-tag">مؤشرات الأداء</div>
+  <h2 class="section-title">KPI Dashboard — <span class="g">الأرقام اليومية</span></h2>
+  <div class="divider"></div>
+
+  <div class="kpi-grid reveal">
+    <div class="kpi-card">
+      <span class="k-icon">📨</span>
+      <div class="k-metric">Leads يومياً</div>
+      <div class="k-target">10–15</div>
+    </div>
+    <div class="kpi-card">
+      <span class="k-icon">⚡</span>
+      <div class="k-metric">وقت الرد على Lead</div>
+      <div class="k-target">&lt; 5 دقائق</div>
+    </div>
+    <div class="kpi-card">
+      <span class="k-icon">📞</span>
+      <div class="k-metric">مقابلات محجوزة يومياً</div>
+      <div class="k-target">5–7</div>
+    </div>
+    <div class="kpi-card">
+      <span class="k-icon">✅</span>
+      <div class="k-metric">إغلاقات يومية</div>
+      <div class="k-target">2–3</div>
+    </div>
+    <div class="kpi-card">
+      <span class="k-icon">📊</span>
+      <div class="k-metric">معدل Lead ← إغلاق</div>
+      <div class="k-target">25–35%</div>
+    </div>
+    <div class="kpi-card">
+      <span class="k-icon">💰</span>
+      <div class="k-metric">إيراد يومي</div>
+      <div class="k-target">5K–7.5K جنيه</div>
+    </div>
+    <div class="kpi-card">
+      <span class="k-icon">🎯</span>
+      <div class="k-metric">CAC (تكلفة الاستحواذ)</div>
+      <div class="k-target">&lt; 300 جنيه</div>
+    </div>
+    <div class="kpi-card">
+      <span class="k-icon">📈</span>
+      <div class="k-metric">LTV (6 أشهر)</div>
+      <div class="k-target">&gt; 15,000 جنيه</div>
+    </div>
+    <div class="kpi-card">
+      <span class="k-icon">🔄</span>
+      <div class="k-metric">معدل الإلغاء الشهري</div>
+      <div class="k-target">&lt; 10%</div>
+    </div>
+    <div class="kpi-card">
+      <span class="k-icon">🤝</span>
+      <div class="k-metric">معدل الإحالة</div>
+      <div class="k-target">&gt; 20%</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 3rem;">
+    <div class="section-tag">قواعد القرار</div>
+    <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem;">إذا حدث هذا — افعل ذاك</h3>
+    <table class="decision-table reveal">
+      <thead>
+        <tr>
+          <th>إذا حدث</th>
+          <th>افعل ذاك فوراً</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>معدل الإغلاق تحت 20%</td><td>A/B test على سكريبت الإغلاق، راجع أنماط الاعتراضات</td></tr>
+        <tr><td>CAC تجاوز 500 جنيه</td><td>أوقف الإعلانات المدفوعة، ضاعف المحتوى العضوي + Broadcast</td></tr>
+        <tr><td>Leads عالية لكن مقابلات منخفضة</td><td>أصلح الرسالة الأولى — أعد كتابة سكريبت التأهيل</td></tr>
+        <tr><td>مقابلات عالية لكن إغلاقات منخفضة</td><td>تدريب فريق المبيعات على التعامل مع الاعتراضات</td></tr>
+        <tr><td>إلغاء عالٍ في الشهر الثاني</td><td>أضف مكالمة تفقد في الشهر الأول، استبيان الملغين</td></tr>
+        <tr><td>معدل الإحالة تحت 10%</td><td>بكّر في طلب الإحالة — الأسبوع 3 بدل الشهر 1</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- COMPETITOR -->
+<section id="competitor">
+  <div class="section-tag">التنافسية</div>
+  <h2 class="section-title">لماذا <span class="g">EduRise</span> تفوز دائماً</h2>
+  <div class="divider"></div>
+
+  <div class="reveal" style="overflow-x:auto;">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>المعيار</th>
+          <th class="them">المنافس العادي</th>
+          <th class="us">EduRise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>حجم الجروب</td><td class="lose">15–30 طالب</td><td class="win">أقصاه 7 طلاب ✓</td></tr>
+        <tr><td>التقارير</td><td class="lose">لا شيء أو شهرياً</td><td class="win">أسبوعية ومخصصة ✓</td></tr>
+        <tr><td>الضمان</td><td class="lose">لا ضمان</td><td class="win">الضمان الذهبي ✓</td></tr>
+        <tr><td>تحديد المستوى</td><td class="lose">اختبار عادي</td><td class="win">مقابلة مجانية مع مستشار بشري ✓</td></tr>
+        <tr><td>البرامج</td><td class="lose">مادة واحدة</td><td class="win">إنجليزي + برمجة + تأسيس مجمّعة ✓</td></tr>
+        <tr><td>المجتمع</td><td class="lose">لا يوجد</td><td class="win">جروبات واتساب + مدير أكاديمي ✓</td></tr>
+        <tr><td>استهداف الخليج</td><td class="lose">غير موجود عملياً</td><td class="win">تموضع مخصص للمغتربين ✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="position-box reveal">
+    <div class="pos-label">بيان التموضع</div>
+    <div class="pos-text">
+      "EduRise هي الأكاديمية الوحيدة اللي بتضمن تقدم طفلك بالكتابة — أو بترجعلك فلوسك."
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-tag">الخطة الزمنية</div>
+  <h2 class="section-title">رحلة <span class="g">يناير 2027</span></h2>
+  <div class="divider"></div>
+  <p class="section-sub">من الآن حتى الاستدامة الكاملة — خطوات واضحة وأهداف محددة</p>
+
+  <div class="timeline-track reveal">
+    <div class="tl-item">
+      <div class="tl-date">الآن — أغسطس 2025</div>
+      <div class="tl-title">🤖 تشغيل محور التكنيكال</div>
+      <div class="tl-desc">برامج البرمجة والروبوتكس والإنجليزي — استقطاب أولى الدفعات وبناء السمعة</div>
+      <span class="tl-target">🎯 300 طالب</span>
+    </div>
+
+    <div class="tl-item teal">
+      <div class="tl-date">أبريل — الامتحانات 2025</div>
+      <div class="tl-title">📖 إطلاق دروس المراجعة للمغتربين</div>
+      <div class="tl-desc">مراجعات نهائية للمنهج المصري — ابتدائي وإعدادي — للطلاب في الخليج ومصر</div>
+      <span class="tl-target">🎯 أول 50 طالب من الخليج</span>
+    </div>
+
+    <div class="tl-item orange">
+      <div class="tl-date">يونيو / يوليو 2025</div>
+      <div class="tl-title">🏫 بدء التجهيز للمدرسة الأونلاين الكاملة</div>
+      <div class="tl-desc">بناء المنظومة الكاملة ليوم دراسي كامل أونلاين — تجنيد المدرسين وإعداد المنهج</div>
+      <span class="tl-target">🎯 الإطلاق مع بداية العام الدراسي</span>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">يناير 2026</div>
+      <div class="tl-title">📚 وصول محور التأسيس لهدفه</div>
+      <div class="tl-desc">برامج ما قبل المدرسة — رياضيات، عربي، إنجليزي، قرآن كريم</div>
+      <span class="tl-target">🎯 300 طفل</span>
+    </div>
+
+    <div class="tl-item teal">
+      <div class="tl-date">طوال 2025–2026</div>
+      <div class="tl-title">🏆 هاكاثون البرمجة والروبوتكس</div>
+      <div class="tl-desc">فعالية ضخمة عبر المدارس والمؤسسات التعليمية لرفع الوعي بالعلامة التجارية</div>
+      <span class="tl-target">🎯 500-1000 مشارك | 100,000 يسمعون عن EduRise</span>
+    </div>
+
+    <div class="tl-item orange">
+      <div class="tl-date">يناير 2027 🏁</div>
+      <div class="tl-title">💰 الاستدامة المالية الكاملة</div>
+      <div class="tl-desc">استرداد تكاليف الإنشاء بالكامل — المكان شايل نفسه ومحقق أهدافه</div>
+      <span class="tl-target" style="background: rgba(0,201,167,0.1); color: var(--teal);">🎯 هامش ربح 15–20% من العمليات</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXECUTION -->
+<section id="execution">
+  <div class="section-tag">أول 7 أيام</div>
+  <h2 class="section-title">الأولوية الآن — <span class="t">ابدأ اليوم</span></h2>
+  <div class="divider"></div>
+
+  <div class="exec-grid">
+    <div class="exec-card reveal">
+      <div class="exec-day">اليوم 1–2</div>
+      <div class="exec-title">🔧 إعداد البنية التحتية</div>
+      <div class="exec-desc">WhatsApp Business + سكريبتات الردود السريعة + رابط الدفع جاهز</div>
+    </div>
+    <div class="exec-card reveal">
+      <div class="exec-day">اليوم 3</div>
+      <div class="exec-title">📝 إطلاق أول بوست Facebook + Instagram</div>
+      <div class="exec-desc">محتوى ثقة — مش مبيعات. بناء العلاقة قبل طلب الشراء</div>
+    </div>
+    <div class="exec-card reveal">
+      <div class="exec-day">اليوم 4</div>
+      <div class="exec-title">📣 تشغيل أول إعلان مدفوع</div>
+      <div class="exec-desc">برنامج التأسيس — الأقوى عاطفياً. أكثر Hook يحرك القلب</div>
+    </div>
+    <div class="exec-card reveal">
+      <div class="exec-day">اليوم 5</div>
+      <div class="exec-title">🎓 أول مقابلات تحديد مستوى</div>
+      <div class="exec-desc">تطبيق السكريبت على الأرض — تحسين بناءً على الاعتراضات الحقيقية</div>
+    </div>
+    <div class="exec-card reveal">
+      <div class="exec-day">اليوم 6</div>
+      <div class="exec-title">⭐ أول محتوى شهادات وإثبات اجتماعي</div>
+      <div class="exec-desc">نشر أول شهادة حقيقية من أهالي الطلاب الموجودين</div>
+    </div>
+    <div class="exec-card reveal">
+      <div class="exec-day">اليوم 7</div>
+      <div class="exec-title">📡 أول Broadcast واتساب</div>
+      <div class="exec-desc">لكل leads الأسبوع + رسالة ندرة — الأماكن المحدودة تخلق الإلحاح</div>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top: 3rem; padding: 2rem; background: rgba(245,200,66,0.06); border: 1px solid rgba(245,200,66,0.15); border-radius: 20px;" class="reveal">
+    <p style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: var(--gold); margin-bottom: 0.5rem;">
+      الماكينة جاهزة. المتغير الوحيد هو سرعة التنفيذ.
+    </p>
+    <p style="color: var(--text-muted); font-size: 0.9rem;">كل يوم بدون إجراء = طالب يسجل عند المنافس</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Edu<span>Rise</span></div>
+  <div class="footer-tagline">نبني جيل المستقبل — واحداً في كل مرة</div>
+  <div class="footer-bottom">© 2026 EduRise — جميع الحقوق محفوظة</div>
+</footer>
+
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Stagger children
+        const children = e.target.querySelectorAll('.pillar-card, .obj-card, .exec-card, .kpi-card, .platform-card');
+        children.forEach((c, i) => {
+          c.style.transitionDelay = `${i * 80}ms`;
+          c.classList.add('visible');
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Week tabs
+  function showWeek(num) {
+    document.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.week-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.week-tab')[num-1].classList.add('active');
+    document.getElementById('week' + num).classList.add('active');
+  }
+
+  // Float cards subtle animation
+  const floatCards = document.querySelectorAll('.float-card');
+  floatCards.forEach((card, i) => {
+    card.style.animation = `fadeInLeft 0.6s ${0.5 + i * 0.1}s ease both`;
+  });
+
+  // Smooth anchor
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+
+</body>
+</html>
